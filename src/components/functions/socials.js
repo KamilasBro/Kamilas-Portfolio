@@ -9,5 +9,7 @@ export default function socials(element){
         case "fiverr":
             window.open("https://www.fiverr.com/", "_blank");
         break;
+        default:
+        break;
     }
 }

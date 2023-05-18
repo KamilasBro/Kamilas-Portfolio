@@ -4,7 +4,7 @@ import github from "../images/socials/github.png"
 import fiverr from "../images/socials/fiverr.png"
 import hadleScroll from "./functions/handleScroll"
 import socials from "./functions/socials"
-import React,{useState, useEffect} from "react"
+import React,{useState} from "react"
 export default function Navbar() {
     const [currentSection, setCurrentSection]=useState("home")
     const [Ypos, setYPos]=useState(true)
