@@ -1,0 +1,54 @@
+.technologies{
+    margin-top: 200px;
+}
+.technologies-menu{
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+}
+.technologies-button{
+    transition: 300ms;
+
+    height: 75px;
+    width: 75px;
+
+    margin-left: 60px;
+
+    cursor: pointer;
+
+}
+.technologies-chart{
+    margin-top: 40px;
+}
+.technologies-chart:first-child{
+    margin-top: 30px;
+}
+.chart-text{
+    display: flex;
+    justify-content: space-between;
+}
+.chart-property{
+    font-weight: 600;
+    font-size: 28px;
+}
+.chart-precentage{
+    font-weight: 600;
+    font-size: 18px;
+}
+.chart-bar{
+    border-radius: 83px;
+
+    margin-top: 10px;
+
+    width: 100%;
+    height: 20px;
+
+    background-color: #171717;
+}
+.chart-inner-bar{
+    transition: 500ms;
+
+    border-radius: 83px;
+    height: 100%;
+}

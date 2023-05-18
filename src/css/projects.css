@@ -1,0 +1,153 @@
+.projects-list{
+    border: 1px solid;
+    border-image: 
+    linear-gradient(135deg, #FF0099 0%, 
+    rgba(255, 0, 153, 0) 40%, 
+    rgba(255, 0, 153, 0) 65%, 
+    #AD00FF 100%) 1;
+    
+    padding-inline: 160px;
+    padding-block: 50px;
+    margin-top: 50px;
+    min-height: 600px;
+}
+.projects-list-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.projects-list-menu-input{
+    display: flex;
+    align-items: center;
+
+    outline: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    height: 50px;
+    width: 400px;
+}
+.menu-input{
+    transition: 300ms;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    margin-left: 5px;
+}
+.menu-input:focus{
+    background-color: #171717;
+}
+.search-wrap{
+    width: 50px;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+
+    cursor: pointer;
+}
+.menu-search{
+    height: 20px;
+    width: 20px;
+    
+}
+.projects-list-menu-buttons{
+    display: flex;
+}
+.projects-list-btn{
+    cursor: pointer;
+
+    font-weight: 400;
+    font-size: 16px;
+
+    padding: 10px;
+    margin-left: 28px;
+
+    border-radius: 10px;
+    background-color: transparent;
+
+    transition: 300ms;
+}
+.projects-list-btn:first-child{
+    margin-left: 0px;
+}
+.projects-list-btn:hover{
+    background-color: #FFFFFF;
+    color: #171717;
+}
+.projects-list-menu-items{
+    margin-top: 50px;
+    padding-inline: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-y: auto;
+    max-height: 500px;
+}
+.projects-list-menu-items::-webkit-scrollbar {
+    width: 5px;
+}
+.projects-list-menu-items::-webkit-scrollbar-thumb {
+    background: #FF0099;
+    border-radius: 100px;
+}
+.list-item{
+    border: 1px solid;
+    border-image: linear-gradient(135deg, #FF0099 0%, #AD00FF 100%) 1;
+
+    padding: 30px;
+    
+    max-width: 400px;
+
+    margin-top: 40px;
+}
+.list-item:nth-child(1){
+    margin-top: 0px;
+}
+.list-item:nth-child(2){
+    margin-top: 0px;
+}
+.item-image{
+    height: 191px;
+    width: 340px;
+}
+.item-name{
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 28px;
+    text-align: center;
+}
+.item-buttons{
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+.item-buttons div{
+    padding: 25px;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: 300ms;
+}
+.preview:hover{
+    color: #FF0099;
+}
+.checkOnGithub{
+    border-radius: 50px;
+    outline: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.25);
+}
+.checkOnGithub:hover{
+    background-color: #FFFFFF;
+
+    box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.25);
+
+    color: rgba(23, 23, 23, 1);
+}
+

@@ -1,0 +1,32 @@
+.about{
+    margin-top: 200px;
+}
+.about-grid{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.about-grid div{
+    font-weight: 400;
+    font-size: 20px;
+}
+.about-grid div:nth-child(1){
+    grid-area: 1 / 1 / 2 / 2;
+}
+.about-grid div:nth-child(2){
+    margin-top: 15px;
+    
+    grid-area: 2 / 1 / 3 / 2;
+}
+.about-grid div:nth-child(3){
+    grid-area: 1 / 2 / 3 / 3; 
+
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.about-photo img{
+    height: 650px;
+    width: 500px;
+}
