@@ -57,7 +57,7 @@ footer{
 
     filter: grayscale(100%);
 }
-.footer-socials img:nth-child(2){
+.footer-socials .social-aTag:nth-child(2){
     margin-inline: 15px;
 }
 .footer-socials img:hover{

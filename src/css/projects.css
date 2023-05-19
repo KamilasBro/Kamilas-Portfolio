@@ -16,44 +16,58 @@
     align-items: center;
     justify-content: space-between;
 }
-.projects-list-menu-input{
+.search-bar{
+    display: flex;
+
+    height: 50px;
+    width: 400px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.search-input-wrap{
     display: flex;
     align-items: center;
 
-    outline: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    height: 50px;
-    width: 400px;
+    width: 350px;
 }
-.menu-input{
-    transition: 300ms;
-    background-color: transparent;
-    color: #FFFFFF;
-    border: none;
+.search-input{
+    height: 100%;
     width: 100%;
-    height: 100%;
     font-size: 16px;
-    margin-left: 5px;
+    padding-left: 10px;
 }
-.menu-input:focus{
-    background-color: #171717;
+.search-input-wrap img{
+    transition: 300ms;
+
+    cursor: pointer;
+
+    height: 35px;
+    width: 35px;
+
+    filter: brightness(0.7);
 }
-.search-wrap{
-    width: 50px;
-    height: 100%;
-    
+.search-icon-wrap{
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-
     cursor: pointer;
+
+    width: 50px;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
-.menu-search{
+.search-icon-wrap img{
+    transition: 300ms;
+
+    filter: brightness(0.7);
+
     height: 20px;
     width: 20px;
-    
+}
+.search-icon-wrap img:hover, .search-input-wrap img:hover{
+    filter: brightness(1);
 }
 .projects-list-menu-buttons{
     display: flex;
@@ -121,6 +135,16 @@
     font-size: 28px;
     text-align: center;
 }
+sup{
+    font-weight: 500;
+    font-size: 16px;
+    padding-left: 5px;
+
+    background: linear-gradient(90deg, #AD00FF 0%,#FF0099  100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 .item-buttons{
     margin-top: 25px;
     display: flex;
@@ -150,4 +174,12 @@
 
     color: rgba(23, 23, 23, 1);
 }
+#projectNotFound{
+    text-align: center;
 
+    width: 100%;
+
+    margin-top: 30px;
+
+    font-size: 30px;
+}

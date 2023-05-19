@@ -116,6 +116,9 @@
     color: #171717;
     box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.25);
 }
+.contact-socials{
+    display: flex;
+}
 .contact-socials img{
     transition: 500ms;
 
@@ -128,7 +131,7 @@
 
     border-radius: 100px;
 }
-.contact-socials img:nth-child(2){
+.contact-socials .social-aTag:nth-child(2){
     margin-inline: 30px;
 }
 .contact-socials img:hover{

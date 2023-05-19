@@ -66,7 +66,7 @@ nav:hover{
     height: 27px;
     width: 27px;
 }
-.navbar-socials img:nth-child(2){
+.navbar-socials .social-aTag:nth-child(2){
     margin-inline: 15px;
 }
 .navbar-socials img:hover{

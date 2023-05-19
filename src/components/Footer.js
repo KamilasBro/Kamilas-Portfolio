@@ -15,9 +15,15 @@ export default function Footer() {
                     <li onClick={()=>hadleScroll(".about")}>About</li>
                 </ul>
                 <div className="footer-socials">
-                    <img src={linkedin} alt="linkedin" onClick={()=>socials("linkedin")}/>
-                    <img src={github} alt="github" onClick={()=>socials("github")}/>
-                    <img src={fiverr} alt="fiverr" onClick={()=>socials("fiverr")}/>
+                    <a className="social-aTag" href={socials("linkedin")} target="blank">
+                        <img src={linkedin} alt="linkedin"/>
+                    </a>
+                    <a className="social-aTag" href={socials("github")} target="blank">
+                        <img src={github} alt="github"/>
+                    </a>
+                    <a className="social-aTag" href={socials("fiverr")} target="blank">
+                        <img src={fiverr} alt="fiverr"/>
+                    </a>
                 </div>
             </div>
         </footer>
