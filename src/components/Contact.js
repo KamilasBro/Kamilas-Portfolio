@@ -14,12 +14,9 @@ export default function Contact() {
             <h1 className="section-title">Get in touch</h1>
             <form 
             className="contact-form"
-            name="contact v1"
-            method="post"
-            data-netlify="true"
-            onSubmit="submit"
+            name="contact" method="POST" data-netlify="true"
             >
-                <input type="hidden" name="form-name" value="contact v1"/>
+                <input type="hidden" name="form-name" value="contact"/>
                 <div className="contact-inputs">
                     <div className="name">
                         <div><label>Name</label></div>
@@ -27,8 +24,7 @@ export default function Contact() {
                         style={focusInput==="name"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
                                 <input
-                                    name="name"
-                                    id="formName" 
+                                    type="text" name="name"
                                     placeholder="John" 
                                     required
                                     onFocus={()=>{
@@ -46,8 +42,7 @@ export default function Contact() {
                         style={focusInput==="email"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
                                 <input
-                                name="email"
-                                id="formMail" 
+                                type="email" name="email"
                                 placeholder="someone@example.com" required
                                 onFocus={()=>setFocusInput("email")}
                                 onMouseEnter={()=>document.removeEventListener("click",handleClick, true)}
