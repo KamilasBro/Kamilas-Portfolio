@@ -12,6 +12,7 @@ export default function Contact() {
     return (
         <section className="contact">
             <h1 className="section-title">Get in touch</h1>
+            <form name='contact' netlify netlify-honeypot="bot-field" hidden></form>
             <form 
             className="contact-form"
             name="contact" method="POST" data-netlify="true"
