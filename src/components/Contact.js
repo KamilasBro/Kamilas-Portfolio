@@ -12,7 +12,8 @@ export default function Contact() {
     return (
         <section className="contact">
             <h1 className="section-title">Get in touch</h1>
-            <form className="contact-form">
+            <form className="contact-form" name="contact" method="post" action="">
+            <input type="hidden" name="form-name" value="contact" />
                 <div className="contact-inputs">
                     <div className="name">
                         <div><label>Name</label></div>
@@ -20,6 +21,8 @@ export default function Contact() {
                         style={focusInput==="name"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
                                 <input
+                                    type="text" 
+                                    name="name"
                                     id="formName" 
                                     placeholder="John" 
                                     required
@@ -38,7 +41,9 @@ export default function Contact() {
                         style={focusInput==="email"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
                                 <input 
-                                id="formMail" 
+                                id="formMail"
+                                type="email" 
+                                name="email"
                                 placeholder="someone@example.com" required
                                 onFocus={()=>setFocusInput("email")}
                                 onMouseEnter={()=>document.removeEventListener("click",handleClick, true)}
@@ -52,6 +57,7 @@ export default function Contact() {
                 style={focusInput==="comment"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                     <div className="textarea">
                         <textarea 
+                         name="message"
                          id="comment"
                          placeholder="Your comment" 
                          required onFocus={()=>setFocusInput("comment")}
@@ -63,9 +69,7 @@ export default function Contact() {
                 <div className="contact-buttons">
                     <button 
                         className="contact-submit"
-                        onClick={(event)=>{
-                            event.preventDefault();
-                        }}
+                        type="submit"
                     >Submit</button>
                     <div className="contact-socials">
                         <a className="social-aTag" href={socials("linkedin")} target="blank">
