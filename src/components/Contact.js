@@ -29,7 +29,6 @@ export default function Contact() {
                                 <input
                                     type="text" 
                                     name="name"
-                                    id="formName" 
                                     placeholder="John" 
                                     required
                                     onFocus={()=>{
@@ -47,7 +46,6 @@ export default function Contact() {
                         style={focusInput==="email"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
                                 <input 
-                                id="formMail"
                                 type="email" 
                                 name="email"
                                 placeholder="someone@example.com" required
@@ -64,8 +62,7 @@ export default function Contact() {
                     <div className="textarea">
                         <textarea 
                          name="message"
-                         id="comment"
-                         placeholder="Your comment" 
+                         placeholder="Your message" 
                          required onFocus={()=>setFocusInput("comment")}
                          onMouseEnter={()=>document.removeEventListener("click",handleClick, true)}
                          onMouseLeave={()=>document.addEventListener("click",handleClick, true)}
