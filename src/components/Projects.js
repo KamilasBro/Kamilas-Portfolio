@@ -28,7 +28,7 @@ export default function Projects() {
                                         </a>}
                                     </div>
                                 </div>)
-                        }else if(e.name.toLowerCase().includes(currentSearch)===true){
+                        }else if(e.name.toLowerCase().includes(currentSearch.toLowerCase())===true){
                             return(
                                 <div className="list-item" key={e.id}>
                                     <img src={require(`../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
@@ -45,7 +45,6 @@ export default function Projects() {
                                     </div>
                                 </div>)
                         }else{
-                            
                             return(null)
                         }
                     })
@@ -71,10 +70,9 @@ export default function Projects() {
                                         </div>
                                     </div>)
                             }else{
-                                
                                 return(null)
                             }
-                        }else if(e.name.toLowerCase().includes(currentSearch)===true){
+                        }else if(e.name.toLowerCase().includes(currentSearch.toLowerCase())===true){
                             if(currentFilter===e.createdIn){
                                 return(
                                     <div className="list-item" key={e.id}>
@@ -92,11 +90,9 @@ export default function Projects() {
                                         </div>
                                     </div>)
                             }else{
-                                
                                 return(null)
                             }
                         }else{
-                            
                             return(null)
                         }
                     })
@@ -175,8 +171,12 @@ export default function Projects() {
                     </ul>
                 </div>
                 <div className="projects-list-menu-items">
-
                     {searchProjects()}
+                    {searchProjects().filter(e=>e!=null).length===0&&
+                        <div className="project-not-found">
+                            Project not found
+                        </div>
+                    }
                 </div>
             </div>
         </section>
