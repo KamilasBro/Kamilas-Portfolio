@@ -12,7 +12,7 @@ export default function Contact() {
     return (
         <section className="contact">
             <h1 className="section-title">Get in touch</h1>
-            <form className="contact-form" name="contact" method="post" data-netlify-honeypot="bot-field">
+            <form className="contact-form" name="contact" method="post" data-netlify-honeypot="bot-field" action={alert("form sended")}>
             <input type="hidden" name="form-name" value="contact" />
             <div hidden><input name="bot-field"/></div>
                 <div className="contact-inputs">
