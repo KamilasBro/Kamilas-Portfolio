@@ -12,7 +12,7 @@ export default function Contact() {
     return (
         <section className="contact">
             <h1 className="section-title">Get in touch</h1>
-            <form className="contact-form" name="contact" method="post" action="">
+            <form className="contact-form" name="contact" method="post" data-netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact" />
                 <div className="contact-inputs">
                     <div className="name">
@@ -83,21 +83,6 @@ export default function Contact() {
                         </a>
                     </div>
                 </div>
-            </form>
-            <form name="contact" method="post" action="">
-            <input type="hidden" name="form-name" value="contact" />
-            <p>
-                <label>Your Name: <input type="text" name="name"/></label>
-            </p>
-            <p>
-                <label>Your Email: <input type="email" name="email"/></label>
-            </p>
-            <p>
-                <label>Message: <textarea name="message"></textarea></label>
-            </p>
-            <p>
-                <button type="submit">Send</button>
-            </p>
             </form>
         </section>
     )
