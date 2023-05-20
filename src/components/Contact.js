@@ -74,9 +74,9 @@ export default function Contact() {
                     <button
                     type="submit" 
                         className="contact-submit"
-                        onClick={(event)=>{
-                            // event.preventDefault();
-                        }}
+                        // onClick={(event)=>{
+                        //     // event.preventDefault();
+                        // }}
                     >Submit</button>
                     <div className="contact-socials">
                         <a className="social-aTag" href={socials("linkedin")} target="blank">
