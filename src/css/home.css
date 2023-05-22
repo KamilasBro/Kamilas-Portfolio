@@ -4,10 +4,22 @@
     flex-wrap: wrap-reverse;
     align-items: center;
 }
+@keyframes  textAnim1{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 .home-slogan h1{
     font-weight: 600;
     font-size: 48px;
 
+    animation: textAnim1 1s;
+    animation-delay: 1s;
 }
 .home-slogan h1 span{
     background: linear-gradient(90deg, #FF0099 0%, #AD00FF 100%);
@@ -15,17 +27,43 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+@keyframes  textAnim2{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 .home-slogan h2{
     margin-top: 5px;
 
     font-weight: 500;
     font-size: 36px;
+
+    animation: textAnim2 1s;
+    animation-delay: 1s;
     
 }
 .home-slogan h2 .h2-color{
     color: #FF0099;
 }
+@keyframes  textAnim3{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 .home-slogan h4{
+    animation: textAnim3 1s;
+    animation-delay: 1s;
+
     margin-top: 5px;
 
     font-weight: 500;
@@ -33,7 +71,19 @@
     
     color: rgba(255, 255, 255, 0.5);
 }
+@keyframes  textAnim3{
+    0%{
+        position: relative;
+        transform: translateX(200px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
 .home-logo{
+    animation: textAnim3 1.5s;
+    animation-delay: 1s;
+
     height: 400px;
     width: 400px;
 }

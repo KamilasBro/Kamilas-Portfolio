@@ -14,6 +14,8 @@ body{
   font-family: 'Poppins', sans-serif;
   background: url(./images/backgrounds/1920.png);
   color: #FFFFFF;
+
+  overflow-x: hidden;
 }
 body::-webkit-scrollbar {
   width: 5px;
@@ -26,6 +28,37 @@ body::-webkit-scrollbar-thumb {
 }
 body::-webkit-scrollbar-thumb:hover {
   background: rgba(173, 0, 255, 1);
+}
+.loading-screen{
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  background: url(./images/backgrounds/1920.png);
+}
+@keyframes loadingAnim1 {
+  0%{opacity: 1;}
+  50%{opacity: 0.5;}
+  100%{opacity: 1;}
+}
+@keyframes loadingAnim2 {
+  from{
+    opacity: 1;
+  }to{
+    opacity: 0;
+  }
+}
+.loading-screen img{
+  height: 100px;
+  width: 100px;
+
+  animation: loadingAnim1 1.2s infinite;
 }
 main{
   margin-top: 265px;

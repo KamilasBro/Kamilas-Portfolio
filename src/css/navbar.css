@@ -1,4 +1,15 @@
+@keyframes navbarAnim {
+    0%{
+        transform: translateY(-100px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
 nav{
+    animation: navbarAnim 0.5s;
+    animation-delay: 1s;
+
     background: transparent;
     transition: 500ms;
     top: 0;
@@ -34,6 +45,7 @@ nav:hover{
 .navbar-menu{
     display: flex;
 }
+
 .navbar-menu li{
     transition: 300ms;
 
