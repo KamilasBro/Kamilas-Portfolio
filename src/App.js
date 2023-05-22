@@ -18,7 +18,7 @@ export default function App() {
       document.body.style.overflow="visible"
       document.querySelector(".loading-screen").style.animation="loadingAnim2 1s"
       setTimeout(()=>{
-        document.querySelector(".loading-screen").style.display="none"
+        document.querySelector(".loading-screen").style.opacity="0"
       },1000)
     },1000)
   },[])
