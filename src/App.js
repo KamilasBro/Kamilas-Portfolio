@@ -16,7 +16,7 @@ export default function App() {
   useEffect(()=>{
     setTimeout(()=>{
       document.body.style.overflow="visible"
-      document.querySelector(".loading-screen").style.animation="loadingAnim2 1s"
+      document.querySelector(".loading-screen").style.animation="loadingAnim2 1.2s"
       setTimeout(()=>{
         document.querySelector(".loading-screen").style.display="none"
       },1000)
