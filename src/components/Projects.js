@@ -2,8 +2,12 @@ import search from "../images/search.png"
 import datajs from "../data/projects/data"
 import clearSearch from "../images/clear.png"
 import React,{useState} from "react"
+import { useInView } from 'react-intersection-observer';
 
 export default function Projects() {
+    const {ref, inView}=useInView({
+        triggerOnce: true
+    })
     const [currentFilter, setCurrentFilter]=useState("all")
     const [currentSearch, setCurrentSearch]=useState("")
     const [isClearVis, setIsClearVis]=useState(false)
@@ -100,11 +104,13 @@ export default function Projects() {
         }
     }
     return (
-        <section className="projects">
-            <h1 className="section-title">Projects</h1>
-            <div className="projects-list">
+        <section className="projects" ref={ref} >
+            <h1 className="section-title" 
+            style={inView===true?{animation:"titleAnim 1s"}:{}}
+            >Projects</h1>
+            <div className="projects-list" style={inView===true?{animation:"projectsAnim1 2s"}:{}}>
                 <div className="projects-list-menu">
-                    <div className="search-bar">
+                    <div className="search-bar" style={inView===true?{animation:"projectsAnim2 1s"}:{}}>
                         <div className="search-input-wrap">
                             <input 
                             className="search-input" 
@@ -147,9 +153,9 @@ export default function Projects() {
                             />
                         </div>
                     </div>
-                    <ul className="projects-list-menu-buttons">
+                    <ul className="projects-list-menu-buttons" style={inView===true?{animation:"projectsAnim2 1s"}:{}}>
                         <li className="projects-list-btn"
-                            style={currentFilter==="all"?{backgroundColor: "#FF0099", color: "#171717"}:{}} 
+                            style={currentFilter==="all"?{backgroundColor: "#FF0099", color: "#171717"}:{}}
                             onClick={()=>setCurrentFilter("all")}>
                             All
                         </li>

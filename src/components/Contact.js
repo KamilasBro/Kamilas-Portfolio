@@ -2,26 +2,31 @@ import linkedin from "../images/socials/linkedin.png"
 import github from "../images/socials/github.png"
 import fiverr from "../images/socials/fiverr.png"
 import socials from "./functions/socials"
+
 import React,{useState} from "react"
+import { useInView } from 'react-intersection-observer';
 export default function Contact() {
+    const {ref, inView}=useInView({
+        triggerOnce: true
+    })
     const [focusInput, setFocusInput]=useState(null)
     function handleClick(){
         setFocusInput(null)
         document.removeEventListener("click",handleClick, true)
     }
     return (
-        <section className="contact">
-            <h1 className="section-title">Get in touch</h1>
+        <section className="contact" ref={ref}>
+            <h1 className="section-title" 
+            style={inView===true?{animation:"titleAnim 1s"}:{}}>Get in touch</h1>
             <form 
                 className="contact-form" 
                 name="contact" 
                 method="POST" 
-                data-netlify-honeypot="bot-field" 
-                action={console.log("form sended")}>
+                data-netlify-honeypot="bot-field" >
             <input type="hidden" name="form-name" value="contact" />
             <div hidden><input name="bot-field"/></div>
                 <div className="contact-inputs">
-                    <div className="name">
+                    <div className="name" style={inView===true?{animation:"contactAnim1 1.1s"}:{}}>
                         <div><label>Name</label></div>
                         <div className="input-wrap" 
                         style={focusInput==="name"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
@@ -40,7 +45,7 @@ export default function Contact() {
                             </div>
                         </div>
                     </div>
-                    <div className="email">
+                    <div className="email" style={inView===true?{animation:"contactAnim2 1.1s"}:{}}>
                         <div><label>Email</label></div>
                         <div className="input-wrap"
                         style={focusInput==="email"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
@@ -57,9 +62,10 @@ export default function Contact() {
                         </div>
                     </div>
                 </div>
+                <div style={inView===true?{animation:"contactAnim1 1.2s"}:{}}>
                 <div className="textarea-wrap"
                 style={focusInput==="comment"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
-                    <div className="textarea">
+                    <div className="textarea" >
                         <textarea 
                          name="message"
                          placeholder="Your message" 
@@ -69,12 +75,14 @@ export default function Contact() {
                          />
                     </div>
                 </div>
+                </div>
                 <div className="contact-buttons">
                     <button 
                         className="contact-submit"
                         type="submit"
+                        style={inView===true?{animation:"contactAnim1 1.3s"}:{}}
                     >Submit</button>
-                    <div className="contact-socials">
+                    <div className="contact-socials" style={inView===true?{animation:"contactAnim2 1.3s"}:{}}>
                         <a className="social-aTag" href={socials("linkedin")} target="blank">
                             <img src={linkedin} alt="linkedin"/>
                         </a>

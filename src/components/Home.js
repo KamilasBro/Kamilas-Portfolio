@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{useEffect, useRef} from 'react';
 import Typed from 'typed.js';
 import placeholder from "../images/logo/placeholder.png"
 export default function Home() {
-    const ele = React.useRef(null);
+    const ele = useRef(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
       const typed = new Typed(ele.current, {
         strings: [
             'Coding With Passion', 

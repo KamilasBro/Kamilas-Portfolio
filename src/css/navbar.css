@@ -1,6 +1,6 @@
 @keyframes navbarAnim {
     0%{
-        transform: translateY(-100px);
+        transform: translateY(-100%);
     }
     100%{
         transform: translateY(0);
@@ -8,7 +8,7 @@
 }
 nav{
     animation: navbarAnim 0.5s;
-    animation-delay: 1s;
+    animation-delay: 0.8s;
 
     background: transparent;
     transition: 500ms;

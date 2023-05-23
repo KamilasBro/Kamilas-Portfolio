@@ -6,36 +6,41 @@ import { htmlSkills } from "../data/technologies/htmlSkills"
 import { cssSkills } from "../data/technologies/cssSkills"
 import { jsSkills } from "../data/technologies/jsSkills"
 import { reactSkills } from "../data/technologies/react"
-import React,{useState} from "react"
 
+import React,{useState} from "react"
+import { useInView } from 'react-intersection-observer';
 export default function Technologies() {
+    const {ref, inView}=useInView({
+        triggerOnce: true
+    })
     const [currentTech, setCurrentTech]=useState("html")
     return (
-        <section className="technologies">
-            <h1 className="section-title">Technologies</h1>
+        <section className="technologies" ref={ref}>
+            <h1 className="section-title" 
+            style={inView===true?{animation:"titleAnim 1s"}:{}}>Technologies</h1>
             <ul className="technologies-menu">
-                <li><img 
+                <li style={inView===true?{animation:"techAnim1 1000ms"}:{}}><img 
                     src={htmlImg} 
                     alt="html" 
                     className="technologies-button"
                     style={currentTech==="html"?{filter:"grayscale(0%)"}:{filter:"grayscale(100%)"}}
                     onClick={()=>setCurrentTech("html")}
                     /></li>
-                <li><img 
+                <li style={inView===true?{animation:"techAnim1 1100ms"}:{}}><img 
                     src={cssImg} 
                     alt="css" 
                     className="technologies-button"
                     style={currentTech==="css"?{filter:"grayscale(0%)"}:{filter:"grayscale(100%)"}}
                     onClick={()=>setCurrentTech("css")}
                     /></li>
-                <li><img 
+                <li style={inView===true?{animation:"techAnim1 1200ms"}:{}}><img 
                     src={jsImg} 
                     alt="js" 
                     className="technologies-button"
                     style={currentTech==="js"?{filter:"grayscale(0%)"}:{filter:"grayscale(100%)"}}
                     onClick={()=>setCurrentTech("js")}
                     /></li>
-                <li><img 
+                <li style={inView===true?{animation:"techAnim1 1300ms"}:{}}><img 
                     src={reactImg} 
                     alt="react" 
                     className="technologies-button"
@@ -46,7 +51,8 @@ export default function Technologies() {
             {currentTech==="html"?
                 htmlSkills.map((ele,index)=>{
                     return(
-                        <div className="technologies-chart" key={index}>
+                        <div className="technologies-chart" key={index} 
+                        style={inView===true?{animation:`titleAnim ${1000+(index*100)}ms`}:{}}>
                             <div className="chart-text">
                                 <span className="chart-property">{ele.property}</span>
                                 <span className="chart-precentage">{ele.precentage}%</span>
@@ -67,7 +73,8 @@ export default function Technologies() {
             :currentTech==="css"?
             cssSkills.map((ele,index)=>{
                 return(
-                    <div className="technologies-chart" key={index}>
+                    <div className="technologies-chart" key={index}
+                    style={inView===true?{animation:`titleAnim ${1000+(index*100)}ms`}:{}}>
                         <div className="chart-text">
                             <span className="chart-property">{ele.property}</span>
                             <span className="chart-precentage">{ele.precentage}%</span>
@@ -88,7 +95,8 @@ export default function Technologies() {
             :currentTech==="js"?
             jsSkills.map((ele,index)=>{
                 return(
-                    <div className="technologies-chart" key={index}>
+                    <div className="technologies-chart" key={index}
+                    style={inView===true?{animation:`titleAnim ${1000+(index*100)}ms`}:{}}>
                         <div className="chart-text">
                             <span className="chart-property">{ele.property}</span>
                             <span className="chart-precentage">{ele.precentage}%</span>
@@ -108,7 +116,8 @@ export default function Technologies() {
             })
         :reactSkills.map((ele,index)=>{
             return(
-                <div className="technologies-chart" key={index}>
+                <div className="technologies-chart" key={index}
+                style={inView===true?{animation:`titleAnim ${1000+(index*100)}ms`}:{}}>
                     <div className="chart-text">
                         <span className="chart-property">{ele.property}</span>
                         <span className="chart-precentage">{ele.precentage}%</span>

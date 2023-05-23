@@ -3,9 +3,14 @@ import github from "../images/socials/github.png"
 import fiverr from "../images/socials/fiverr.png"
 import socials from "./functions/socials"
 import hadleScroll from "./functions/handleScroll"
+
+import { useInView } from 'react-intersection-observer';
 export default function Footer() {
+    const {ref, inView}=useInView({
+        triggerOnce: true
+    })
     return (
-        <footer>
+        <footer ref={ref} style={inView===true?{animation:"footerAnim 0.5s"}:{}}>
             <div className="inner-footer">
                 <div className="copyright">Copyright © <span>Kamilas</span></div>
                 <ul className="footer-menu">

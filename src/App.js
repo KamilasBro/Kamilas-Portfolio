@@ -10,6 +10,7 @@ import OtherTechnologies from "./components/OtherTechnologies";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import Footer from "./components/Footer";
+
 import React,{useEffect} from "react";
 export default function App() {
   document.body.style.overflow="hidden"

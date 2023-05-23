@@ -1,10 +1,14 @@
 import placeholder from "../images/logo/placeholder.png"
+import { useInView } from 'react-intersection-observer';
 export default function About() {
+    const {ref, inView}=useInView({
+        triggerOnce: true
+    })
     return (
-        <section className="about">
-            <h1 className="section-title">About Me</h1>
+        <section className="about" ref={ref}>
+            <h1 className="section-title" style={inView===true?{animation:"titleAnim 1s"}:{}}>About Me</h1>
             <div className="about-grid">
-                <div>
+                <div style={inView===true?{animation:"aboutAnim1 1.1s"}:{}}>
                 Passionate video game enthusiast who's also 
                 been studying coding for over a year now as a front-end developer.
                 <br/> 
@@ -17,7 +21,7 @@ export default function About() {
                 And when I need to take a break from the computer, I pick up 
                 my guitar and strum away, playing my favorite songs.
                 </div>
-                <div>
+                <div style={inView===true?{animation:"aboutAnim1 1.2s"}:{}}>
                 I bring my love for programming to create amazing 
                 websites that leave a lasting impression on visitors.
                 <br/>
@@ -33,7 +37,7 @@ export default function About() {
                 fullstack developer.
 
                 </div>
-                <div className="about-photo">
+                <div className="about-photo" style={inView===true?{animation:"aboutAnim2 1.3s"}:{}}>
                     <img src={placeholder} alt="myphoto"/>
                 </div>
             </div>
