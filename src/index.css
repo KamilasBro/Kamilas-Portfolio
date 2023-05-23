@@ -38,7 +38,7 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: center;
 
   position: fixed;
-  z-index: 11;
+  z-index: 1;
   top: 0;
   background-color: #010A08;
 }
