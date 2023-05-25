@@ -297,6 +297,8 @@ select:-webkit-autofill:focus {
     .contact-socials img{
         height: 40px;
         width: 40px;
+
+        filter: grayscale(0%);
     }
     .contact-socials img:nth-child(2){
         margin-inline: 30px;
