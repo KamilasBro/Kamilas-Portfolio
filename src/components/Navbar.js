@@ -4,10 +4,14 @@ import github from "../images/socials/github.png"
 import fiverr from "../images/socials/fiverr.png"
 import hadleScroll from "./functions/handleScroll"
 import socials from "./functions/socials"
+import hamburger from "../images/hamburger.png"
+import MobileNavbar from "./MobileNavbar";
+
 import React,{useState} from "react"
 export default function Navbar() {
     const [currentSection, setCurrentSection]=useState("home")
     const [Ypos, setYPos]=useState(true)
+    const [mobileActive, setMobileActive]=useState(false)
     document.addEventListener("scroll", ()=>{
         if(window.pageYOffset===0){
             setYPos(true)
@@ -40,7 +44,18 @@ export default function Navbar() {
             setCurrentSection("about")
         }
     })
+    window.onresize=(e)=>{
+        if(window.innerWidth>1024){
+            setMobileActive(false)
+        }
+    }
+    if(mobileActive){
+        document.querySelector("html").style.overflowY="hidden"
+    }else{
+        document.querySelector("html").style.overflowY="visible"
+    }
     return (
+        <>
         <nav 
          className="navbar" 
          style={Ypos===true?{background: "transparent"}:{background: "#010A08"}}
@@ -51,6 +66,12 @@ export default function Navbar() {
                         document.body.scrollTop = 0;
                         document.documentElement.scrollTop = 0;
                     }}  
+                />
+                <img src={hamburger} alt="hamburger" className="hamburger"
+                    onClick={()=>{
+                        setMobileActive(true)
+                        document.body.style.overflow="hidden"
+                    }}
                 />
                 <ul className="navbar-menu">
                     <li 
@@ -83,6 +104,11 @@ export default function Navbar() {
                 </div>
             </div>
         </nav>
+        {mobileActive&&<MobileNavbar
+        currentSection={currentSection} 
+        setMobileActive={setMobileActive}/>
+        }
+        </>
     )
   }
   

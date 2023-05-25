@@ -13,10 +13,11 @@ import Footer from "./components/Footer";
 
 import React,{useEffect} from "react";
 export default function App() {
-  document.body.style.overflow="hidden"
+  
   useEffect(()=>{
+    document.querySelector("html").style.overflowY="hidden"
     setTimeout(()=>{
-      document.body.style.overflow="visible"
+      document.querySelector("html").style.overflowY="visible"
       document.querySelector(".loading-screen").style.animation="loadingAnim2 1.2s"
       setTimeout(()=>{
         document.querySelector(".loading-screen").style.display="none"

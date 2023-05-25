@@ -11,27 +11,27 @@
     margin-top: 200px;
 }
 .technologies-menu{
-    margin-top: 15px;
-
     display: flex;
     justify-content: center;
+
+    margin-top: 15px;
+}
+.technologies-menu li{
+    margin-left: 60px;
+}
+.technologies-menu li:first-child{
+    margin-left: 0px;
 }
 .technologies-button{
-    transition: 300ms;
+    cursor: pointer;
 
     height: 75px;
     width: 75px;
 
-    margin-left: 60px;
-
-    cursor: pointer;
-
+    transition: 300ms;
 }
 .technologies-chart{
     margin-top: 40px;
-}
-.technologies-chart:first-child{
-    margin-top: 30px;
 }
 .chart-text{
     display: flex;
@@ -46,18 +46,96 @@
     font-size: 18px;
 }
 .chart-bar{
-    border-radius: 83px;
-
-    margin-top: 10px;
-
     width: 100%;
     height: 20px;
 
+    margin-top: 10px;
+
     background-color: #171717;
+
+    border-radius: 83px; 
 }
 .chart-inner-bar{
+    height: 100%;
+
     transition: 500ms;
 
     border-radius: 83px;
-    height: 100%;
+}
+
+@media (max-width: 1440px) {
+    @keyframes techAnim1 {
+        from{
+            opacity: 0;
+            transform: translateY(-40px);
+        }to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .technologies-menu li{
+        margin-left: 75px;
+    }
+    .technologies-menu li:first-child{
+        margin-left: 0px;
+    }
+    .technologies-button{
+        height: 60px;
+        width: 60px;
+    }
+    .technologies-button:nth-child(1){
+        margin-left: 0px;
+    }
+    .chart-property{
+        font-size: 24px;
+    }
+    .chart-precentage{
+        font-size: 14px;
+    }
+}
+@media (max-width: 1024px) {
+    @keyframes techAnim1 {
+        from{
+            opacity: 0;
+            transform: translateY(-35px);
+        }to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .technologies-menu{
+        margin-top: 25px;
+    }
+    .technologies-menu li{
+        margin-left: 60px;
+    }
+    .technologies-menu li:first-child{
+        margin-left: 0px;
+    }
+    .technologies-button{
+        height: 60px;
+        width: 60px;
+    }
+    .technologies-chart{
+        margin-top: 30px;
+    }
+    .chart-text{
+        display: flex;
+        justify-content: space-between;
+    }
+    .chart-property{
+        font-size: 20px;
+    }
+    .chart-precentage{
+        font-size: 12px;
+    }
+    .chart-bar{
+        height: 15px;
+    }
+}
+  @media (max-width: 800px) {
+    
+}
+  @media (max-width: 600px) {
+    
 }

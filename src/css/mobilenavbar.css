@@ -1,0 +1,86 @@
+@keyframes mobileNavbarAnim {
+  from{
+    transform: translateX(-100%);
+  }to{
+    transform: translateX(0);
+  }
+}
+.mobile-navbar{
+  display: none;
+
+  overflow: hidden;
+
+  animation: mobileNavbarAnim 0.5s;
+}
+@media (max-width: 1024px) {
+  .mobile-navbar{
+    display: block;
+
+    width: 512px;
+    height: 100%;
+    box-sizing: border-box;
+
+    padding: 40px;
+
+    background: linear-gradient(90deg, #010A08 0%, #171717 100%);
+
+    transition: 500ms;
+    
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+
+    border-right: 1px solid rgba(173, 0, 255, 0.5);
+    box-shadow: 0px 0px 4px rgba(255, 0, 153, 0.2);
+  }
+  .mobile-navbar-buttons{
+    display: flex;
+    justify-content: space-between;
+  }
+  .mobile-logo{
+    height: 100px;
+    width: 100px;
+  }
+  .close-navbar{
+    cursor: pointer;
+
+    height: 60px;
+    width: 60px;
+
+    transition: 300ms;
+  }
+  .mobile-navbar-menu{
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-navbar-menu li{
+    cursor: pointer;
+
+    font-size: 22px;
+
+    margin-top: 30px;
+  }
+  .mobile-navbar-socials{
+    display: flex;
+
+    margin-top: 40px;
+
+    transition: 300ms;
+  }
+  .mobile-navbar-socials img{
+    height: 40px;
+    width: 40px;
+
+    border-radius: 100px;
+  }
+  .mobile-navbar-socials a:nth-child(2){
+    margin-inline: 20px;
+  }
+}
+@media (max-width: 800px) {
+    
+}
+@media (max-width: 600px) {
+    
+}

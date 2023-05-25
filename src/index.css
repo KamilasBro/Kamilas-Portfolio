@@ -1,4 +1,5 @@
 @import url(./css/navbar.css);
+@import url(./css/mobilenavbar.css);
 @import url(./css/home.css);
 @import url(./css/projects.css);
 @import url(./css/technologies.css);
@@ -6,16 +7,48 @@
 @import url(./css/contact.css);
 @import url(./css/about.css);
 @import url(./css/footer.css);
+
+@keyframes loadingAnim1 {
+  0%{opacity: 1;}
+  50%{opacity: 0.5;}
+  100%{opacity: 1;}
+}
+@keyframes loadingAnim2 {
+  from{
+    opacity: 1;
+  }to{
+    opacity: 0;
+  }
+}
+@keyframes arrowAnim {
+  from{
+    transform: translateY(-100px);
+  }to{
+    transform: translateY(0);
+  }
+}
+@keyframes titleAnim {
+  from{
+      opacity: 0;
+      transform: translateX(-200px);
+  }to{
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
 html{
   scroll-behavior: smooth;
-}
-body{
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: url(./images/backgrounds/1920.png);
-  color: #FFFFFF;
 
   overflow-x: hidden;
+  overflow-Y: hidden;
+}
+body{
+  font-family: 'Poppins', sans-serif;
+
+  margin: 0;
+  
+  background: url(./images/backgrounds/1920.png);
+  color: #FFFFFF;
 }
 body::-webkit-scrollbar {
   width: 5px;
@@ -30,29 +63,18 @@ body::-webkit-scrollbar-thumb:hover {
   background: rgba(173, 0, 255, 1);
 }
 .loading-screen{
-  height: 100vh;
-  width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
+  height: 100vh;
+  width: 100%;
+
+  background-color: #010A08;
+
   position: fixed;
   z-index: 4;
   top: 0;
-  background-color: #010A08;
-}
-@keyframes loadingAnim1 {
-  0%{opacity: 1;}
-  50%{opacity: 0.5;}
-  100%{opacity: 1;}
-}
-@keyframes loadingAnim2 {
-  from{
-    opacity: 1;
-  }to{
-    opacity: 0;
-  }
 }
 .loading-screen img{
   height: 100px;
@@ -61,18 +83,19 @@ body::-webkit-scrollbar-thumb:hover {
   animation: loadingAnim1 1.2s infinite;
 }
 main{
-  margin-top: 265px;
-
   display: flex;
   justify-content: center;
+
+  margin-top: 265px;
 }
 .inner-main{
   width: 1170px;
 }
 ul{
-  list-style-type: none;
   padding: 0;
   margin: 0;
+
+  list-style-type: none;
 }
 img{
   border-radius: 10px;
@@ -92,28 +115,15 @@ hr{
   border: 1px solid rgba(173, 0, 255, 0.5);
   box-shadow: 0px 4px 4px rgba(255, 0, 153, 0.2);
 }
-@keyframes arrowAnim {
-  from{
-    transform: translateY(-100px);
-  }to{
-    transform: translateY(0);
-  }
-}
 .arrow-wrap{
-  animation: arrowAnim 1s;
-  animation-delay: 0.8s;
-  
   display: flex;
   justify-content: center;
+
+  animation: arrowAnim 1s;
+  animation-delay: 0.8s;
 }
 .arrow{
-  position: relative;
-
-  transition: 500ms;
-
-  transform: 
-  translatey(0px)
-  rotate(180deg);
+  cursor: pointer;
 
   height: 125px;
   width: 125px;
@@ -121,7 +131,13 @@ hr{
   margin-top: 20px;
   margin-bottom: 55px;
 
-  cursor: pointer;
+  transition: 500ms;
+
+  transform: 
+  translatey(0px)
+  rotate(180deg);
+
+  position: relative;
 }
 .arrow:hover{
   filter: drop-shadow(0px 3px 4px rgba(173, 0, 255, 0.5));
@@ -130,15 +146,6 @@ hr{
   translatey(20px)
   rotate(180deg);
   
-}
-@keyframes titleAnim {
-  from{
-      opacity: 0;
-      transform: translateX(-200px);
-  }to{
-      opacity: 1;
-      transform: translateX(0);
-  }
 }
 .section-title{
   font-weight: 600;
@@ -150,22 +157,87 @@ textarea:focus, input:focus, button:focus{
 textarea, input{
   background-color: transparent;
   color: #FFFFFF;
+
   resize: none;
+
   border: none;
 }
 button{
   cursor: pointer;
 
   background-color: transparent;
-
   color: #FFFFFF;
 }
 a{
   text-decoration: none;
+
   margin: 0px;
   padding: 0px;
+
   color: #FFFFFF;
 }
 .social-aTag{
   display: flex;
+}
+@media (max-width: 1440px) {
+  @keyframes titleAnim {
+    from{
+        opacity: 0;
+        transform: translateX(-40px);
+    }to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }
+  body{
+    background: url(./images/backgrounds/1440.png);
+  }
+  .inner-main{
+    width: 940px;
+  }
+  .arrow{
+    height: 100px;
+    width: 100px;
+
+    margin-bottom: 50px;
+  }
+  .section-title{
+    font-size: 42px;
+  }
+}
+@media (max-width: 1024px) {
+  @keyframes titleAnim {
+    from{
+        opacity: 0;
+        transform: translateX(-40px);
+    }to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }
+  main{
+    margin-top: 200px;
+  }
+  body{
+    background: url(./images/backgrounds/1024.png);
+  }
+  .inner-main{
+    width: 724px;
+  }
+  .arrow{
+    display: none;
+  }
+  .section-title{
+    font-size: 38px;
+    text-align: center;
+  }
+  hr{
+    margin-top: 75px;
+  }
+}
+@media (max-width: 800px) {
+  
+}
+@media (max-width: 600px) {
+  
 }

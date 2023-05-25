@@ -15,17 +15,18 @@
     }
 }
 .projects-list{
+    min-height: 600px;
+
+    padding-inline: 160px;
+    padding-block: 50px;
+    margin-top: 50px;
+
     border: 1px solid;
     border-image: 
     linear-gradient(135deg, #FF0099 0%, 
     rgba(255, 0, 153, 0) 40%, 
     rgba(255, 0, 153, 0) 65%, 
     #AD00FF 100%) 1;
-    
-    padding-inline: 160px;
-    padding-block: 50px;
-    margin-top: 50px;
-    min-height: 600px;
 }
 .projects-list-menu{
     display: flex;
@@ -38,8 +39,8 @@
     height: 50px;
     width: 400px;
 
-    border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
 }
 .search-input-wrap{
     display: flex;
@@ -50,37 +51,39 @@
 .search-input{
     height: 100%;
     width: 100%;
+
     font-size: 16px;
+
     padding-left: 10px;
 }
 .search-input-wrap img{
-    transition: 300ms;
-
     cursor: pointer;
 
     height: 35px;
     width: 35px;
 
     filter: brightness(0.7);
+
+    transition: 300ms;
 }
 .search-icon-wrap{
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
 
     width: 50px;
 
     border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
 .search-icon-wrap img{
-    transition: 300ms;
+    height: 25px;
+    width: 25px;
 
     filter: brightness(0.7);
 
-    height: 25px;
-    width: 25px;
+    transition: 300ms;    
 }
 .search-icon-wrap img:hover, .search-input-wrap img:hover{
     filter: brightness(1);
@@ -97,10 +100,10 @@
     padding: 10px;
     margin-left: 28px;
 
+    transition: 300ms;
+
     border-radius: 10px;
     background-color: transparent;
-
-    transition: 300ms;
 }
 .projects-list-btn:first-child{
     margin-left: 0px;
@@ -110,30 +113,33 @@
     color: #171717;
 }
 .projects-list-menu-items{
-    margin-top: 50px;
-    padding-inline: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
     overflow-y: auto;
     max-height: 500px;
+
+    margin-top: 50px;
+    padding-inline: 5px;
 }
 .projects-list-menu-items::-webkit-scrollbar {
     width: 5px;
 }
 .projects-list-menu-items::-webkit-scrollbar-thumb {
     background: #FF0099;
+
     border-radius: 100px;
 }
 .list-item{
-    border: 1px solid;
-    border-image: linear-gradient(135deg, #FF0099 0%, #AD00FF 100%) 1;
-
-    padding: 30px;
-    
+    box-sizing: border-box;
     max-width: 400px;
 
+    padding: 30px;
     margin-top: 40px;
+
+    border: 1px solid;
+    border-image: linear-gradient(135deg, #FF0099 0%, #AD00FF 100%) 1;
 }
 .list-item:nth-child(1){
     margin-top: 0px;
@@ -146,14 +152,17 @@
     width: 340px;
 }
 .item-name{
-    margin-top: 25px;
+    text-align: center;
+
     font-weight: 600;
     font-size: 28px;
-    text-align: center;
+
+    margin-top: 25px;
 }
 sup{
     font-weight: 500;
     font-size: 16px;
+
     padding-left: 5px;
 
     background: linear-gradient(90deg, #AD00FF 0%,#FF0099  100%);
@@ -162,17 +171,19 @@ sup{
     background-clip: text;
 }
 .item-buttons{
-    margin-top: 25px;
     display: flex;
     justify-content: space-between;
+
+    margin-top: 25px;
 }
 .item-buttons div{
-    padding: 25px;
+    cursor: pointer;
 
     font-weight: 600;
     font-size: 14px;
 
-    cursor: pointer;
+    padding: 25px;
+
     transition: 300ms;
 }
 .preview:hover{
@@ -185,18 +196,167 @@ sup{
 }
 .checkOnGithub:hover{
     background-color: #FFFFFF;
+    color: rgba(23, 23, 23, 1);
 
     box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.25);
-
-    color: rgba(23, 23, 23, 1);
 }
 .project-not-found{
     text-align: center;
 
     width: 100%;
 
-    margin-top: 30px;
-    
     font-weight: 500;
     font-size: 30px;
+
+    margin-top: 30px;
+}
+
+@media (max-width: 1440px) {
+    @keyframes projectsAnim2 {
+        from{
+            opacity: 0;
+            transform: translateY(-40px);
+        }to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .projects-list{
+        min-height: 500px;
+    
+        padding-inline: 95px;
+        padding-block: 50px;
+        margin-top: 45px;
+    }
+    .projects-list-menu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+    }
+    .search-bar{
+        height: 45px;
+        width: 450px;
+
+        margin-top: 25px;
+    }
+    .search-input-wrap{
+        width: 400px;
+    }
+    .search-input{
+        font-size: 14px;
+    }
+    .search-input-wrap img{
+        height: 32px;
+        width: 32px;
+    }
+    .search-icon-wrap{
+        width: 50px;
+        height: 100%;
+    }
+    .search-icon-wrap img{
+        height: 22px;
+        width: 22px;
+    }
+    .projects-list-menu-items{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    
+        overflow-y: auto;
+        max-height: 400px;
+    
+        margin-top: 50px;
+    }
+    .list-item{
+        max-width: 350px;
+    
+        padding: 25px;
+        margin-top: 50px;
+    }
+    .item-image{
+        height: 168.5px;
+        width: 300px;
+    }
+    .item-name{
+        font-size: 24px;
+    
+        margin-top: 17.5px;
+    }
+    sup{
+        font-size: 14px;
+    }
+    .item-buttons{ 
+        margin-top: 20px;
+    }
+    .item-buttons div{
+        font-weight: 500;
+        font-size: 12px;
+    
+        padding: 20px;
+    }
+    .project-not-found{
+        margin-top: 20px;
+    }
+}
+@media (max-width: 1024px) {
+    @keyframes projectsAnim2 {
+        from{
+            opacity: 0;
+            transform: translateY(-35px);
+        }to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .projects{
+        margin-top: 175px;
+    }
+    .projects-list{
+        min-height: 500px;
+    
+        padding-inline: 162px;
+        padding-block: 40px;
+        margin-top: 40px;
+    }
+    .search-bar{
+        width: 400px;
+
+        margin-top: 20px;
+    }
+    .search-input-wrap{
+        width: 350px;
+    }
+    .search-icon-wrap img{
+        height: 20px;
+        width: 20px;
+    }
+    .projects-list-btn:hover{
+        background-color: #FFFFFF;
+        color: #171717;
+    }
+    .projects-list-menu-items{
+        justify-content: center;
+    
+        overflow-y: auto;
+        max-height: 375px;
+    
+        margin-top: 40px;
+        padding-inline: 5px;
+    }
+    .list-item{
+        max-width: 350px;
+    
+        padding: 25px;
+        margin-top: 40px;
+    }
+    .list-item:nth-child(2){
+        margin-top: 40px;
+    }
+}
+  @media (max-width: 800px) {
+    
+}
+  @media (max-width: 600px) {
+    
 }
