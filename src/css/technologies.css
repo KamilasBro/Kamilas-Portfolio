@@ -134,7 +134,31 @@
     }
 }
   @media (max-width: 800px) {
-    
+    .technologies{
+        margin-top: 125px;
+    }
+    .technologies-menu{
+        margin-top: 20px;
+    }
+    .technologies-menu li{
+        margin-left: 50px;
+    }
+    .technologies-menu li:first-child{
+        margin-left: 0px;
+    }
+    .technologies-button{
+        height: 55px;
+        width: 55px;
+    }
+    .technologies-chart{
+        margin-top: 25px;
+    }
+    .chart-property{
+        font-size: 18px;
+    }
+    .chart-precentage{
+        font-size: 11px;
+    }
 }
   @media (max-width: 600px) {
     

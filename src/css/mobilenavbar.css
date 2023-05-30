@@ -22,6 +22,8 @@
 
     padding: 40px;
 
+    overflow-y: auto;
+
     background: linear-gradient(90deg, #010A08 0%, #171717 100%);
 
     transition: 500ms;
@@ -79,7 +81,35 @@
   }
 }
 @media (max-width: 800px) {
-    
+  .mobile-navbar{
+    width: 100%;
+
+    border: none;
+    box-shadow: none;
+  }
+  .mobile-logo{
+    height: 80px;
+    width: 80px;
+  }
+  .close-navbar{
+    height: 50px;
+    width: 50px;
+  }
+  .mobile-navbar-menu li{
+    font-size: 20px;
+
+    margin-top: 25px;
+  }
+  .mobile-navbar-socials{
+    margin-top: 35px;
+  }
+  .mobile-navbar-socials img{
+    height: 35px;
+    width: 35px;
+  }
+  .mobile-navbar-socials a:nth-child(2){
+    margin-inline: 20px;
+  }
 }
 @media (max-width: 600px) {
     

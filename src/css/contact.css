@@ -305,7 +305,47 @@ select:-webkit-autofill:focus {
     }
 }
   @media (max-width: 800px) {
-    
+    .contact{
+        margin-top: 125px;
+    }
+    .contact-form{
+        margin-top: 35px;
+    }
+    .contact-inputs label{
+        font-size: 20px;
+    }
+    .email{
+        margin-top: 25px;
+    }
+    .input-wrap{
+        height: 35px;
+
+        margin-top: 10px;
+    }
+    .input input{
+        font-size: 15px;
+    }
+    .textarea-wrap{
+        height: 200px;
+
+        margin-top: 35px;
+    }
+    .textarea textarea{
+        font-size: 13px;
+    }
+    .contact-buttons{
+        margin-top: 40px;
+    }
+    .contact-submit{
+        height: 50px;
+        width: 125px;
+
+        font-size: 12px;
+    }
+    .contact-socials img{
+        height: 35px;
+        width: 35px;
+    }
 }
   @media (max-width: 600px) {
     

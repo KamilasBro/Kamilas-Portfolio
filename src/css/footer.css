@@ -105,7 +105,23 @@ footer{
     }
 }
   @media (max-width: 800px) {
+    .inner-footer{
+        width: 570px;
+
+        padding-block: 35px;
+    }
+    .footer-menu{
+        margin-block: 25px;
+    }
+    .footer-menu li{
+        margin-left: 40px;
+    }
+    .footer-socials img{
+        height: 30px;
+        width: 30px;
     
+        filter: grayscale(0%);
+    }
 }
   @media (max-width: 600px) {
     

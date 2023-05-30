@@ -43,16 +43,20 @@ nav:hover{
 
     height: 80px;
     width: 80px;
+
+    transition: 300ms;
 }
 .hamburger{
     cursor: pointer;
 
     display: none;
+
+    border-radius: 0px;
+
 }
 .navbar-menu{
     display: flex;
 }
-
 .navbar-menu li{
     cursor: pointer;
 
@@ -113,12 +117,24 @@ nav:hover{
     .navbar-menu{
         display: none;
     }
+    .navbar-menu li:hover{
+        color: #FFFFFF
+    }
     .navbar-socials{
         display: none;
     }
 }
   @media (max-width: 800px) {
-    
+    nav{
+        height: 100px;
+    }
+    .inner-navbar{
+        width: 570px;
+    }
+    .hamburger{
+        height: 30px;
+        width: 30px;
+    }
 }
   @media (max-width: 600px) {
     

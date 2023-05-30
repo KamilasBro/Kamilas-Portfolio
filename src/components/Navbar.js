@@ -62,6 +62,7 @@ export default function Navbar() {
          >
             <div className="inner-navbar">
                 <img src={placeholder} alt="navlogo" className="navbar-logo"
+                    style={currentSection==="home"?{filter: "drop-shadow(0px 0px 4px rgba(173, 0, 255, 0.5))"}:{}}
                     onClick={()=>{
                         document.body.scrollTop = 0;
                         document.documentElement.scrollTop = 0;

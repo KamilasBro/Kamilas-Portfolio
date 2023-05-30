@@ -156,22 +156,38 @@ export default function Projects() {
                     <ul className="projects-list-menu-buttons" style={inView===true?{animation:"projectsAnim2 1s"}:{}}>
                         <li className="projects-list-btn"
                             style={currentFilter==="all"?{backgroundColor: "#FF0099", color: "#171717"}:{}}
-                            onClick={()=>setCurrentFilter("all")}>
+                            onClick={()=>{
+                                setCurrentFilter("all")
+                                document.querySelector(".projects-list-menu-items").scrollLeft=0
+                                document.querySelector(".projects-list-menu-items").scrollTop=0
+                                }}>
                             All
                         </li>
                         <li className="projects-list-btn"
                             style={currentFilter==="react"?{backgroundColor: "#FF0099", color: "#171717"}:{}} 
-                            onClick={()=>setCurrentFilter("react")}>
+                            onClick={()=>{
+                                setCurrentFilter("react")
+                                document.querySelector(".projects-list-menu-items").scrollLeft=0
+                                document.querySelector(".projects-list-menu-items").scrollTop=0
+                                }}>
                             React
                         </li>
                         <li className="projects-list-btn"
                             style={currentFilter==="javascript"?{backgroundColor: "#FF0099", color: "#171717"}:{}} 
-                            onClick={()=>setCurrentFilter("javascript")}>
+                            onClick={()=>{
+                                setCurrentFilter("javascript")
+                                document.querySelector(".projects-list-menu-items").scrollLeft=0
+                                document.querySelector(".projects-list-menu-items").scrollTop=0
+                                }}>
                             Vanilla JS
                         </li>
                         <li className="projects-list-btn"
                             style={currentFilter==="wordpress"?{backgroundColor: "#FF0099", color: "#171717"}:{}} 
-                            onClick={()=>setCurrentFilter("wordpress")}>
+                            onClick={()=>{
+                                setCurrentFilter("wordpress")
+                                document.querySelector(".projects-list-menu-items").scrollLeft=0
+                                document.querySelector(".projects-list-menu-items").scrollTop=0
+                                }}>
                             Wordpress
                         </li>
                     </ul>

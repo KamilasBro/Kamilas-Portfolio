@@ -41,6 +41,8 @@ html{
 
   overflow-x: hidden;
   overflow-Y: hidden;
+
+  -webkit-tap-highlight-color: transparent;
 }
 body{
   font-family: 'Poppins', sans-serif;
@@ -236,7 +238,21 @@ a{
   }
 }
 @media (max-width: 800px) {
-  
+  main{
+    margin-top: 155px;
+  }
+  body{
+    background: url(./images/backgrounds/800.png);
+  }
+  .inner-main{
+    width: 570px;
+  }
+  .section-title{
+    font-size: 34px;
+  }
+  hr{
+    margin-top: 50px;
+  }
 }
 @media (max-width: 600px) {
   
