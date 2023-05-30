@@ -107,10 +107,26 @@
     height: 35px;
     width: 35px;
   }
-  .mobile-navbar-socials a:nth-child(2){
-    margin-inline: 20px;
-  }
 }
 @media (max-width: 600px) {
-    
+  .mobile-logo{
+    height: 65px;
+    width: 65px;
+  }
+  .close-navbar{
+    height: 40px;
+    width: 40px;
+  }
+  .mobile-navbar-menu li{
+    font-size: 18px;
+
+    margin-top: 20px;
+  }
+  .mobile-navbar-socials{
+    margin-top: 30px;
+  }
+  .mobile-navbar-socials img{
+    height: 30px;
+    width: 30px;
+  }
 }

@@ -126,7 +126,7 @@ nav:hover{
 }
   @media (max-width: 800px) {
     nav{
-        height: 100px;
+        height: 80px;
     }
     .inner-navbar{
         width: 570px;
@@ -137,5 +137,15 @@ nav:hover{
     }
 }
   @media (max-width: 600px) {
-    
+    nav{
+        height: 60px;
+        width: 100%;
+    }
+    .inner-navbar{
+        margin-inline: 18px;
+    }
+    .hamburger{
+        height: 24px;
+        width: 24px;
+    }
 }

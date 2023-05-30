@@ -154,5 +154,19 @@
     }
 }
   @media (max-width: 600px) {
-    
+    .about{
+        margin-top: 75px;
+    }
+    .about-grid{
+        margin-top: 25px;
+    }
+    .about-grid div{
+        font-size: 12px;
+
+        max-width: 310px;
+    }
+    .about-photo img{
+        height: 350px;
+        width: 280px;
+    }
 }

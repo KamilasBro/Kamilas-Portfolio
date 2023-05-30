@@ -134,7 +134,6 @@
 }
 .list-item{
     box-sizing: border-box;
-    max-width: 400px;
 
     padding: 30px;
     margin-top: 40px;
@@ -270,8 +269,6 @@ sup{
         margin-top: 50px;
     }
     .list-item{
-        max-width: 350px;
-    
         padding: 25px;
         margin-top: 50px;
     }
@@ -342,8 +339,6 @@ sup{
         padding-inline: 5px;
     }
     .list-item{
-        max-width: 350px;
-    
         padding: 25px;
         margin-top: 40px;
     }
@@ -386,14 +381,12 @@ sup{
         max-width: auto;
     
         overflow: auto;
-        max-height: 375px;
+        max-height: auto;
     
         margin-top: 30px;
         padding-inline: 0px;
     }
-    .list-item{
-        max-width: 350px;
-    
+    .list-item{  
         padding: 25px;
         margin-top: 0px;
         margin-bottom: 10px;
@@ -419,13 +412,75 @@ sup{
     }
     .item-buttons div{
         font-size: 11px;
-    
+        font-weight: 400;
+
         padding: 15px;
     }
     .project-not-found{
         font-size: 26px;
     }
 }
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
+    .projects{
+        margin-top: 75px;
+    }
+    .projects-list{
+        min-height: 370px;
     
+        padding-inline: 15px;
+        padding-block: 15px;
+        margin-top: 20px;
+    }
+    .search-bar{
+        width: 290px;
+        height: 35px;
+
+        margin-top: 15px;
+    }
+    .search-input-wrap{
+        width: 255px;
+    }
+    .search-icon-wrap{
+        height: 35px;
+        width: 35px;
+    }
+    .search-icon-wrap img{
+        height: 15px;
+        width: 15px;
+    }
+    .projects-list-btn{
+        font-size: 12px;
+
+        margin-left: 8px;
+    }
+    .projects-list-menu-items{
+        margin-top: 25px;
+    }
+    .list-item{
+        padding: 15px;
+        margin-left: 30px;
+    }
+    .list-item:first-child{
+        margin-left: 30px;
+    }
+    .item-image{
+        height: 112px;
+        width: 200px;
+    }
+    .item-name{
+        font-size: 16px;
+
+        margin-top: 10px;
+    }
+    .item-buttons{
+        margin-top: 15px;
+    }
+    .item-buttons div{
+        font-size: 10px;
+    
+        padding: 10px;
+    }
+    .project-not-found{
+        font-size: 20px;
+    }
 }

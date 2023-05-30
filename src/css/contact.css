@@ -305,6 +305,15 @@ select:-webkit-autofill:focus {
     }
 }
   @media (max-width: 800px) {
+    @keyframes contactAnim2{
+        from{
+            opacity: 0;
+            transform: translateX(-35px);
+        }to{
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
     .contact{
         margin-top: 125px;
     }
@@ -341,12 +350,60 @@ select:-webkit-autofill:focus {
         width: 125px;
 
         font-size: 12px;
+        font-weight: 400;
     }
     .contact-socials img{
         height: 35px;
         width: 35px;
     }
 }
-  @media (max-width: 600px) {
-    
+@media (max-width: 600px) {
+    .contact{
+        margin-top: 75px;
+    }
+    .contact-form{
+        margin-top: 25px;
+    }
+    .contact-inputs label{
+        font-size: 16px;
+    }
+    .email{
+        margin-top: 15px;
+    }
+    .input-wrap{
+        height: 30px;
+
+        margin-top: 8px;
+    }
+    .input input{
+        font-size: 13px;
+    }
+    .textarea-wrap{
+        height: 175px;
+
+        margin-top: 25px;
+    }
+    .textarea textarea{
+        font-size: 11px;
+    }
+    .contact-buttons{
+        justify-content: space-around;
+
+        margin-top: 30px;
+    }
+    .contact-submit{
+        height: 45px;
+        width: 120px;
+
+        font-size: 11px;
+
+        margin-right: 0px;
+    }
+    .contact-socials img{
+        height: 30px;
+        width: 30px;
+    }
+    .contact-socials .social-aTag:nth-child(2){
+        margin-inline: 25px;
+    }
 }

@@ -156,6 +156,15 @@
     }
 }
   @media (max-width: 800px) {
+    @keyframes  logoAnim{
+        0%{
+            position: relative;
+            transform: translateX(+15px);
+        }
+        100%{
+            transform: translateX(0);
+        }
+    }
     .home-slogan h1{
         font-size: 36px;
     }
@@ -171,5 +180,27 @@
     }
 }
   @media (max-width: 600px) {
-    
+    .home{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .home-slogan{
+        width: 95%;
+    }
+    .home-slogan h1{
+        font-size: 24px;
+    }
+    .home-slogan h2{
+        font-size: 12px;
+    }
+    .home-slogan h4{
+        font-size: 8px;
+    }
+    .home-logo{
+        height: 150px;
+        width: 150px;
+
+        margin-top: 35px;
+    }
 }

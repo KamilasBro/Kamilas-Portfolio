@@ -124,5 +124,27 @@ footer{
     }
 }
   @media (max-width: 600px) {
-    
+    footer{
+        margin-top: 50px;
+    }
+    .inner-footer{
+        width: 320px;
+
+        padding-block: 25px;
+    }
+    .copyright{
+        font-size: 14px;
+    }
+    .footer-menu{
+        margin-block: 25px;
+    }
+    .footer-menu li{
+        font-size: 12px;
+
+        margin-left: 20px;
+    }
+    .footer-socials img{
+        height: 25px;
+        width: 25px;
+    }
 }

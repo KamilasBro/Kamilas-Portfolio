@@ -109,9 +109,6 @@
     .technologies-menu li{
         margin-left: 60px;
     }
-    .technologies-menu li:first-child{
-        margin-left: 0px;
-    }
     .technologies-button{
         height: 60px;
         width: 60px;
@@ -143,9 +140,6 @@
     .technologies-menu li{
         margin-left: 50px;
     }
-    .technologies-menu li:first-child{
-        margin-left: 0px;
-    }
     .technologies-button{
         height: 55px;
         width: 55px;
@@ -160,6 +154,27 @@
         font-size: 11px;
     }
 }
-  @media (max-width: 600px) {
-    
+@media (max-width: 600px) {
+    .technologies{
+        margin-top: 75px;
+    }
+    .technologies-menu li{
+        margin-left: 35px;
+    }
+    .technologies-button{
+        height: 45px;
+        width: 45px;
+    }
+    .technologies-chart{
+        margin-top: 25px;
+    }
+    .chart-property{
+        font-size: 14px;
+    }
+    .chart-precentage{
+        font-size: 10px;
+    }
+    .chart-bar{
+        height: 10px;
+    }
 }
