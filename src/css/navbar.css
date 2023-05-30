@@ -125,6 +125,14 @@ nav:hover{
     }
 }
   @media (max-width: 800px) {
+    @keyframes navbarAnim {
+        0%{
+            transform: translateY(0);
+        }
+        100%{
+            transform: translateY(0);
+        }
+    }
     nav{
         height: 80px;
     }

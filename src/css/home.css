@@ -156,13 +156,44 @@
     }
 }
   @media (max-width: 800px) {
-    @keyframes  logoAnim{
+    @keyframes  textAnim1{
         0%{
-            position: relative;
-            transform: translateX(+15px);
+            transform: translateX(0);
+            opacity: 1;
         }
         100%{
             transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes  textAnim2{
+        0%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes  textAnim3{
+        0%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes  logoAnim{
+        0%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
         }
     }
     .home-slogan h1{
