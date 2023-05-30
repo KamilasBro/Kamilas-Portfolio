@@ -116,6 +116,9 @@ footer{
     .footer-menu li{
         margin-left: 40px;
     }
+    .footer-menu li:hover{
+        border-color: transparent;
+    }
     .footer-socials img{
         height: 30px;
         width: 30px;
