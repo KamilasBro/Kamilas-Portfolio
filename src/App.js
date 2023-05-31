@@ -22,7 +22,7 @@ export default function App() {
       setTimeout(()=>{
         document.querySelector(".loading-screen").style.display="none"
       },1000)
-    },3000)
+    },2000)
   },[])
   return (
     <>
