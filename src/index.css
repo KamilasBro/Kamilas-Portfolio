@@ -123,7 +123,7 @@ hr{
   justify-content: center;
 
   animation: arrowAnim 1s;
-  animation-delay: 0.8s;
+  animation-delay: 1.8s; 
 }
 .arrow{
   cursor: pointer;
