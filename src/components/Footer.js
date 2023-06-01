@@ -6,9 +6,10 @@ import hadleScroll from "./functions/handleScroll"
 
 import { useInView } from 'react-intersection-observer';
 export default function Footer() {
-    const {ref, inView}=useInView({
+    const {ref, inView}=useInView({//see projects.js for explanation
         triggerOnce: true
     })
+    //works same as navbar but with different visuals
     return (
         <footer ref={ref} style={inView===true?{animation:"footerAnim 0.5s"}:{}}>
             <div className="inner-footer">

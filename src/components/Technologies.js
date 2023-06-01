@@ -6,18 +6,21 @@ import { htmlSkills } from "../data/technologies/htmlSkills"
 import { cssSkills } from "../data/technologies/cssSkills"
 import { jsSkills } from "../data/technologies/jsSkills"
 import { reactSkills } from "../data/technologies/react"
+//the skills list is imported from data files
 
 import React,{useState} from "react"
 import { useInView } from 'react-intersection-observer';
 export default function Technologies() {
-    const {ref, inView}=useInView({
+    const {ref, inView}=useInView({//see projects.js for explanation
         triggerOnce: true
     })
     const [currentTech, setCurrentTech]=useState("html")
+    //to determine which technology skills should be displayed
     return (
         <section className="technologies" ref={ref}>
             <h1 className="section-title" 
             style={inView===true?{animation:"titleAnim 1s"}:{}}>Technologies</h1>
+            {/*technologies buttons*/}
             <ul className="technologies-menu">
                 <li style={inView===true?{animation:"techAnim1 1000ms"}:{}}><img 
                     src={htmlImg} 
@@ -48,6 +51,13 @@ export default function Technologies() {
                     onClick={()=>setCurrentTech("react")}
                     /></li>
             </ul>
+            {/*
+            the data from data folder is mapped to return 
+            skills and visual lenght of the bar
+
+            it could be refactored and automated more but there is only 4 options
+            so no big deal
+            */}
             {currentTech==="html"?
                 htmlSkills.map((ele,index)=>{
                     return(

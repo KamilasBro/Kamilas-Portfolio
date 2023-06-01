@@ -6,10 +6,12 @@ import fiverr from "../images/socials/fiverr.png"
 
 import hadleScroll from "./functions/handleScroll"
 import socials from "./functions/socials"
+
+//this works the same as navbar but with one addition
 export default function MobileNavbar(props){
-    function close(){
+    function close(){//this function will trigger the closing animation for mobile navbar
         document.querySelector(".mobile-navbar").style.transform="translateX(-100%)"
-        setTimeout(()=>{props.setMobileActive(false)},500)
+        setTimeout(()=>{props.setMobileActive(false)},500)//and close it after 0.5s
     }
     return(
         <section className="mobile-navbar">

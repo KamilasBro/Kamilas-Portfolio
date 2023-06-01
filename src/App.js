@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 
 import React,{useEffect} from "react";
 export default function App() {
-  
+  //to determine when loading screen should end
   useEffect(()=>{
     document.querySelector("html").style.overflowY="hidden"
     setTimeout(()=>{
@@ -24,6 +24,7 @@ export default function App() {
       },1000)
     },2000)
   },[])
+  //there was no state needed in App itself so no props passed
   return (
     <>
       <div className="loading-screen">

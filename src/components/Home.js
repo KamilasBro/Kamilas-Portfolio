@@ -2,6 +2,8 @@ import React,{useEffect, useRef} from 'react';
 import Typed from 'typed.js';
 import placeholder from "../images/logo/placeholder.png"
 export default function Home() {
+    //we imported typed.js lib to make writing slogan work
+    //for more information read typed.js docs
     const ele = useRef(null);
 
     useEffect(() => {

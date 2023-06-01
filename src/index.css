@@ -7,7 +7,10 @@
 @import url(./css/contact.css);
 @import url(./css/about.css);
 @import url(./css/footer.css);
-
+/*
+instead of making huge unreadable css I divided it into sections and imported it
+some of css is written directly in JSX
+*/
 @keyframes loadingAnim1 {
   0%{opacity: 1;}
   50%{opacity: 0.5;}

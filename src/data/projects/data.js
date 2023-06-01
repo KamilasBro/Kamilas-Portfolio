@@ -1,3 +1,9 @@
+//the data is local cause the 
+//data is pretty small and I dont think there is need to upload data online and make it work as API
+
+//data is saved as function instead of JSON file cause react require absolute url path for the
+//local json ex.  ../http://localhost:portNumber/data/projects/data.js or something like that
+//for me its not a big difference but if i would have an online API it definitely would be JSON
 export default function data(){
     return(
         [

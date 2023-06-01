@@ -6,11 +6,13 @@ import socials from "./functions/socials"
 import React,{useState} from "react"
 import { useInView } from 'react-intersection-observer';
 export default function Contact() {
-    const {ref, inView}=useInView({
+    const {ref, inView}=useInView({//see projects.js for explanation
         triggerOnce: true
     })
     const [focusInput, setFocusInput]=useState(null)
-    function handleClick(){
+    //to determine which input is now active(i used mask to make radius gradient border)
+
+    function handleClick(){// to remove active input after interacting with other page
         setFocusInput(null)
         document.removeEventListener("click",handleClick, true)
     }
@@ -27,7 +29,7 @@ export default function Contact() {
             <div hidden><input name="bot-field"/></div>
                 <div className="contact-inputs">
                     <div className="name" style={inView===true?{animation:"contactAnim1 1.1s"}:{}}>
-                        <div><label>Name</label></div>
+                        <label>Name</label>
                         <div className="input-wrap" 
                         style={focusInput==="name"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
@@ -39,6 +41,7 @@ export default function Contact() {
                                     onFocus={()=>{
                                         setFocusInput("name")    
                                     }}
+                                    //to disable clearing the input if we click on another input
                                     onMouseEnter={()=>document.removeEventListener("click",handleClick, true)}
                                     onMouseLeave={()=>document.addEventListener("click",handleClick, true)}
                                     />
@@ -46,14 +49,15 @@ export default function Contact() {
                         </div>
                     </div>
                     <div className="email" style={inView===true?{animation:"contactAnim2 1.1s"}:{}}>
-                        <div><label>Email</label></div>
+                        <label>Email</label>
                         <div className="input-wrap"
                         style={focusInput==="email"?{background:"linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)"}:{}}>
                             <div className="input">
                                 <input 
                                 type="email" 
                                 name="email"
-                                placeholder="someone@example.com" required
+                                placeholder="someone@example.com" 
+                                required
                                 onFocus={()=>setFocusInput("email")}
                                 onMouseEnter={()=>document.removeEventListener("click",handleClick, true)}
                                 onMouseLeave={()=>document.addEventListener("click",handleClick, true)}
@@ -69,7 +73,8 @@ export default function Contact() {
                         <textarea 
                          name="message"
                          placeholder="Your message" 
-                         required onFocus={()=>setFocusInput("comment")}
+                         required 
+                         onFocus={()=>setFocusInput("comment")}
                          onMouseEnter={()=>document.removeEventListener("click",handleClick, true)}
                          onMouseLeave={()=>document.addEventListener("click",handleClick, true)}
                          />
@@ -82,6 +87,7 @@ export default function Contact() {
                         type="submit"
                         style={inView===true?{animation:"contactAnim1 1.3s"}:{}}
                     >Submit</button>
+                    {/*same socials as in navbar*/}
                     <div className="contact-socials" style={inView===true?{animation:"contactAnim2 1.3s"}:{}}>
                         <a className="social-aTag" href={socials("linkedin")} target="blank">
                             <img src={linkedin} alt="linkedin"/>

@@ -43,6 +43,7 @@
     flex-wrap: wrap-reverse;
     align-items: center;
 }
+/*animation delay is necessary because loading screen is about 2s long*/
 .home-slogan h1{
     font-weight: 600;
     font-size: 48px;

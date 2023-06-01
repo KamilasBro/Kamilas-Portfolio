@@ -1,3 +1,6 @@
+//same logic as in handleScroll.js but we pass the social name string
+//the socials are not that repeatable to code so its not necessary
+//however this code used to do different thing before so i decide to leave the way it is coded
 export default function socials(element){
     switch(element){
         case "linkedin":
