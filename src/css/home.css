@@ -48,7 +48,7 @@
     font-size: 48px;
 
     animation: textAnim1 1s;
-    animation-delay: 0.8s;
+    animation-delay: 1.8s; 
 }
 .home-slogan h1 span{
     background: linear-gradient(90deg, #FF0099 0%, #AD00FF 100%);
@@ -63,7 +63,7 @@
     margin-top: 5px;
 
     animation: textAnim2 1s;
-    animation-delay: 0.8s; 
+    animation-delay: 1.8s; 
 }
 .home-slogan h2 .h2-color{
     color: #FF0099;
@@ -75,7 +75,7 @@
     margin-top: 5px;
 
     animation: textAnim3 1s;
-    animation-delay: 0.8s;
+    animation-delay: 1.8s; 
 
     color: rgba(255, 255, 255, 0.5);
 }
@@ -84,7 +84,7 @@
     width: 400px;
 
     animation: logoAnim 1.5s;
-    animation-delay: 0.8s;
+    animation-delay: 1.8s; 
 }
 
 @media (max-width: 1440px) {
