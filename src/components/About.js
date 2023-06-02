@@ -1,4 +1,4 @@
-import placeholder from "../images/logo/placeholder.png"
+// import placeholder from "../images/logo/placeholder.png"
 import { useInView } from 'react-intersection-observer';
 export default function About() {
     const {ref, inView}=useInView({//see projects.js for explanation
@@ -38,9 +38,9 @@ export default function About() {
                 fullstack developer.
 
                 </div>
-                <div className="about-photo" style={inView===true?{animation:"aboutAnim2 1.3s"}:{}}>
+                {/* <div className="about-photo" style={inView===true?{animation:"aboutAnim2 1.3s"}:{}}>
                     <img src={placeholder} alt="myphoto"/>
-                </div>
+                </div> */}
             </div>
         </section>
     )
