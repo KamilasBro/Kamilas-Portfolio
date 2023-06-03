@@ -30,13 +30,11 @@ export default function About() {
                 I can't wait to see where this journey takes me!
                 <br/>
                 <br/>
-                I am currently diving deep into react, to explore modern 
-                technology standards and possibilities.
+                I am currently diving deep into React and starting to learn TypeScript 
+                to explore modern technology standards and possibilities.
                 <br/>
-                <br/>
-                In the future, I want to study back-end to become 
-                fullstack developer.
-
+                In the future, I want to study backend to become 
+                FullStack Developer.
                 </div>
                 {/* <div className="about-photo" style={inView===true?{animation:"aboutAnim2 1.3s"}:{}}>
                     <img src={placeholder} alt="myphoto"/>
