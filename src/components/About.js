@@ -22,7 +22,7 @@ export default function About() {
                 And when I need to take a break from the computer, I pick up 
                 my guitar and strum away, playing my favorite songs.
                 </div>
-                <div style={inView===true?{animation:"aboutAnim1 1.2s"}:{}}>
+                <div style={inView===true?{animation:"aboutAnim2 1.2s"}:{}}>
                 I bring my love for programming to create amazing 
                 websites that leave a lasting impression on visitors.
                 <br/>

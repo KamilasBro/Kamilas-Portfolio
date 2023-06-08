@@ -1,4 +1,4 @@
-import placeholder from "../images/logo/placeholder.png"
+import logo from "../images/logo/logo.png"
 import closeNavbar from "../images/closeNavbar.png"
 import linkedin from "../images/socials/linkedin.png"
 import github from "../images/socials/github.png"
@@ -16,7 +16,7 @@ export default function MobileNavbar(props){
     return(
         <section className="mobile-navbar">
             <div className="mobile-navbar-buttons">
-                <img src={placeholder} alt="logo" className="mobile-logo"/>
+                <img src={logo} alt="logo" className="mobile-logo"/>
                 <img src={closeNavbar} alt="closeNavbar" className="close-navbar"
                     onClick={()=>{
                         close()

@@ -1,6 +1,6 @@
 import arrow from "./images/arrow.png"
 import hadleScroll from "./components/functions/handleScroll";
-import placeholder from "../src/images/logo/placeholder.png"
+import logo from "../src/images/logo/logo.png"
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -28,7 +28,7 @@ export default function App() {
   return (
     <>
       <div className="loading-screen">
-        <img src={placeholder} alt="loader"/>
+        <img src={logo} alt="loader"/>
       </div>
       <Navbar/>
       <main>

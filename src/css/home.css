@@ -86,6 +86,8 @@
 
     animation: logoAnim 1.5s;
     animation-delay: 1.8s; 
+
+    filter: drop-shadow(0px 0px 4px rgba(66, 0, 255, 1));
 }
 
 @media (max-width: 1440px) {
@@ -209,6 +211,8 @@
     .home-logo{
         height: 135px;
         width: 135px;
+
+        filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
     }
 }
   @media (max-width: 600px) {

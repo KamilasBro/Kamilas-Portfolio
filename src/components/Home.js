@@ -1,6 +1,6 @@
 import React,{useEffect, useRef} from 'react';
 import Typed from 'typed.js';
-import placeholder from "../images/logo/placeholder.png"
+import logo from "../images/logo/logo.png"
 export default function Home() {
     //we imported typed.js lib to make writing slogan work
     //for more information read typed.js docs
@@ -30,7 +30,7 @@ export default function Home() {
                 <h2>Kamil <span className='h2-color'>Kamilas</span> Wróbel</h2>
                 <h4>Front-End Developer</h4>
             </div>
-            <img src={placeholder} alt="homelogo" className="home-logo"/>
+            <img src={logo} alt="homelogo" className="home-logo"/>
         </section>
     )
   }

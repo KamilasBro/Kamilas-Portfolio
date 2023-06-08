@@ -1,4 +1,4 @@
-import placeholder from "../images/logo/placeholder.png"
+import logo from "../images/logo/logo.png"
 import linkedin from "../images/socials/linkedin.png"
 import github from "../images/socials/github.png"
 import fiverr from "../images/socials/fiverr.png"
@@ -73,8 +73,8 @@ export default function Navbar() {
          style={Ypos===true?{background: "transparent"}:{background: "#010A08"}}
          >
             <div className="inner-navbar">
-                <img src={placeholder} alt="navlogo" className="navbar-logo"
-                    style={currentSection==="home"?{filter: "drop-shadow(0px 0px 4px rgba(173, 0, 255, 0.5))"}:{}}
+                <img src={logo} alt="navlogo" className="navbar-logo"
+                    style={currentSection==="home"?{filter: "drop-shadow(0px 0px 15px rgba(66, 0, 255, 1))"}:{}}
                     onClick={()=>{
                         //our logo works as home button so it is scrolling user to the top of the page
                         document.body.scrollTop = 0;

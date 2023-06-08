@@ -44,7 +44,7 @@ nav:hover{
     height: 80px;
     width: 80px;
 
-    transition: 300ms;
+    transition: 1000ms;
 }
 .hamburger{
     cursor: pointer;
