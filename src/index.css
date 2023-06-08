@@ -86,6 +86,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 150px;
 
   animation: loadingAnim1 1.2s infinite;
+
 }
 main{
   display: flex;
