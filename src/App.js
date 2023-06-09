@@ -29,9 +29,9 @@ export default function App() {
     <>
       <div className="loading-screen">
         <img src={logo} alt="loader"/>
-        <div>
+        <h2>
         Kamilas
-        </div>
+        </h2>
       </div>
       <Navbar/>
       <main>

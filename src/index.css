@@ -89,7 +89,7 @@ body::-webkit-scrollbar-thumb:hover {
   animation: loadingAnim1 1.2s infinite;
 
 }
-.loading-screen div{
+.loading-screen h2{
   font-size: 22px;
 
   margin-top: 10px;
