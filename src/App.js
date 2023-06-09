@@ -22,13 +22,16 @@ export default function App() {
       setTimeout(()=>{
         document.querySelector(".loading-screen").style.display="none"
       },1000)
-    },2000)
+    },2200)
   },[])
   //there was no state needed in App itself so no props passed
   return (
     <>
       <div className="loading-screen">
         <img src={logo} alt="loader"/>
+        <div>
+        Kamilas
+        </div>
       </div>
       <Navbar/>
       <main>

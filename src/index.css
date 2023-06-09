@@ -69,6 +69,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .loading-screen{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -84,6 +85,14 @@ body::-webkit-scrollbar-thumb:hover {
 .loading-screen img{
   height: 150px;
   width: 150px;
+
+  animation: loadingAnim1 1.2s infinite;
+
+}
+.loading-screen div{
+  font-size: 22px;
+
+  margin-top: 10px;
 
   animation: loadingAnim1 1.2s infinite;
 
@@ -282,6 +291,11 @@ a{
   .loading-screen img{
     height: 75px;
     width: 75px;
+  }
+  .loading-screen div{
+    font-size: 16px;
+
+    margin-top: 8px;
   }
   main{
     margin-top: 110px;

@@ -65,7 +65,9 @@ export default function Technologies() {
                         style={inView===true?{animation:`titleAnim ${1000+(index*100)}ms`}:{}}>
                             <div className="chart-text">
                                 <span className="chart-property">{ele.property}</span>
-                                <span className="chart-precentage">{ele.precentage}%</span>
+                                <span className="chart-precentage">
+                                    {ele.precentage}
+                                    %</span>
                             </div>
                             <div className="chart-bar">
                                 <div 
@@ -87,7 +89,10 @@ export default function Technologies() {
                     style={inView===true?{animation:`titleAnim ${1000+(index*100)}ms`}:{}}>
                         <div className="chart-text">
                             <span className="chart-property">{ele.property}</span>
-                            <span className="chart-precentage">{ele.precentage}%</span>
+                            <span className="chart-precentage">
+                                {ele.precentage}
+                                %
+                            </span>
                         </div>
                         <div className="chart-bar">
                             <div 

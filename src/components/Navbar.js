@@ -1,4 +1,4 @@
-import logo from "../images/logo/logo.png"
+import logo from "../images/logo/logo2.png"
 import linkedin from "../images/socials/linkedin.png"
 import github from "../images/socials/github.png"
 import fiverr from "../images/socials/fiverr.png"
@@ -74,7 +74,7 @@ export default function Navbar() {
          >
             <div className="inner-navbar">
                 <img src={logo} alt="navlogo" className="navbar-logo"
-                    style={currentSection==="home"?{filter: "drop-shadow(0px 0px 15px rgba(66, 0, 255, 1))"}:{}}
+                    style={currentSection==="home"?{filter: "drop-shadow(0px 0px 6px #AD00FF) drop-shadow(0px 0px 6px #AD00FF)"}:{}}
                     onClick={()=>{
                         //our logo works as home button so it is scrolling user to the top of the page
                         document.body.scrollTop = 0;

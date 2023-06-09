@@ -1,4 +1,4 @@
-import logo from "../images/logo/logo.png"
+import logo from "../images/logo/logo2.png"
 import closeNavbar from "../images/closeNavbar.png"
 import linkedin from "../images/socials/linkedin.png"
 import github from "../images/socials/github.png"

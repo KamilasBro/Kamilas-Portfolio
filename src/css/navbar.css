@@ -45,6 +45,8 @@ nav:hover{
     width: 80px;
 
     transition: 1000ms;
+
+    border-radius: 0px;
 }
 .hamburger{
     cursor: pointer;
@@ -52,7 +54,6 @@ nav:hover{
     display: none;
 
     border-radius: 0px;
-
 }
 .navbar-menu{
     display: flex;
