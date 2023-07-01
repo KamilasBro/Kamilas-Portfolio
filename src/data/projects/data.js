@@ -103,6 +103,14 @@ export default function data(){
                 githubURL: "https://github.com/KamilasBro/d2calc",
                 createdIn: "javascript",
                 firstProject: true
+            },
+            {
+                id: 13,
+                imgName: "subtitlesfixer.png",
+                name: "PL Subtitles Fixer",
+                previewURL: "https://polishsubtitlesfixer.netlify.app/",
+                githubURL: "https://github.com/KamilasBro/SubtitleFixer",
+                createdIn: "react",
             }
           
         ]
