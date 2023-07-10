@@ -10,7 +10,7 @@ export default function About() {
             <h1 className="section-title" style={inView===true?{animation:"titleAnim 1s"}:{}}>About Me</h1>
             <div className="about-grid">
                 <div style={inView===true?{animation:"aboutAnim1 1.1s"}:{}}>
-                Pasionate video game enthusiast who's also 
+                Passionate video game enthusiast who's also 
                 been studying coding for over a year now as a front-end developer.
                 <br/> 
                 I love diving into the intricate coding behind web 
