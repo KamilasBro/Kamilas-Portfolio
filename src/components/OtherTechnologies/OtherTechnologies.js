@@ -1,4 +1,5 @@
 import { useInView } from 'react-intersection-observer';
+import "./otherTechnologies.css"
 export default function OtherTechnologies() {
     const {ref, inView}=useInView({//see projects.js for explanation
         triggerOnce: true

@@ -1,15 +1,6 @@
-@import url(./css/navbar.css);
-@import url(./css/mobilenavbar.css);
-@import url(./css/home.css);
-@import url(./css/projects.css);
-@import url(./css/technologies.css);
-@import url(./css/otherTechnologies.css);
-@import url(./css/contact.css);
-@import url(./css/about.css);
-@import url(./css/footer.css);
+
 /*
-instead of making huge unreadable css I divided it into sections and imported it
-some of css is written directly in JSX
+components css files are inside components folders
 */
 @keyframes loadingAnim1 {
   0%{opacity: 1;}
@@ -87,7 +78,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 150px;
 
   animation: loadingAnim1 1.2s infinite;
-
+  border-radius: 0px;
 }
 main{
   display: flex;

@@ -1,5 +1,6 @@
 // import placeholder from "../images/logo/placeholder.png"
 import { useInView } from 'react-intersection-observer';
+import "./about.css"
 export default function About() {
     const {ref, inView}=useInView({//see projects.js for explanation
         triggerOnce: true
@@ -30,7 +31,8 @@ export default function About() {
                 I can't wait to see where this journey takes me!
                 <br/>
                 <br/>
-                I am currently diving deep into React and starting to learn TypeScript 
+                I am currently diving deep into React with TypeScript and 
+                starting to learn other Javascript frameworks and also SCSS
                 to explore modern technology standards and possibilities.
                 <br/>
                 In the future, I want to study backend to become 

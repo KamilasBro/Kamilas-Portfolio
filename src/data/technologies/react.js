@@ -1,11 +1,11 @@
 export const reactSkills=[
     {
         property: "JSX Syntax",
-        precentage: 90
+        precentage: 80
     },
     {
         property: "State Methods",
-        precentage: 85
+        precentage: 75
     },
     {
         property: "React Hooks",
@@ -13,7 +13,7 @@ export const reactSkills=[
     },
     {
         property: "State Managment",
-        precentage: 75
+        precentage: 70
     },
     {
         property: "Dependencies/npm/packages",

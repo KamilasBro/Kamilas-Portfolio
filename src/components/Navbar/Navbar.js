@@ -1,14 +1,14 @@
-import logo from "../images/logo/logo2.png"
-import linkedin from "../images/socials/linkedin.png"
-import github from "../images/socials/github.png"
-import fiverr from "../images/socials/fiverr.png"
-import hadleScroll from "./functions/handleScroll"
-import socials from "./functions/socials"
-import hamburger from "../images/hamburger.png"
-import MobileNavbar from "./MobileNavbar";
+import logo from "../../images/logo/logo2.png"
+import linkedin from "../../images/socials/linkedin.png"
+import github from "../../images/socials/github.png"
+import fiverr from "../../images/socials/fiverr.png"
+import hadleScroll from "../functions/handleScroll"
+import socials from "../functions/socials"
+import hamburger from "../../images/hamburger.png"
+import MobileNavbar from "../MobileNavbar/MobileNavbar";
 
 import React,{useState} from "react"
-
+import "./navbar.css"
 //here is some important magic done
 export default function Navbar() {
     const [currentSection, setCurrentSection]=useState("home")//to determine which section is active

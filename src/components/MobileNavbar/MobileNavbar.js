@@ -1,12 +1,13 @@
-import logo from "../images/logo/logo2.png"
-import closeNavbar from "../images/closeNavbar.png"
-import linkedin from "../images/socials/linkedin.png"
-import github from "../images/socials/github.png"
-import fiverr from "../images/socials/fiverr.png"
+import logo from "../../images/logo/logo2.png"
+import closeNavbar from "../../images/closeNavbar.png"
+import linkedin from "../../images/socials/linkedin.png"
+import github from "../../images/socials/github.png"
+import fiverr from "../../images/socials/fiverr.png"
 
-import hadleScroll from "./functions/handleScroll"
-import socials from "./functions/socials"
+import hadleScroll from "../functions/handleScroll"
+import socials from "../functions/socials"
 
+import "./mobilenavbar.css"
 //this works the same as navbar but with one addition
 export default function MobileNavbar(props){
     function close(){//this function will trigger the closing animation for mobile navbar

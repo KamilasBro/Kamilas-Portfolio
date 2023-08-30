@@ -1,15 +1,15 @@
 export const htmlSkills=[
     {
         property: "Syntax",
-        precentage: 95
+        precentage: 90
     },
     {
         property: "Forms",
-        precentage: 80
+        precentage: 75
     },
     {
         property: "Semantic elements",
-        precentage: 90
+        precentage: 80
     },
     {
         property: "HTML5 API",

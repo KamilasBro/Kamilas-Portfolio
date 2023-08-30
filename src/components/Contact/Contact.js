@@ -1,9 +1,11 @@
-import linkedin from "../images/socials/linkedin.png"
-import github from "../images/socials/github.png"
-import fiverr from "../images/socials/fiverr.png"
-import socials from "./functions/socials"
+import linkedin from "../../images/socials/linkedin.png"
+import github from "../../images/socials/github.png"
+import fiverr from "../../images/socials/fiverr.png"
+// ../../ see about.js for explanation
+import socials from "../functions/socials"
 
 import React,{useState} from "react"
+import "./contact.css"
 import { useInView } from 'react-intersection-observer';
 export default function Contact() {
     const {ref, inView}=useInView({//see projects.js for explanation

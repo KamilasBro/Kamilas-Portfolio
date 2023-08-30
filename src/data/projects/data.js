@@ -111,8 +111,23 @@ export default function data(){
                 previewURL: "https://polishsubtitlesfixer.netlify.app/",
                 githubURL: "https://github.com/KamilasBro/SubtitleFixer",
                 createdIn: "react",
-            }
-          
+            },
+            {
+                id: 14,
+                imgName: "bookApp.png",
+                name: "BookApp Demo",
+                previewURL: "https://bookapp-siema.netlify.app/",
+                githubURL: "https://github.com/KamilasBro/BookApp",
+                createdIn: "react",
+            },
+            // {
+            //     id: 15,
+            //     imgName: "arthrohard.png",
+            //     name: "Arthrohard",
+            //     previewURL: "https://arthrohard.netlify.app/",
+            //     githubURL: "https://github.com/KamilasBro/ARTHROHARD-zadanie-rekrutacyjne",
+            //     createdIn: "react",
+            // }
         ]
     )
 }

@@ -1,6 +1,7 @@
-import search from "../images/search.png"
-import datajs from "../data/projects/data"
-import clearSearch from "../images/clear.png"
+import search from "../../images/search.png"
+import datajs from "../../data/projects/data"
+import clearSearch from "../../images/clear.png"
+import "./projects.css"
 import React,{useState} from "react"
 import { useInView } from 'react-intersection-observer';
 // here is some important magic done aswell
@@ -49,7 +50,7 @@ export default function Projects() {
                             return(
                                 <div className="list-item" key={e.id}>
                                     {/*the require is there because the images arent in public folder*/}
-                                    <img src={require(`../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
+                                    <img src={require(`../../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
                                     <div className="item-name">{e.name}{e.firstProject&&<sup>1st Project!</sup>}</div>
                                     <div className="item-buttons" style={e.createdIn==="wordpress"?{justifyContent: "center"}:{}}>
                                         {e.notWorking===true?
@@ -67,7 +68,7 @@ export default function Projects() {
                             //both the name and search phrase are loweredCase to prevent the capital letters differences
                             return(
                                 <div className="list-item" key={e.id}>
-                                    <img src={require(`../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
+                                    <img src={require(`../../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
                                     <div className="item-name">{e.name}{e.firstProject&&<sup>1st Project!</sup>}</div>
                                     <div className="item-buttons" style={e.createdIn==="wordpress"?{justifyContent: "center"}:{}}>
                                         {e.notWorking===true?
@@ -96,7 +97,7 @@ export default function Projects() {
                                 //so if we want more filters in the page ex. next.js, vue, angular there is no need to change this code
                                 return(
                                     <div className="list-item" key={e.id}>
-                                        <img src={require(`../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
+                                        <img src={require(`../../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
                                         <div className="item-name">{e.name}{e.firstProject&&<sup>1st Project!</sup>}</div>
                                         <div className="item-buttons" style={e.createdIn==="wordpress"?{justifyContent: "center"}:{}}>
                                             {e.notWorking===true?
@@ -116,7 +117,7 @@ export default function Projects() {
                             if(currentFilter===e.createdIn){
                                 return(
                                     <div className="list-item" key={e.id}>
-                                        <img src={require(`../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
+                                        <img src={require(`../../data/projects/images/${e.imgName}`)} alt="projectimage" className="item-image"/>
                                         <div className="item-name">{e.name}{e.firstProject&&<sup>1st Project!</sup>}</div>
                                         <div className="item-buttons" style={e.createdIn==="wordpress"?{justifyContent: "center"}:{}}>
                                             {e.notWorking===true?

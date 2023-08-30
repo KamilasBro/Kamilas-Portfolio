@@ -1,11 +1,11 @@
 export const jsSkills=[
     {
         property: "Syntax",
-        precentage: 100
+        precentage: 85
     },
     {
         property: "DOM",
-        precentage: 95
+        precentage: 85
     },
     {
         property: "ES6+",
@@ -13,10 +13,10 @@ export const jsSkills=[
     },
     {
         property: "Fetch API",
-        precentage: 85
+        precentage: 75
     },
     {
         property: "JQuerry",
-        precentage: 70
+        precentage: 65
     },
     ]
