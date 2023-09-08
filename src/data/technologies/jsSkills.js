@@ -17,6 +17,6 @@ export const jsSkills=[
     },
     {
         property: "JQuerry",
-        precentage: 65
+        precentage: 70
     },
     ]

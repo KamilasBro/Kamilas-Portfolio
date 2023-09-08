@@ -1,3 +1,5 @@
 # About
-My current portfolio project,
-it is private project and everything is explained in code so no need to write here.
+My current portfolio project.
+The projects was private for most time, so I won't describe it's features here.
+
+Everything is explained in code.
