@@ -2,11 +2,12 @@ import linkedin from "../../images/socials/linkedin.png";
 import github from "../../images/socials/github.png";
 import fiverr from "../../images/socials/fiverr.png";
 // ../../ see about.js for explanation
-import socials from "../functions/socials";
-
+import socials from "../functions&Variables/socials";
 import React, { useState } from "react";
-import "./contact.css";
+import "./contact.scss";
 import { useInView } from "react-intersection-observer";
+//colors from _colors.scss root to manipulate
+import { colors } from "../functions&Variables/colors";
 export default function Contact() {
   const { ref, inView } = useInView({
     //see projects.js for explanation
@@ -49,8 +50,7 @@ export default function Contact() {
               style={
                 focusInput === "name"
                   ? {
-                      background:
-                        "linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)",
+                      background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
                     }
                   : {}
               }
@@ -85,8 +85,7 @@ export default function Contact() {
               style={
                 focusInput === "email"
                   ? {
-                      background:
-                        "linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)",
+                      background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
                     }
                   : {}
               }
@@ -115,8 +114,7 @@ export default function Contact() {
             style={
               focusInput === "comment"
                 ? {
-                    background:
-                      "linear-gradient(135deg, #FF0099 0%, #AD00FF 100%)",
+                    background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
                   }
                 : {}
             }

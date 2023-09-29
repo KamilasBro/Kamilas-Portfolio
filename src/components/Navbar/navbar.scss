@@ -1,0 +1,158 @@
+@import "../../scssPartials/flexCenter";
+@import "../../scssPartials/_colors";
+@keyframes navbarAnim {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+nav {
+  @include flexCenter;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 140px;
+
+  animation: navbarAnim 0.5s;
+  animation-delay: 1.8s;
+
+  background: transparent;
+
+  transition: 500ms;
+
+  position: fixed;
+  z-index: 2;
+  top: 0;
+
+  border-bottom: 1px solid $borderColor;
+}
+nav:hover {
+  border-color: rgba(255, 0, 153, 0.7);
+}
+.inner-navbar {
+  @include flexCenter;
+  justify-content: space-between;
+
+  width: 1170px;
+}
+.navbar-logo {
+  cursor: pointer;
+
+  height: 80px;
+  width: 80px;
+
+  transition: 1000ms;
+
+  border-radius: 0px;
+}
+.hamburger {
+  cursor: pointer;
+
+  display: none;
+
+  border-radius: 0px;
+}
+.navbar-menu {
+  @include flexCenter;
+}
+.navbar-menu li {
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  margin-left: 50px;
+
+  transition: 300ms;
+}
+.navbar-menu li:first-child {
+  margin-left: 0px;
+}
+.navbar-menu li:hover {
+  color: $pink;
+}
+.navbar-socials {
+  @include flexCenter;
+}
+.navbar-socials img {
+  cursor: pointer;
+
+  height: 27px;
+  width: 27px;
+
+  filter: grayscale(100%);
+
+  transition: 500ms;
+
+  border-radius: 100px;
+}
+.navbar-socials .social-aTag:nth-child(2) {
+  margin-inline: 15px;
+}
+.navbar-socials img:hover {
+  filter: none;
+}
+
+@media (max-width: 1440px) {
+  .inner-navbar {
+    width: 940px;
+  }
+}
+@media (max-width: 1024px) {
+  nav {
+    height: 100px;
+  }
+  .inner-navbar {
+    width: 724px;
+  }
+  .navbar-logo {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+  .navbar-menu {
+    display: none;
+  }
+  .navbar-menu li:hover {
+    color: #ffffff;
+  }
+  .navbar-socials {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  @keyframes navbarAnim {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  nav {
+    height: 80px;
+  }
+  .inner-navbar {
+    width: 570px;
+  }
+  .hamburger {
+    height: 30px;
+    width: 30px;
+  }
+}
+@media (max-width: 600px) {
+  nav {
+    height: 60px;
+    width: 100%;
+  }
+  .inner-navbar {
+    margin-inline: 18px;
+  }
+  .hamburger {
+    height: 24px;
+    width: 24px;
+  }
+}

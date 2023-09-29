@@ -3,5 +3,5 @@ My current portfolio project.
 
 Everything is explained in code.
 
-# Preview Link 
+# Preview
 https://kamilas.netlify.app/

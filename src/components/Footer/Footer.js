@@ -1,9 +1,9 @@
 import linkedin from "../../images/socials/linkedin.png";
 import github from "../../images/socials/github.png";
 import fiverr from "../../images/socials/fiverr.png";
-import socials from "../functions/socials";
-import hadleScroll from "../functions/handleScroll";
-import "./footer.css";
+import socials from "../functions&Variables/socials";
+import hadleScroll from "../functions&Variables/handleScroll";
+import "./footer.scss";
 import { useInView } from "react-intersection-observer";
 export default function Footer() {
   const { ref, inView } = useInView({

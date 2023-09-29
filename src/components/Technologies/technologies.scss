@@ -1,3 +1,5 @@
+@import "../../scssPartials/flexCenter";
+@import "../../scssPartials/_colors";
 @keyframes techAnim1 {
   from {
     opacity: 0;
@@ -12,8 +14,7 @@
   margin-top: 200px;
 }
 .technologies-menu {
-  display: flex;
-  justify-content: center;
+  @include flexCenter;
 
   margin-top: 15px;
 }
@@ -52,7 +53,7 @@
 
   margin-top: 10px;
 
-  background-color: #171717;
+  background-color: $darkGray;
 
   border-radius: 83px;
 }
@@ -118,10 +119,6 @@
   }
   .technologies-chart {
     margin-top: 30px;
-  }
-  .chart-text {
-    display: flex;
-    justify-content: space-between;
   }
   .chart-property {
     font-size: 20px;

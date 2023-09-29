@@ -4,10 +4,12 @@ import linkedin from "../../images/socials/linkedin.png";
 import github from "../../images/socials/github.png";
 import fiverr from "../../images/socials/fiverr.png";
 
-import hadleScroll from "../functions/handleScroll";
-import socials from "../functions/socials";
+import hadleScroll from "../functions&Variables/handleScroll";
+import socials from "../functions&Variables/socials";
+//colors from _colors.scss root to manipulate
+import { colors } from "../functions&Variables/colors";
 
-import "./mobilenavbar.css";
+import "./mobilenavbar.scss";
 //this works the same as navbar but with one addition
 export default function MobileNavbar(props) {
   function close() {
@@ -38,7 +40,7 @@ export default function MobileNavbar(props) {
             document.documentElement.scrollTop = 0;
             close();
           }}
-          style={props.currentSection === "home" ? { color: "#AD00FF" } : {}}
+          style={props.currentSection === "home" ? { color: colors.purple } : {}}
         >
           Home
         </li>
@@ -48,7 +50,7 @@ export default function MobileNavbar(props) {
             close();
           }}
           style={
-            props.currentSection === "projects" ? { color: "#AD00FF" } : {}
+            props.currentSection === "projects" ? { color: colors.purple } : {}
           }
         >
           Projects
@@ -59,7 +61,7 @@ export default function MobileNavbar(props) {
             close();
           }}
           style={
-            props.currentSection === "technologies" ? { color: "#AD00FF" } : {}
+            props.currentSection === "technologies" ? { color: colors.purple } : {}
           }
         >
           Technologies
@@ -69,7 +71,7 @@ export default function MobileNavbar(props) {
             hadleScroll(".contact");
             close();
           }}
-          style={props.currentSection === "contact" ? { color: "#AD00FF" } : {}}
+          style={props.currentSection === "contact" ? { color: colors.purple } : {}}
         >
           Contact
         </li>
@@ -78,7 +80,7 @@ export default function MobileNavbar(props) {
             hadleScroll(".about");
             close();
           }}
-          style={props.currentSection === "about" ? { color: "#AD00FF" } : {}}
+          style={props.currentSection === "about" ? { color: colors.purple } : {}}
         >
           About
         </li>

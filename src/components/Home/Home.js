@@ -3,7 +3,7 @@ import Typed from "typed.js";
 import logo from "../../images/logo/logo.png";
 // ../ refers to parent folder of current location
 // so 1st ../ refers to components and 2nd ../ refers to src
-import "./home.css";
+import "./home.scss";
 export default function Home() {
   //we imported typed.js lib to make writing slogan work
   //for more information read typed.js docs

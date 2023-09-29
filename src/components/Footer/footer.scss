@@ -1,3 +1,5 @@
+@import "../../scssPartials/flexCenter";
+@import "../../scssPartials/_colors";
 @keyframes footerAnim{
     0%{
         transform: translateY(+50%);
@@ -17,11 +19,10 @@ footer{
 
     margin-top: 125px;
 
-    border-top: 1px solid rgba(173, 0, 255, 0.5);
+    border-top: 1px solid $borderColor;
 }
 .inner-footer{
-    display: flex;
-    align-items: center;
+    @include flexCenter;
     justify-content: space-between;
 
     width: 1170px;
@@ -31,7 +32,7 @@ footer{
     font-size: 18px;
 }
 .copyright span{
-    color: #FF0099;
+    color: $pink;
 }
 .footer-menu{
     display: flex;

@@ -1,5 +1,5 @@
 import arrow from "./images/arrow.png";
-import hadleScroll from "./components/functions/handleScroll";
+import hadleScroll from "./components/functions&Variables/handleScroll";
 import logo from "../src/images/logo/logo.png";
 
 import Navbar from "./components/Navbar/Navbar";

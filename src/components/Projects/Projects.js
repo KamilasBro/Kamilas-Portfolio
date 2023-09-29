@@ -1,7 +1,7 @@
 import search from "../../images/search.png";
 import datajs from "../../data/projects/data.json";
 import clearSearch from "../../images/clear.png";
-import "./projects.css";
+import "./projects.scss";
 import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
 // here is some important magic done aswell

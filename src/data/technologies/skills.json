@@ -1,119 +1,118 @@
 [
-    {
-        "id": 1,
-        "name": "html",
-        "imgName": "html.png",
-        "background": "linear-gradient(90deg, #E34C26 0%, #F06529 100%)",
-        "boxshadow": "0px 0px 30px 4px rgba(227, 76, 38, 0.25)",
-        "properties":[
-            {
-                "property": "Syntax",
-                "precentage": 90
-            },
-            {
-                "property": "Forms",
-                "precentage": 75
-            },
-            {
-                "property": "Semantic elements",
-                "precentage": 80
-            },
-            {
-                "property": "HTML5 API",
-                "precentage": 60
-            },
-            {
-                "property": "SEO",
-                "precentage": 55
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "css",
-        "imgName": "css.png",
-        "background": "linear-gradient(90deg, #2965f1 0%, #264de4 100%)",
-        "boxshadow": "0px 0px 30px 4px rgba(41, 101, 241, 0.25)",
-        "properties":[
-            {
-                "property": "Selectors",
-                "precentage": 90
-            },
-            {
-                "property": "Animations",
-                "precentage": 50
-            },
-            {
-                "property": "Layout/Flexbox/Grid",
-                "precentage": 85
-            },
-            {
-                "property": "RWD/Media queries",
-                "precentage": 80
-            },
-            {
-                "property": "Bootstrap",
-                "precentage": 60
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "name": "js",
-        "imgName": "js.png",
-        "background": "linear-gradient(180deg, #F7DF1E 0%, #F7DF1E 100%)",
-        "boxshadow": "0px 0px 30px 4px rgba(247, 223, 30, 0.25)",
-        "properties":[
-            {
-                "property": "Syntax",
-                "precentage": 85
-            },
-            {
-                "property": "DOM",
-                "precentage": 85
-            },
-            {
-                "property": "ES6+",
-                "precentage": 90
-            },
-            {
-                "property": "AJAX/Fetch/Axios",
-                "precentage": 80
-            },
-            {
-                "property": "JQuerry",
-                "precentage": 70
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "name": "react",
-        "imgName": "react.png",
-        "background": "linear-gradient(90deg, #88DDED 0%, #7CC5D9 100%)",
-        "boxshadow": "0px 0px 30px 4px rgba(136, 221, 237, 0.25)",
-        "properties":[
-            {
-                "property": "JSX Syntax",
-                "precentage": 80
-            },
-            {
-                "property": "State Methods",
-                "precentage": 75
-            },
-            {
-                "property": "React Hooks",
-                "precentage": 75
-            },
-            {
-                "property": "State Managment",
-                "precentage": 70
-            },
-            {
-                "property": "Dependencies/npm/packages",
-                "precentage": 60
-            }
-        ]
-    }
-
+  {
+    "id": 1,
+    "name": "html",
+    "imgName": "html.png",
+    "background": "linear-gradient(90deg, #E34C26 0%, #F06529 100%)",
+    "boxshadow": "0px 0px 30px 4px rgba(227, 76, 38, 0.25)",
+    "properties": [
+      {
+        "property": "Syntax",
+        "precentage": 90
+      },
+      {
+        "property": "Forms",
+        "precentage": 75
+      },
+      {
+        "property": "Semantic elements",
+        "precentage": 80
+      },
+      {
+        "property": "HTML5 API",
+        "precentage": 60
+      },
+      {
+        "property": "SEO",
+        "precentage": 55
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "css",
+    "imgName": "css.png",
+    "background": "linear-gradient(90deg, #2965f1 0%, #264de4 100%)",
+    "boxshadow": "0px 0px 30px 4px rgba(41, 101, 241, 0.25)",
+    "properties": [
+      {
+        "property": "Selectors",
+        "precentage": 90
+      },
+      {
+        "property": "Animations",
+        "precentage": 50
+      },
+      {
+        "property": "Layout/Flexbox/Grid",
+        "precentage": 85
+      },
+      {
+        "property": "RWD/Media queries",
+        "precentage": 80
+      },
+      {
+        "property": "SCSS & Bootstrap",
+        "precentage": 70
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "js",
+    "imgName": "js.png",
+    "background": "linear-gradient(180deg, #F7DF1E 0%, #F7DF1E 100%)",
+    "boxshadow": "0px 0px 30px 4px rgba(247, 223, 30, 0.25)",
+    "properties": [
+      {
+        "property": "Syntax",
+        "precentage": 85
+      },
+      {
+        "property": "DOM",
+        "precentage": 85
+      },
+      {
+        "property": "ES6+",
+        "precentage": 90
+      },
+      {
+        "property": "AJAX/Fetch/Axios",
+        "precentage": 80
+      },
+      {
+        "property": "JQuerry",
+        "precentage": 70
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "react",
+    "imgName": "react.png",
+    "background": "linear-gradient(90deg, #88DDED 0%, #7CC5D9 100%)",
+    "boxshadow": "0px 0px 30px 4px rgba(136, 221, 237, 0.25)",
+    "properties": [
+      {
+        "property": "JSX Syntax",
+        "precentage": 80
+      },
+      {
+        "property": "State Methods",
+        "precentage": 75
+      },
+      {
+        "property": "React Hooks",
+        "precentage": 75
+      },
+      {
+        "property": "State Managment",
+        "precentage": 70
+      },
+      {
+        "property": "Dependencies/npm/packages",
+        "precentage": 60
+      }
+    ]
+  }
 ]

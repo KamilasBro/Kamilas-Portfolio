@@ -1,7 +1,7 @@
 import skills from "../../data/technologies/skills.json";
 //the skills list is imported from data file
 import React, { useState } from "react";
-import "./technologies.css";
+import "./technologies.scss";
 import { useInView } from "react-intersection-observer";
 export default function Technologies() {
   const { ref, inView } = useInView({

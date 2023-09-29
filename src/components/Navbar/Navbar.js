@@ -2,13 +2,15 @@ import logo from "../../images/logo/logo2.png";
 import linkedin from "../../images/socials/linkedin.png";
 import github from "../../images/socials/github.png";
 import fiverr from "../../images/socials/fiverr.png";
-import hadleScroll from "../functions/handleScroll";
-import socials from "../functions/socials";
+import hadleScroll from "../functions&Variables/handleScroll";
+import socials from "../functions&Variables/socials";
 import hamburger from "../../images/hamburger.png";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
+//colors from _colors.scss root to manipulate
+import { colors } from "../functions&Variables/colors";
 
 import React, { useState } from "react";
-import "./navbar.css";
+import "./navbar.scss";
 //here is some important magic done
 export default function Navbar() {
   //to determine which section is active
@@ -46,7 +48,7 @@ export default function Navbar() {
       setCurrentSection("home");
     } else if (
       window.pageYOffset >=
-        sectionsOffsets.projFects - sectionsOffsets.minusNavbar &&
+        sectionsOffsets.projects - sectionsOffsets.minusNavbar &&
       window.pageYOffset <
         sectionsOffsets.technologies - sectionsOffsets.minusNavbar
     ) {
@@ -94,7 +96,7 @@ export default function Navbar() {
         style={
           Ypos === true
             ? { background: "transparent" }
-            : { background: "#010A08" }
+            : { background: colors.dark }
         }
       >
         <div className="inner-navbar">
@@ -105,8 +107,8 @@ export default function Navbar() {
             style={
               currentSection === "home"
                 ? {
-                    filter:
-                      "drop-shadow(0px 0px 6px #AD00FF) drop-shadow(0px 0px 6px #AD00FF)",
+                    filter: `drop-shadow(0px 0px 6px ${colors.purple}) 
+                    drop-shadow(0px 0px 6px ${colors.purple})`,
                   }
                 : {}
             }
@@ -129,27 +131,25 @@ export default function Navbar() {
             <li
               //check handleScroll.js in functions folder
               onClick={() => hadleScroll(".projects")}
-              style={currentSection === "projects" ? { color: "#AD00FF" } : {}}
+              style={currentSection === "projects" ? { color: colors.purple } : {}}
             >
               Projects
             </li>
             <li
               onClick={() => hadleScroll(".technologies")}
-              style={
-                currentSection === "technologies" ? { color: "#AD00FF" } : {}
-              }
+              style={currentSection === "technologies" ? { color: colors.purple } : {}}
             >
               Technologies
             </li>
             <li
               onClick={() => hadleScroll(".contact")}
-              style={currentSection === "contact" ? { color: "#AD00FF" } : {}}
+              style={currentSection === "contact" ? { color: colors.purple } : {}}
             >
               Contact
             </li>
             <li
               onClick={() => hadleScroll(".about")}
-              style={currentSection === "about" ? { color: "#AD00FF" } : {}}
+              style={currentSection === "about" ? { color: colors.purple } : {}}
             >
               About
             </li>

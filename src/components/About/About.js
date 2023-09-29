@@ -1,6 +1,6 @@
 // import placeholder from "../images/logo/placeholder.png"
 import { useInView } from "react-intersection-observer";
-import "./about.css";
+import "./about.scss";
 export default function About() {
   const { ref, inView } = useInView({
     //see projects.js for explanation
