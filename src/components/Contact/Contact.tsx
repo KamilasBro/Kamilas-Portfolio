@@ -13,12 +13,12 @@ export default function Contact() {
     //see projects.js for explanation
     triggerOnce: true,
   });
-  const [focusInput, setFocusInput] = useState(null);
+  const [focusInput, setFocusInput] = useState<string>("");
   //to determine which input is now active(i used mask to make radius gradient border)
 
   function handleClick() {
     // to remove active input after interacting with other page
-    setFocusInput(null);
+    setFocusInput("");
     document.removeEventListener("click", handleClick, true);
   }
   return (

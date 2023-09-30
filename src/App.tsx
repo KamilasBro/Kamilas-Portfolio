@@ -15,13 +15,15 @@ import React, { useEffect } from "react";
 export default function App() {
   //to determine when loading screen should end
   useEffect(() => {
-    document.querySelector("html").style.overflowY = "hidden";
+    const htmlEle=document.querySelector("html") as HTMLElement
+    const loadingScreen=document.querySelector(".loading-screen") as HTMLDivElement
+    htmlEle.style.overflowY = "hidden";
     setTimeout(() => {
-      document.querySelector("html").style.overflowY = "visible";
-      document.querySelector(".loading-screen").style.animation =
+      htmlEle.style.overflowY = "visible";
+      loadingScreen.style.animation =
         "loadingAnim2 1.2s";
       setTimeout(() => {
-        document.querySelector(".loading-screen").style.display = "none";
+        loadingScreen.style.display = "none";
       }, 1000);
     }, 2200);
   }, []);

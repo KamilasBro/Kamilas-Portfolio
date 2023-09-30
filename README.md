@@ -1,7 +1,6 @@
 # About
 My current portfolio project.
-
-Everything is explained in code.
+Updated Recently with TypeScript and SCSS and overall refactored and well automated.
 
 # Preview
 https://kamilas.netlify.app/

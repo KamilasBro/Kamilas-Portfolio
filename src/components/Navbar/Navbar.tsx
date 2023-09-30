@@ -14,20 +14,23 @@ import "./navbar.scss";
 //here is some important magic done
 export default function Navbar() {
   //to determine which section is active
-  const [currentSection, setCurrentSection] = useState("home");
+  const [currentSection, setCurrentSection] = useState<string>("home");
   //to check if page is scrolled to top
-  const [Ypos, setYPos] = useState(true);
+  const [Ypos, setYPos] = useState<boolean>(true);
   //(only on mobile devices) to determine when mobile navbar should appear
-  const [mobileActive, setMobileActive] = useState(false);
+  const [mobileActive, setMobileActive] = useState<boolean>(false);
 
   document.addEventListener("scroll", () => {
     //object with sections
     const sectionsOffsets = {
-      minusNavbar: document.querySelector(".navbar").offsetHeight * 2,
-      projects: document.querySelector(".projects").offsetTop,
-      technologies: document.querySelector(".technologies").offsetTop,
-      contact: document.querySelector(".contact").offsetTop,
-      about: document.querySelector(".about").offsetTop,
+      minusNavbar:
+        (document.querySelector(".navbar") as HTMLDivElement).offsetHeight * 2,
+      projects: (document.querySelector(".projects") as HTMLDivElement)
+        .offsetTop,
+      technologies: (document.querySelector(".technologies") as HTMLDivElement)
+        .offsetTop,
+      contact: (document.querySelector(".contact") as HTMLDivElement).offsetTop,
+      about: (document.querySelector(".about") as HTMLDivElement).offsetTop,
     };
     //the specific sections on navbar will change color to purple based on user position on page
     if (window.pageYOffset === 0) {
@@ -84,9 +87,9 @@ export default function Navbar() {
   };
   //and here is this scrolling prevention logic
   if (mobileActive) {
-    document.querySelector("html").style.overflowY = "hidden";
+    (document.querySelector("html") as HTMLElement).style.overflowY = "hidden";
   } else {
-    document.querySelector("html").style.overflowY = "visible";
+    (document.querySelector("html") as HTMLElement).style.overflowY = "visible";
   }
   return (
     <>
@@ -131,19 +134,27 @@ export default function Navbar() {
             <li
               //check handleScroll.js in functions folder
               onClick={() => hadleScroll(".projects")}
-              style={currentSection === "projects" ? { color: colors.purple } : {}}
+              style={
+                currentSection === "projects" ? { color: colors.purple } : {}
+              }
             >
               Projects
             </li>
             <li
               onClick={() => hadleScroll(".technologies")}
-              style={currentSection === "technologies" ? { color: colors.purple } : {}}
+              style={
+                currentSection === "technologies"
+                  ? { color: colors.purple }
+                  : {}
+              }
             >
               Technologies
             </li>
             <li
               onClick={() => hadleScroll(".contact")}
-              style={currentSection === "contact" ? { color: colors.purple } : {}}
+              style={
+                currentSection === "contact" ? { color: colors.purple } : {}
+              }
             >
               Contact
             </li>

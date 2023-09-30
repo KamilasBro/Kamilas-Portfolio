@@ -9,7 +9,7 @@ export default function Technologies() {
     triggerOnce: true,
   });
   //to determine which technology skills should be displayed
-  const [currentTech, setCurrentTech] = useState("html");
+  const [currentTech, setCurrentTech] = useState<string>("html");
   //the data for currentTech
   const currentTechData = skills.find((skill) => skill.name === currentTech);
 
@@ -52,34 +52,35 @@ export default function Technologies() {
             the data from data folder is mapped to return 
             skills and visual lenght of the bar
             */}
-      {currentTechData.properties.map((ele, index) => {
-        return (
-          <div
-            className="technologies-chart"
-            key={index}
-            style={
-              inView === true
-                ? { animation: `titleAnim ${1000 + index * 100}ms` }
-                : {}
-            }
-          >
-            <div className="chart-text">
-              <span className="chart-property">{ele.property}</span>
-              <span className="chart-precentage">{ele.precentage}%</span>
+      {currentTechData !== undefined &&
+        currentTechData.properties.map((ele, index) => {
+          return (
+            <div
+              className="technologies-chart"
+              key={index}
+              style={
+                inView === true
+                  ? { animation: `titleAnim ${1000 + index * 100}ms` }
+                  : {}
+              }
+            >
+              <div className="chart-text">
+                <span className="chart-property">{ele.property}</span>
+                <span className="chart-precentage">{ele.precentage}%</span>
+              </div>
+              <div className="chart-bar">
+                <div
+                  className="chart-inner-bar"
+                  style={{
+                    background: currentTechData.background,
+                    boxShadow: currentTechData.boxshadow,
+                    width: `${ele.precentage}%`,
+                  }}
+                />
+              </div>
             </div>
-            <div className="chart-bar">
-              <div
-                className="chart-inner-bar"
-                style={{
-                  background: currentTechData.background,
-                  boxShadow: currentTechData.boxshadow,
-                  width: `${ele.precentage}%`,
-                }}
-              />
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </section>
   );
 }

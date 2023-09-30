@@ -11,10 +11,14 @@ import { colors } from "../functions&Variables/colors";
 
 import "./mobilenavbar.scss";
 //this works the same as navbar but with one addition
-export default function MobileNavbar(props) {
+interface Props {
+  currentSection: string;
+  setMobileActive: Function;
+}
+export default function MobileNavbar(props: Props) {
   function close() {
     //this function will trigger the closing animation for mobile navbar
-    document.querySelector(".mobile-navbar").style.transform =
+    (document.querySelector(".mobile-navbar") as HTMLElement).style.transform =
       "translateX(-100%)";
     setTimeout(() => {
       props.setMobileActive(false);
@@ -40,7 +44,9 @@ export default function MobileNavbar(props) {
             document.documentElement.scrollTop = 0;
             close();
           }}
-          style={props.currentSection === "home" ? { color: colors.purple } : {}}
+          style={
+            props.currentSection === "home" ? { color: colors.purple } : {}
+          }
         >
           Home
         </li>
@@ -61,7 +67,9 @@ export default function MobileNavbar(props) {
             close();
           }}
           style={
-            props.currentSection === "technologies" ? { color: colors.purple } : {}
+            props.currentSection === "technologies"
+              ? { color: colors.purple }
+              : {}
           }
         >
           Technologies
@@ -71,7 +79,9 @@ export default function MobileNavbar(props) {
             hadleScroll(".contact");
             close();
           }}
-          style={props.currentSection === "contact" ? { color: colors.purple } : {}}
+          style={
+            props.currentSection === "contact" ? { color: colors.purple } : {}
+          }
         >
           Contact
         </li>
@@ -80,7 +90,9 @@ export default function MobileNavbar(props) {
             hadleScroll(".about");
             close();
           }}
-          style={props.currentSection === "about" ? { color: colors.purple } : {}}
+          style={
+            props.currentSection === "about" ? { color: colors.purple } : {}
+          }
         >
           About
         </li>
