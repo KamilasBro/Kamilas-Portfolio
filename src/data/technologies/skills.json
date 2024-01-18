@@ -52,8 +52,8 @@
         "precentage": 80
       },
       {
-        "property": "SCSS & Bootstrap",
-        "precentage": 70
+        "property": "SCSS/Bootstrap/Tailwind",
+        "precentage": 85
       }
     ]
   },
@@ -106,12 +106,41 @@
         "precentage": 75
       },
       {
-        "property": "State Managment",
+        "property": "ContextAPi/Redux",
+        "precentage": 65
+      },
+      {
+        "property": "React Router",
+        "precentage": 70
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "ts",
+    "imgName": "ts.png",
+    "background": "linear-gradient(90deg, #007ACC 0%, #007ACC 100%)",
+    "boxshadow": "0px 0px 30px 4px rgba(0, 122, 204, 0.25)",
+    "properties": [
+      {
+        "property": "Syntax",
         "precentage": 70
       },
       {
-        "property": "Dependencies/npm/packages",
+        "property": "Type System",
+        "precentage": 85
+      },
+      {
+        "property": "Interfaces/Types",
+        "precentage": 70
+      },
+      {
+        "property": "Generics",
         "precentage": 60
+      },
+      {
+        "property": "Advanced TypeScript Features",
+        "precentage": 45
       }
     ]
   }
