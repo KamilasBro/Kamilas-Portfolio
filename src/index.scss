@@ -52,6 +52,7 @@ body {
   margin: 0;
 
   background: url(./images/backgrounds/1920.png);
+  background-size: cover;
   color: #ffffff;
 }
 body::-webkit-scrollbar {
@@ -178,15 +179,7 @@ a {
 .social-aTag {
   display: flex;
 }
-@media (max-width: 3840px) {
-  body {
-    background: url(./images/backgrounds/3840.png);
-  }
-}
 @media (max-width: 2048px) {
-  body {
-    background: url(./images/backgrounds/2048.png);
-  }
 }
 @media (max-width: 1440px) {
   @keyframes titleAnim {
@@ -199,9 +192,7 @@ a {
       transform: translateX(0);
     }
   }
-  body {
-    background: url(./images/backgrounds/1440.png);
-  }
+
   .inner-main {
     width: 940px;
   }
@@ -229,9 +220,7 @@ a {
   main {
     margin-top: 200px;
   }
-  body {
-    background: url(./images/backgrounds/1024.png);
-  }
+
   .inner-main {
     width: 724px;
   }
@@ -260,9 +249,7 @@ a {
   main {
     margin-top: 155px;
   }
-  body {
-    background: url(./images/backgrounds/800.png);
-  }
+
   .inner-main {
     width: 570px;
   }
@@ -280,9 +267,6 @@ a {
   }
   main {
     margin-top: 110px;
-  }
-  body {
-    background: url(./images/backgrounds/600.png);
   }
   .inner-main {
     width: 310px;
