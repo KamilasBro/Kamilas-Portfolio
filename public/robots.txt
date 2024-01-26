@@ -4,4 +4,4 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
-Sitemap: https://https://kamilas.netlify.app/sitemap.xml
+Sitemap: https://kamilas.netlify.app/sitemap.xml
