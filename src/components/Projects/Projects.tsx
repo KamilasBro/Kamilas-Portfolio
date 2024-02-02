@@ -1,6 +1,7 @@
 import search from "../../images/search.png";
 import datajs from "../../data/projects/data.json";
 import clearSearch from "../../images/clear.png";
+import { filterList } from "../../data/projects/filters";
 import "./projects.scss";
 import { colors } from "../functions&Variables/colors";
 import React, { useState } from "react";
@@ -22,8 +23,6 @@ export default function Projects() {
   const { ref, inView } = useInView({
     triggerOnce: true,
   });
-  //filters list
-  const filterList: string[] = ["all", "react", "javascript", "wordpress"];
   //The projects section have search bar and filters
   const [currentFilter, setCurrentFilter] = useState<string>("all"); //to determine which filter is active
   const [currentSearch, setCurrentSearch] = useState<string>(""); //to store the searched phrase from user

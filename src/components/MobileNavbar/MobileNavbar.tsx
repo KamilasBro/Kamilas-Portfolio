@@ -39,62 +39,77 @@ export default function MobileNavbar(props: Props) {
       </div>
       <ul className="mobile-navbar-menu">
         <li
-          onClick={() => {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-            close();
-          }}
           style={
             props.currentSection === "home" ? { color: colors.purple } : {}
           }
         >
-          Home
+          <span
+            onClick={() => {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+              close();
+            }}
+          >
+            Home
+          </span>
         </li>
         <li
-          onClick={() => {
-            hadleScroll(".projects");
-            close();
-          }}
           style={
             props.currentSection === "projects" ? { color: colors.purple } : {}
           }
         >
-          Projects
+          <span
+            onClick={() => {
+              hadleScroll(".projects");
+              close();
+            }}
+          >
+            Projects
+          </span>
         </li>
         <li
-          onClick={() => {
-            hadleScroll(".technologies");
-            close();
-          }}
           style={
             props.currentSection === "technologies"
               ? { color: colors.purple }
               : {}
           }
         >
-          Technologies
+          <span
+            onClick={() => {
+              hadleScroll(".technologies");
+              close();
+            }}
+          >
+            Technologies
+          </span>
         </li>
         <li
-          onClick={() => {
-            hadleScroll(".contact");
-            close();
-          }}
           style={
             props.currentSection === "contact" ? { color: colors.purple } : {}
           }
         >
-          Contact
+          <span
+            onClick={() => {
+              hadleScroll(".contact");
+              close();
+            }}
+          >
+            Contact
+          </span>
         </li>
         <li
-          onClick={() => {
-            hadleScroll(".about");
-            close();
-          }}
           style={
             props.currentSection === "about" ? { color: colors.purple } : {}
           }
         >
-          About
+          <span
+            onClick={() => {
+              hadleScroll(".about");
+              close();
+            }}
+          >
+            About
+          </span>
         </li>
       </ul>
       <div className="mobile-navbar-socials">

@@ -17,17 +17,18 @@
   },
   {
     "id": 3,
-    "imgName": "officeowo.png",
-    "name": "Officeowo",
-    "previewURL": "https://officeowo.pl/",
-    "createdIn": "wordpress"
-  },
-  {
-    "id": 4,
     "imgName": "quizzical.png",
     "name": "Quizzical",
     "previewURL": "https://quizzicalbysiemaindustries.netlify.app/",
     "githubURL": "https://github.com/KamilasBro/quizapp",
+    "createdIn": "react"
+  },
+  {
+    "id": 4,
+    "imgName": "SimpleTM.png",
+    "name": "SimpleTM",
+    "previewURL": "https://simpletm.netlify.app/",
+    "githubURL": "https://github.com/KamilasBro/SimpleTm",
     "createdIn": "react"
   },
   {

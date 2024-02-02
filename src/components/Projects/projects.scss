@@ -39,6 +39,12 @@
   @include flexCenter;
   justify-content: space-between;
 }
+
+//Temporary change due to removing wordpress from filters
+.projects-list-menu-buttons {
+  margin-right: 135px;
+}
+
 .search-bar {
   display: flex;
 
@@ -236,7 +242,9 @@ sup {
   }
   .projects-list-menu {
     @include flexCenter;
-    flex-wrap: wrap-reverse;
+    //Temporary change due to removing wordpress from filters
+    flex-direction: column-reverse;
+    //flex-wrap: wrap-reverse;
   }
   .search-bar {
     height: 45px;
@@ -262,6 +270,12 @@ sup {
     height: 22px;
     width: 22px;
   }
+
+  //Temporary change due to removing wordpress from filters
+  .projects-list-menu-buttons {
+    margin-right: 0px;
+  }
+
   .projects-list-menu-items {
     display: flex;
     flex-wrap: wrap;
