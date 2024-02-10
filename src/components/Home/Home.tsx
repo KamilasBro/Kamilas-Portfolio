@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
   return (
     <section className="home">
-      <div className="home-slogan">
+      <header className="home-slogan">
         <h1>
           <span ref={ele} />
         </h1>
@@ -37,7 +37,7 @@ export default function Home() {
           Kamil <span className="h2-color">Kamilas</span> Wróbel
         </h2>
         <h4>Front-End Developer</h4>
-      </div>
+      </header>
       <img src={logo} alt="homelogo" className="home-logo" />
     </section>
   );
