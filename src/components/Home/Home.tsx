@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
-import logo from "../../images/logo/logo.png";
+import logo from "../../images/logo/logo.webp";
 // ../ refers to parent folder of current location
 // so 1st ../ refers to components and 2nd ../ refers to src
 import "./home.scss";

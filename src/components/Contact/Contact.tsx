@@ -1,6 +1,6 @@
-import linkedin from "../../images/socials/linkedin.png";
-import github from "../../images/socials/github.png";
-import fiverr from "../../images/socials/fiverr.png";
+import linkedin from "../../images/socials/linkedin.webp";
+import github from "../../images/socials/github.webp";
+import fiverr from "../../images/socials/fiverr.webp";
 // ../../ see about.js for explanation
 import socials from "../functions&Variables/socials";
 import React, { useState } from "react";

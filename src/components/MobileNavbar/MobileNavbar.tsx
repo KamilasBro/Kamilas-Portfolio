@@ -1,8 +1,8 @@
-import logo from "../../images/logo/logo2.png";
-import closeNavbar from "../../images/closeNavbar.png";
-import linkedin from "../../images/socials/linkedin.png";
-import github from "../../images/socials/github.png";
-import fiverr from "../../images/socials/fiverr.png";
+import logo from "../../images/logo/logo.webp";
+import closeNavbar from "../../images/closeNavbar.webp";
+import linkedin from "../../images/socials/linkedin.webp";
+import github from "../../images/socials/github.webp";
+import fiverr from "../../images/socials/fiverr.webp";
 
 import hadleScroll from "../functions&Variables/handleScroll";
 import socials from "../functions&Variables/socials";

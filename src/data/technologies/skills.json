@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "html",
-    "imgName": "html.png",
+    "imgName": "html.webp",
     "background": "linear-gradient(90deg, #E34C26 0%, #F06529 100%)",
     "boxshadow": "0px 0px 30px 4px rgba(227, 76, 38, 0.25)",
     "properties": [
@@ -31,7 +31,7 @@
   {
     "id": 2,
     "name": "css",
-    "imgName": "css.png",
+    "imgName": "css.webp",
     "background": "linear-gradient(90deg, #2965f1 0%, #264de4 100%)",
     "boxshadow": "0px 0px 30px 4px rgba(41, 101, 241, 0.25)",
     "properties": [
@@ -60,7 +60,7 @@
   {
     "id": 3,
     "name": "js",
-    "imgName": "js.png",
+    "imgName": "js.webp",
     "background": "linear-gradient(180deg, #F7DF1E 0%, #F7DF1E 100%)",
     "boxshadow": "0px 0px 30px 4px rgba(247, 223, 30, 0.25)",
     "properties": [
@@ -89,7 +89,7 @@
   {
     "id": 4,
     "name": "react",
-    "imgName": "react.png",
+    "imgName": "react.webp",
     "background": "linear-gradient(90deg, #88DDED 0%, #7CC5D9 100%)",
     "boxshadow": "0px 0px 30px 4px rgba(136, 221, 237, 0.25)",
     "properties": [
@@ -118,7 +118,7 @@
   {
     "id": 5,
     "name": "ts",
-    "imgName": "ts.png",
+    "imgName": "ts.webp",
     "background": "linear-gradient(90deg, #007ACC 0%, #007ACC 100%)",
     "boxshadow": "0px 0px 30px 4px rgba(0, 122, 204, 0.25)",
     "properties": [

@@ -1,6 +1,6 @@
-import search from "../../images/search.png";
+import search from "../../images/search.webp";
 import datajs from "../../data/projects/data.json";
-import clearSearch from "../../images/clear.png";
+import clearSearch from "../../images/clear.webp";
 import { filterList } from "../../data/projects/filters";
 import "./projects.scss";
 import { colors } from "../functions&Variables/colors";
@@ -34,8 +34,10 @@ export default function Projects() {
   //this function exists because when we scroll a little bit and then change the filter or searched phrase
   //the items will render properly but the scroll position would be the same ex. in the middle of projects list
   function fixProjects() {
-    ProjectItems.scrollLeft = 0;
-    ProjectItems.scrollTop = 0;
+    if (ProjectItems) {
+      ProjectItems.scrollLeft = 0;
+      ProjectItems.scrollTop = 0;
+    }
   }
 
   function searchProjects() {
@@ -54,6 +56,7 @@ export default function Projects() {
       createdIn: string;
       firstProject?: boolean;
       notWorking?: boolean;
+      commercial?: boolean;
     }
     function returnItem(props: Props) {
       return (
@@ -71,7 +74,7 @@ export default function Projects() {
           <div
             className="item-buttons"
             style={
-              props.createdIn === "wordpress"
+              props.createdIn === "commercial"
                 ? { justifyContent: "center" }
                 : {}
             }
@@ -115,6 +118,7 @@ export default function Projects() {
               createdIn: item.createdIn,
               firstProject: item.firstProject,
               notWorking: item.notWorking,
+              commercial: item.commercial,
             });
           } else if (
             item.name.toLowerCase().includes(currentSearch.toLowerCase()) ===
@@ -131,6 +135,7 @@ export default function Projects() {
               createdIn: item.createdIn,
               firstProject: item.firstProject,
               notWorking: item.notWorking,
+              commercial: item.commercial,
             });
           } else {
             return null;
@@ -154,6 +159,7 @@ export default function Projects() {
                 createdIn: item.createdIn,
                 firstProject: item.firstProject,
                 notWorking: item.notWorking,
+                commercial: item.commercial,
               });
             } else {
               return null;
@@ -172,6 +178,7 @@ export default function Projects() {
                 createdIn: item.createdIn,
                 firstProject: item.firstProject,
                 notWorking: item.notWorking,
+                commercial: item.commercial,
               });
             } else {
               return null;
@@ -282,21 +289,23 @@ export default function Projects() {
           </ul>
         </div>
         {/*projects list*/}
-        <div className="projects-list-menu-items">
-          {searchProjects() /*this will render projects*/}
+        {inView && (
+          <div className="projects-list-menu-items">
+            {searchProjects() /*this will render projects*/}
 
-          {/*when code will not find any projects it will let user know*/}
-          {/*
+            {/*when code will not find any projects it will let user know*/}
+            {/*
                     so there is codition that checks the length of array that map returns
                     but if there is no project the map still have the same lenght because of the null returns
                     I metioned in searchProjects function
                     so there is a filter that returns array that will not include all null's
                     and now if the array is empty(lenght equals 0) user will see this indicator
                     */}
-          {searchProjects().filter((e) => e != null).length === 0 && (
-            <div className="project-not-found">Project not found</div>
-          )}
-        </div>
+            {searchProjects().filter((e) => e != null).length === 0 && (
+              <div className="project-not-found">Project not found</div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

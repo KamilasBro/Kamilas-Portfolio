@@ -1,10 +1,10 @@
-import logo from "../../images/logo/logo2.png";
-import linkedin from "../../images/socials/linkedin.png";
-import github from "../../images/socials/github.png";
-import fiverr from "../../images/socials/fiverr.png";
+import logo from "../../images/logo/logo2.webp";
+import linkedin from "../../images/socials/linkedin.webp";
+import github from "../../images/socials/github.webp";
+import fiverr from "../../images/socials/fiverr.webp";
 import hadleScroll from "../functions&Variables/handleScroll";
 import socials from "../functions&Variables/socials";
-import hamburger from "../../images/hamburger.png";
+import hamburger from "../../images/hamburger.webp";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
 //colors from _colors.scss root to manipulate
 import { colors } from "../functions&Variables/colors";
