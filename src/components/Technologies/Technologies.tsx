@@ -19,7 +19,7 @@ export default function Technologies() {
         className="section-title"
         style={inView === true ? { animation: "titleAnim 1s" } : {}}
       >
-        Technologies
+        Tech Stack
       </h1>
       {/*technologies buttons*/}
       <ul className="technologies-menu">

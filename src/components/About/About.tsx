@@ -37,8 +37,8 @@ export default function About() {
           can't wait to see where this journey takes me!
           <br />
           <br />
-          I am currently diving deep into React with TypeScript and continue to
-          learn other Javascript frameworks and Tailwind to explore modern
+          I am currently diving deep into React with TypeScript, started to
+          learn NextJS and will learn UX/UI Design after, to explore modern
           technology standards and possibilities.
           <br />
           In the future, I want to study backend to become FullStack Developer.
