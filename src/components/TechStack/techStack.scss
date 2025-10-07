@@ -1,0 +1,221 @@
+@import "../../scssPartials/flexCenter";
+@import "../../scssPartials/_colors";
+
+.tech-stack {
+  margin-top: 200px;
+}
+
+.tech-stack .pcb {
+  margin-top: 50px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+
+  background: $dark;
+
+  filter: drop-shadow(0px 0px 30px rgba(173, 0, 255, 0.20));
+  padding: 15px;
+}
+
+.tech-stack .pcb::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  pointer-events: none;
+  z-index: 1;
+
+  background-image:
+    radial-gradient(circle at center, rgb(226, 10, 143) 2.25px, transparent 3px),
+    radial-gradient(circle at center, rgba(109, 0, 161, 1) 2px, transparent 3px),
+    radial-gradient(circle at center, rgba(23, 23, 23, 1) 1.75px, transparent 3px);
+
+
+  background-size: 80px 80px, 40px 40px, 40px 40px;
+  background-position: -20px -20px, 0px 0px, 20px 20px;
+  background-repeat: repeat, repeat, repeat;
+
+  mix-blend-mode: screen;
+}
+
+/* make sure content inside sits above the patterns */
+.tech-stack .pcb>* {
+  position: relative;
+  z-index: 3;
+}
+
+.tech-stack .pcb .pcb-components {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  grid-template-rows: repeat(10, auto);
+  height: 100%;
+}
+
+.tech-stack .pcb .pcb-component {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: fit-content;
+
+}
+
+.tech-stack .pcb-component:nth-child(1) {
+  grid-area: 1 / 1 / 5 / 5;
+  max-width: 70%;
+
+
+  ul:nth-child(3) {
+    align-items: end;
+    height: auto;
+  }
+}
+
+.tech-stack .pcb-component:nth-child(2) {
+  grid-area: 1 / 6 / 6 / 11;
+  justify-content: end;
+  max-width: 90%;
+  justify-self: right;
+
+  ul:nth-child(2) {
+    align-items: end;
+    height: auto;
+  }
+  
+}
+
+// .tech-stack .pcb-component:nth-child(3) { backend
+//   grid-area: 6 / 1 / 11 / 6;
+// }
+
+.tech-stack .pcb-component:nth-child(3) {
+  grid-area: 6 / 6 / 11 / 11;
+  justify-content: end;
+  align-self: flex-end;
+  align-items: center;
+
+  & ul {
+    order: 2;
+  }
+
+  li.pcb-section {
+    align-self: flex-start;
+  }
+}
+
+
+.tech-stack .pcb .pcb-component .nodes {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
+  width: fit-content;
+  height: fit-content;
+
+  li:nth-child(1) {
+    grid-area: 2 / 1 / 4 / 2;
+  }
+
+  li:nth-child(2) {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+
+
+  li {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: $dark;
+  }
+
+  & img {
+    border-radius: 5px;
+    filter: grayscale(100%);
+  }
+}
+
+.tech-stack .pcb .pcb-component .nodes:has(.sub-node) {
+  gap: 10px;
+}
+
+.tech-stack .pcb .main-node {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  padding-inline: 10px;
+  padding-block: 5px;
+  border: 3px solid rgba(255, 0, 153, 0.5);
+
+
+  & img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.tech-stack .pcb .sub-node {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 5px;
+  border: 1px solid rgba(255, 0, 153, 0.5);
+
+  & img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.tech-stack .pcb .submain-node {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 5px;
+  border: 1px solid rgba(255, 0, 153, 0.5);
+
+  & img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.tech-stack .pcb .pcb-section {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px;
+  border: 3px solid $purple;
+  background-color: $dark;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
+}
+
+.tech-stack .pcb .core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tech-stack .pcb .paths {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  & path {
+    stroke: rgba(255, 0, 153, 0.5);
+    fill: none;
+  }
+}

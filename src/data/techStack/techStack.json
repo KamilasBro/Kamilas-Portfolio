@@ -1,0 +1,101 @@
+[
+  {
+    "section": "Front-End",
+    "stack": [
+      {
+        "nodeName": "CSS",
+        "type": "main-node",
+        "svgName": "css",
+        "order": 3,
+        "subnodes": [
+          {
+            "nodeName": "SASS/SCSS",
+            "type": "sub-node",
+            "svgName": "scss"
+          },
+          {
+            "nodeName": "Bootstrap",
+            "type": "sub-node",
+            "svgName": "bootstrap"
+          },
+          {
+            "nodeName": "Tailwind",
+            "type": "sub-node",
+            "svgName": "tailwind"
+          }
+        ]
+      },
+      {
+        "nodeName": "JavaScript",
+        "type": "main-node",
+        "svgName": "javascript",
+        "order": 4,
+        "subnodes": [
+          {
+            "nodeName": "TypeScript",
+            "type": "sub-node",
+            "svgName": "typescript"
+          }
+        ]
+      },
+      {
+        "nodeName": "React",
+        "type": "main-node",
+        "svgName": "react",
+        "order": 5,
+        "subnodes": []
+      },
+      {
+        "nodeName": "HTML",
+        "type": "main-node",
+        "svgName": "html",
+        "order": 2,
+        "subnodes": []
+      },
+      {
+        "nodeName": "GIT",
+        "type": "submain-node",
+        "svgName": "git",
+        "order": 1,
+        "subnodes": []
+      }
+    ]
+  },
+  {
+    "section": "UX/UI Design",
+    "stack": [
+      {
+        "nodeName": "Figma",
+        "type": "main-node",
+        "svgName": "figma",
+        "order": 1,
+        "subnodes": []
+      },
+      {
+        "nodeName": "Photoshop",
+        "type": "submain-node",
+        "svgName": "photoshop",
+        "order": 2,
+        "subnodes": []
+      }
+    ]
+  },
+  {
+    "section": "CMS",
+    "stack": [
+      {
+        "nodeName": "WordPress",
+        "type": "main-node",
+        "svgName": "wordpress",
+        "order": 1,
+        "subnodes": [
+          {
+            "nodeName": "Elementor",
+            "type": "sub-node",
+            "svgName": "elementor"
+          }
+        ]
+      }
+    ]
+  }
+]

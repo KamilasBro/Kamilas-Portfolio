@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
         <ul className="footer-menu">
           <li onClick={() => hadleScroll(".projects")}>Projects</li>
-          <li onClick={() => hadleScroll(".technologies")}>Technologies</li>
+          <li onClick={() => hadleScroll(".tech-stack")}>Tech Stack</li>
           <li onClick={() => hadleScroll(".contact")}>Contact</li>
           <li onClick={() => hadleScroll(".about")}>About</li>
         </ul>
