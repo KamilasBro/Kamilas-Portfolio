@@ -1,5 +1,3 @@
-import arrow from "./images/arrow.webp";
-import hadleScroll from "./components/functions&Variables/handleScroll";
 import logo from "../src/images/logo/logo.webp";
 
 import Navbar from "./components/Navbar/Navbar";

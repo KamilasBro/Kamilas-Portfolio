@@ -80,7 +80,7 @@
     align-items: end;
     height: auto;
   }
-  
+
 }
 
 // .tech-stack .pcb-component:nth-child(3) { backend
@@ -153,6 +153,18 @@
     width: 60px;
     height: 60px;
   }
+
+  &.active {
+    transition: 600ms;
+    border-color: $pink;
+    filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
+
+    & img {
+      filter: none;
+      transition: 600ms;
+    }
+
+  }
 }
 
 .tech-stack .pcb .sub-node {
@@ -168,6 +180,18 @@
   & img {
     width: 30px;
     height: 30px;
+  }
+
+  &.active {
+    transition: 600ms;
+    border-color: $pink;
+    filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
+
+    & img {
+      filter: none;
+      transition: 600ms;
+    }
+
   }
 }
 
@@ -185,6 +209,18 @@
   & img {
     width: 30px;
     height: 30px;
+  }
+
+  &.active {
+    transition: 600ms;
+    border-color: $pink;
+    filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
+
+    & img {
+      filter: none;
+      transition: 600ms;
+    }
+
   }
 }
 
@@ -208,6 +244,7 @@
 }
 
 .tech-stack .pcb .paths {
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -217,5 +254,15 @@
   & path {
     stroke: rgba(255, 0, 153, 0.5);
     fill: none;
+  }
+
+  .ball {
+    position: inherit;
+    top: 0;
+    left: 0;
+
+    & circle {
+      fill: $pink;
+    }
   }
 }
