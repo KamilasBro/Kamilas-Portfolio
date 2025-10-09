@@ -132,8 +132,14 @@
   }
 }
 
-.tech-stack .pcb .pcb-component .nodes:has(.sub-node) {
-  gap: 10px;
+.tech-stack .pcb .pcb-component {
+  & .nodes:has(.sub-node) {
+    row-gap: 10px;
+  }
+
+  & .nodes:has(.sub-node + .sub-node) {
+    column-gap: 10px;
+  }
 }
 
 .tech-stack .pcb .main-node {
@@ -155,16 +161,16 @@
   }
 
   &.active {
-    transition: 600ms;
+    transition: border-color 600ms;
     border-color: $pink;
     filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
 
     & img {
+      transition: filter 600ms;
       filter: none;
-      transition: 600ms;
     }
-
   }
+
 }
 
 .tech-stack .pcb .sub-node {
@@ -183,16 +189,16 @@
   }
 
   &.active {
-    transition: 600ms;
+    transition: border-color 600ms;
     border-color: $pink;
     filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
 
     & img {
+      transition: filter 600ms;
       filter: none;
-      transition: 600ms;
     }
-
   }
+
 }
 
 .tech-stack .pcb .submain-node {
@@ -212,16 +218,16 @@
   }
 
   &.active {
-    transition: 600ms;
+    transition: border-color 600ms;
     border-color: $pink;
     filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
 
     & img {
+      transition: filter 600ms;
       filter: none;
-      transition: 600ms;
     }
-
   }
+
 }
 
 .tech-stack .pcb .pcb-section {
@@ -264,5 +270,238 @@
     & circle {
       fill: $pink;
     }
+  }
+}
+
+@media (max-width: 1440px) {
+  .tech-stack .pcb {
+    margin-top: 45px;
+    height: 525px;
+  }
+
+  .tech-stack .pcb-component:nth-child(1) {
+    max-width: 80%;
+
+  }
+
+  .tech-stack .pcb .main-node {
+    font-size: 12px;
+
+
+    & img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .tech-stack .pcb .sub-node {
+    font-size: 9px;
+    padding: 5px;
+
+    & img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .tech-stack .pcb .submain-node {
+    font-size: 9px;
+
+    & img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .tech-stack .pcb .pcb-section {
+    font-size: 16px;
+  }
+
+  .tech-stack .pcb .core svg {
+    width: 125px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tech-stack .pcb {
+    margin-top: 40px;
+    height: 450px;
+    padding: 10px;
+  }
+
+  .tech-stack .pcb-component:nth-child(1) {
+    max-width: 90%;
+
+  }
+
+  .tech-stack .pcb .pcb-component {
+    gap: 25px;
+  }
+
+  .tech-stack .pcb .main-node {
+    font-size: 11px;
+
+    & img {
+      width: 40px;
+      height: 40px;
+    }
+
+    border-width: 2px;
+  }
+
+  .tech-stack .pcb .sub-node {
+    font-size: 7px;
+
+    & img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .tech-stack .pcb .submain-node {
+    font-size: 7px;
+
+    & img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .tech-stack .pcb .pcb-section {
+    font-size: 14px;
+    border-width: 2px;
+  }
+
+  .tech-stack .pcb .core svg {
+    width: 100px;
+  }
+}
+
+@media (max-width: 800px) {
+  .tech-stack .pcb {
+    margin-top: 35px;
+    height: 380px;
+    padding: 5px;
+  }
+
+  .tech-stack .pcb-component:nth-child(1) {
+    max-width: 100%;
+
+  }
+
+  .tech-stack .pcb .pcb-component {
+    gap: 0px;
+    row-gap: 20px;
+    column-gap: 10px;
+  }
+
+  .tech-stack .pcb .main-node {
+    font-size: 10px;
+
+    & img {
+      width: 35px;
+      height: 35px;
+    }
+
+    border-width: 2px;
+  }
+
+  .tech-stack .pcb .sub-node {
+    font-size: 6px;
+
+    & img {
+      width: 17.5px;
+      height: 17.5px;
+    }
+  }
+
+  .tech-stack .pcb .submain-node {
+    font-size: 6px;
+
+    & img {
+      width: 17.5px;
+      height: 17.5px;
+    }
+  }
+
+  .tech-stack .pcb .pcb-section {
+    font-size: 11px;
+    padding: 5px;
+  }
+
+  .tech-stack .pcb .core svg {
+    width: 75px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tech-stack .pcb {
+    margin-top: 30px;
+  }
+
+  .tech-stack .pcb .pcb-component {
+    gap: 0px;
+    row-gap: 20px;
+    column-gap: 5px;
+  }
+
+  .tech-stack .pcb .pcb-component {
+    & .nodes:has(.sub-node) {
+      row-gap: 2.5px;
+    }
+
+    & .nodes:has(.sub-node + .sub-node) {
+      column-gap: 2.5px;
+    }
+  }
+
+  .tech-stack .pcb-component:nth-child(1) {
+    grid-area: 1 / 1 / 5 / 10;
+    max-width: 90%;
+  }
+
+  .tech-stack .pcb-component:nth-child(2) {
+    grid-area: 1 / 8 / 6 / 11;
+  }
+
+  .tech-stack .pcb .main-node {
+    font-size: 8px;
+    gap: 1px;
+    padding-inline: 5px;
+    border-width: 1.5px;
+
+    & img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .tech-stack .pcb .sub-node {
+    font-size: 5px;
+    gap: 2.5px;
+
+    & img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .tech-stack .pcb .submain-node {
+    font-size: 5px;
+    gap: 2.5px;
+
+    & img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .tech-stack .pcb .pcb-section {
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  .tech-stack .pcb .core svg {
+    width: 50px;
   }
 }
