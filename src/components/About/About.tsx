@@ -8,7 +8,11 @@ export default function About() {
   });
   // nothing special here
   return (
-    <section className="about" ref={ref}>
+    <section className="about" ref={ref}
+      style={inView === false ?
+        { visibility: "hidden" }
+        :
+        {}}>
       <h1
         className="section-title"
         style={inView === true ? { animation: "titleAnim 1s" } : {}}

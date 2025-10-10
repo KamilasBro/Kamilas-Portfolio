@@ -3,7 +3,8 @@
     "id": 0,
     "imgName": "stream-solutions.png",
     "name": "Stream Solutions",
-    "previewURL": "https://streamsolutions.pl/",
+    "previewURL": "https://streamsolutionspreview.netlify.app/",
+    "githubURL": "https://github.com/KamilasBro/StreamSolutionsPreview",
     "createdIn": "commercial",
     "commercial": true
   },
@@ -128,5 +129,13 @@
     "previewURL": "https://arthrohard.netlify.app/",
     "githubURL": "https://github.com/KamilasBro/ARTHROHARD",
     "createdIn": "react"
+  },
+  {
+    "id": 16,
+    "imgName": "magicfyy.svg",
+    "name": "Magicfyy",
+    "previewURL": "https://magicfyy.netlify.app/",
+    "createdIn": "commercial",
+    "commercial": true
   }
 ]

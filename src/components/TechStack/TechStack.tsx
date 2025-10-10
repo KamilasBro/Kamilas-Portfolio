@@ -280,7 +280,13 @@ export default function TechStack() {
   }
 
   return (
-    <section className="tech-stack" ref={ref}>
+    <section
+      className="tech-stack"
+      ref={ref}
+      style={inView === true ?
+        { animation: "titleAnim 1s" }
+        :
+        { visibility: "hidden" }}>
       <h1
         className="section-title"
         // when the section enters the viewport, play a simple title animation
@@ -288,7 +294,11 @@ export default function TechStack() {
       >
         Tech Stack
       </h1>
-      <span className="pcb-note">You can click on the nodes</span>
+      <div
+        className="pcb-note"
+        style={inView === true ? { animation: "titleAnim 1.25s" } : {}}>
+        You can click on the nodes
+      </div>
       <div className="pcb" ref={pcbRef}>
         <ul className="pcb-components">
           {techStack.map((comp, idx) => (

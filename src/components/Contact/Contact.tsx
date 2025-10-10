@@ -22,7 +22,12 @@ export default function Contact() {
     document.removeEventListener("click", handleClick, true);
   }
   return (
-    <section className="contact" ref={ref}>
+    <section className="contact" ref={ref}
+      style={inView === false ?
+        { visibility: "hidden" }
+        :
+        {}}
+    >
       <h1
         className="section-title"
         style={inView === true ? { animation: "titleAnim 1s" } : {}}
@@ -50,8 +55,8 @@ export default function Contact() {
               style={
                 focusInput === "name"
                   ? {
-                      background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
-                    }
+                    background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
+                  }
                   : {}
               }
             >
@@ -85,8 +90,8 @@ export default function Contact() {
               style={
                 focusInput === "email"
                   ? {
-                      background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
-                    }
+                    background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
+                  }
                   : {}
               }
             >
@@ -114,8 +119,8 @@ export default function Contact() {
             style={
               focusInput === "comment"
                 ? {
-                    background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
-                  }
+                  background: `linear-gradient(135deg, ${colors.pink} 0%, ${colors.purple} 100%)`,
+                }
                 : {}
             }
           >
