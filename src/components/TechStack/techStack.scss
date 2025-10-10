@@ -5,8 +5,17 @@
   margin-top: 200px;
 }
 
+.tech-stack h1 {
+  margin-bottom: 50px;
+}
+
+.tech-stack .pcb-note {
+  color: $gray;
+  font-size: 18px;
+}
+
 .tech-stack .pcb {
-  margin-top: 50px;
+  margin-top: 0px;
   height: 600px;
   position: relative;
   overflow: hidden;
@@ -102,6 +111,134 @@
   }
 }
 
+@keyframes powerOnBorder {
+
+  /* start dim */
+  0% {
+    border-color: rgba(255, 0, 153, 0.5);
+  }
+
+  25% {
+    border-color: rgba(255, 0, 153, 0.60);
+    filter: drop-shadow(0px 0px 3px $glow);
+  }
+
+  50% {
+    border-color: rgba(255, 0, 153, 0.50);
+    filter: none;
+  }
+
+  75% {
+    border-color: rgba(255, 0, 153, 0.70);
+    filter: drop-shadow(0px 0px 3.5px $glow);
+  }
+
+  85% {
+    border-color: rgba(255, 0, 153, 0.85);
+    filter: drop-shadow(0px 0px 6.5px $glow);
+  }
+
+  /* stable full power */
+  100% {
+    border-color: $pink;
+    filter: drop-shadow(0px 0px 10px $glow);
+  }
+}
+
+@keyframes PowerOnImg {
+
+  /* start dim */
+  0% {
+    filter: grayscale(100%);
+  }
+
+  25% {
+    filter: grayscale(30%);
+  }
+
+  50% {
+    filter: grayscale(100%);
+  }
+
+  75% {
+    filter: grayscale(25%);
+  }
+
+  85% {
+    filter: grayscale(15%);
+  }
+
+  /* stable full power */
+  100% {
+    filter: none;
+  }
+}
+
+//it essentially just copy the animation for DOM to detect class change and added reverse to it at invoking
+@keyframes powerOnBorderReverse {
+
+  /* start dim */
+  0% {
+    border-color: rgba(255, 0, 153, 0.5);
+  }
+
+  25% {
+    border-color: rgba(255, 0, 153, 0.60);
+    filter: drop-shadow(0px 0px 3px $glow);
+  }
+
+  50% {
+    border-color: rgba(255, 0, 153, 0.50);
+    filter: none;
+  }
+
+  75% {
+    border-color: rgba(255, 0, 153, 0.70);
+    filter: drop-shadow(0px 0px 3.5px $glow);
+  }
+
+  85% {
+    border-color: rgba(255, 0, 153, 0.85);
+    filter: drop-shadow(0px 0px 6.5px $glow);
+  }
+
+  /* stable full power */
+  100% {
+    border-color: $pink;
+    filter: drop-shadow(0px 0px 10px $glow);
+  }
+}
+
+@keyframes PowerOnImgReverse {
+
+  /* start dim */
+  0% {
+    filter: grayscale(100%);
+  }
+
+  25% {
+    filter: grayscale(30%);
+  }
+
+  50% {
+    filter: grayscale(100%);
+  }
+
+  75% {
+    filter: grayscale(25%);
+  }
+
+  85% {
+    filter: grayscale(15%);
+  }
+
+  /* stable full power */
+  100% {
+    filter: none;
+  }
+}
+
+
 
 .tech-stack .pcb .pcb-component .nodes {
   display: grid;
@@ -124,6 +261,22 @@
     height: fit-content;
     border-radius: 10px;
     background-color: $dark;
+
+    &.active {
+      animation: powerOnBorder 700ms forwards;
+
+      & img {
+        animation: PowerOnImg 700ms forwards;
+      }
+    }
+
+    &.deactivated {
+      animation: powerOnBorderReverse 700ms reverse forwards;
+
+      & img {
+        animation: PowerOnImgReverse 700ms reverse forwards;
+      }
+    }
   }
 
   & img {
@@ -141,6 +294,8 @@
     column-gap: 10px;
   }
 }
+
+
 
 .tech-stack .pcb .main-node {
   cursor: pointer;
@@ -160,17 +315,6 @@
     height: 60px;
   }
 
-  &.active {
-    transition: border-color 600ms;
-    border-color: $pink;
-    filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
-
-    & img {
-      transition: filter 600ms;
-      filter: none;
-    }
-  }
-
 }
 
 .tech-stack .pcb .sub-node {
@@ -186,17 +330,6 @@
   & img {
     width: 30px;
     height: 30px;
-  }
-
-  &.active {
-    transition: border-color 600ms;
-    border-color: $pink;
-    filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
-
-    & img {
-      transition: filter 600ms;
-      filter: none;
-    }
   }
 
 }
@@ -217,17 +350,6 @@
     height: 30px;
   }
 
-  &.active {
-    transition: border-color 600ms;
-    border-color: $pink;
-    filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
-
-    & img {
-      transition: filter 600ms;
-      filter: none;
-    }
-  }
-
 }
 
 .tech-stack .pcb .pcb-section {
@@ -239,7 +361,21 @@
   border-radius: 10px;
   width: fit-content;
   height: fit-content;
-  filter: drop-shadow(0px 0px 5px rgba(66, 0, 255, 1));
+  filter: drop-shadow(0px 0px 5px $glow);
+}
+
+@keyframes CorePulse {
+  0% {
+    filter: drop-shadow(0px 0px 5px $glow);
+  }
+
+  50% {
+    filter: drop-shadow(0px 0px 150px $glow);
+  }
+
+  100% {
+    filter: drop-shadow(0px 0px 5px $glow);
+  }
 }
 
 .tech-stack .pcb .core {
@@ -247,6 +383,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  & svg {
+    filter: drop-shadow(0px 0px 5px $glow);
+  }
+
+  &.triggered {
+    & svg {
+      animation: CorePulse 1000ms;
+    }
+  }
 }
 
 .tech-stack .pcb .paths {
@@ -269,13 +415,22 @@
 
     & circle {
       fill: $pink;
+      stroke: rgba(255, 0, 153, 0.3);
+      stroke-width: 8px;
     }
   }
 }
 
 @media (max-width: 1440px) {
+  .tech-stack h1 {
+    margin-bottom: 45px;
+  }
+
+  .tech-stack .pcb-note {
+    font-size: 17px;
+  }
+
   .tech-stack .pcb {
-    margin-top: 45px;
     height: 525px;
   }
 
@@ -323,8 +478,15 @@
 }
 
 @media (max-width: 1024px) {
+  .tech-stack h1 {
+    margin-bottom: 40px;
+  }
+
+  .tech-stack .pcb-note {
+    font-size: 16px;
+  }
+
   .tech-stack .pcb {
-    margin-top: 40px;
     height: 450px;
     padding: 10px;
   }
@@ -378,8 +540,15 @@
 }
 
 @media (max-width: 800px) {
+  .tech-stack h1 {
+    margin-bottom: 35px;
+  }
+
+  .tech-stack .pcb-note {
+    font-size: 15px;
+  }
+
   .tech-stack .pcb {
-    margin-top: 35px;
     height: 380px;
     padding: 5px;
   }
@@ -435,8 +604,12 @@
 }
 
 @media (max-width: 600px) {
-  .tech-stack .pcb {
-    margin-top: 30px;
+  .tech-stack h1 {
+    margin-bottom: 30px;
+  }
+
+  .tech-stack .pcb-note {
+    font-size: 14px;
   }
 
   .tech-stack .pcb .pcb-component {

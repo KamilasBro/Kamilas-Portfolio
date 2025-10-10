@@ -115,14 +115,21 @@ export default function TechStack() {
       });
 
       const idx = currentIndexRef.current;
-      // If we've reached the end of the trace, hide the ball, mark the
-      // destination node as active, and stop.
+      // If we've reached the end of the trace, hide the ball and stop.
+      // Instead of adding .active on click, add it here once the ball arrives.
       if (idx >= pathCoords.length) {
         if (ballRef.current) ballRef.current.style.display = "none";
+
+        // add .active to the target node now that animation finished
         if (targetNode) {
-          const el = document.querySelector(`[data-node="${targetNode}"]`);
-          if (el) el.classList.add("active");
+          // remove any leftover 'deactivated' on the target (we want it active)
+          const targetEl = document.querySelector(`[data-node="${targetNode}"]`);
+          if (targetEl) {
+            targetEl.classList.remove("deactivated");
+            targetEl.classList.add("active");
+          }
         }
+
         setBallState(prev => ({ ...prev, isActive: false, targetNode: "" }));
         animationFrameIdRef.current = null;
         return;
@@ -164,6 +171,12 @@ export default function TechStack() {
   const handleNodeClick = (section: string, mainNode: string, subNode?: string) => {
     // block clicks while an animation is running
     if (ballState.isActive) return;
+    const coreEl = document.querySelector(".core");
+    if (coreEl) {
+      coreEl.classList.remove("triggered");
+      // schedule add on next frame to force the animation to restart
+      requestAnimationFrame(() => coreEl.classList.add("triggered"));
+    }
 
     currentIndexRef.current = 0;
     if (ballRef.current) ballRef.current.style.display = "none";
@@ -181,10 +194,20 @@ export default function TechStack() {
     });
 
     if (pathCoords.length > 0) {
-      // remove previously active node highlight and start new animation
-      const prevActive = document.querySelector(".active");
-      if (prevActive) prevActive.classList.remove("active");
+      // 1) remove any leftover 'deactivated' markers
+      document.querySelectorAll(".deactivated").forEach(el => el.classList.remove("deactivated"));
 
+      // 2) demote the current active node to 'deactivated' (if any)
+      const prevActive = document.querySelector(".active");
+      if (prevActive) {
+        prevActive.classList.remove("active");
+        prevActive.classList.add("deactivated");
+      }
+
+      // NOTE: do NOT mark clicked node as .active here — wait until
+      // the ball reaches the target (handled in the animation completion above)
+
+      // start animation towards the clicked node
       setBallState({
         isActive: true,
         targetNode: subNode || mainNode,
@@ -265,6 +288,7 @@ export default function TechStack() {
       >
         Tech Stack
       </h1>
+      <span className="pcb-note">You can click on the nodes</span>
       <div className="pcb" ref={pcbRef}>
         <ul className="pcb-components">
           {techStack.map((comp, idx) => (
