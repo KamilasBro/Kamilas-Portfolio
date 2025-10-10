@@ -190,7 +190,12 @@ export default function Projects() {
     }
   }
   return (
-    <section className="projects" ref={ref}>
+    <section className="projects" ref={ref}
+      style={inView === false ?
+        { visibility: "hidden" }
+        :
+        {}}
+    >
       {/*the intersector thing i mentioned*/}
       <h1
         className="section-title"

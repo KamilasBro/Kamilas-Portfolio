@@ -27,7 +27,7 @@ export default function Navbar() {
         (document.querySelector(".navbar") as HTMLDivElement).offsetHeight * 2,
       projects: (document.querySelector(".projects") as HTMLDivElement)
         .offsetTop,
-      technologies: (document.querySelector(".technologies") as HTMLDivElement)
+      techStack: (document.querySelector(".tech-stack") as HTMLDivElement)
         .offsetTop,
       contact: (document.querySelector(".contact") as HTMLDivElement).offsetTop,
       about: (document.querySelector(".about") as HTMLDivElement).offsetTop,
@@ -46,25 +46,25 @@ export default function Navbar() {
     if (
       window.pageYOffset >= 0 &&
       window.pageYOffset <
-        sectionsOffsets.projects - sectionsOffsets.minusNavbar
+      sectionsOffsets.projects - sectionsOffsets.minusNavbar
     ) {
       setCurrentSection("home");
     } else if (
       window.pageYOffset >=
-        sectionsOffsets.projects - sectionsOffsets.minusNavbar &&
+      sectionsOffsets.projects - sectionsOffsets.minusNavbar &&
       window.pageYOffset <
-        sectionsOffsets.technologies - sectionsOffsets.minusNavbar
+      sectionsOffsets.techStack - sectionsOffsets.minusNavbar
     ) {
       setCurrentSection("projects");
     } else if (
       window.pageYOffset >=
-        sectionsOffsets.technologies - sectionsOffsets.minusNavbar &&
+      sectionsOffsets.techStack - sectionsOffsets.minusNavbar &&
       window.pageYOffset < sectionsOffsets.contact - sectionsOffsets.minusNavbar
     ) {
-      setCurrentSection("technologies");
+      setCurrentSection("techStack");
     } else if (
       window.pageYOffset >=
-        sectionsOffsets.contact - sectionsOffsets.minusNavbar &&
+      sectionsOffsets.contact - sectionsOffsets.minusNavbar &&
       window.pageYOffset < sectionsOffsets.about - sectionsOffsets.minusNavbar
     ) {
       setCurrentSection("contact");
@@ -110,9 +110,9 @@ export default function Navbar() {
             style={
               currentSection === "home"
                 ? {
-                    filter: `drop-shadow(0px 0px 6px ${colors.purple}) 
+                  filter: `drop-shadow(0px 0px 6px ${colors.purple}) 
                     drop-shadow(0px 0px 6px ${colors.purple})`,
-                  }
+                }
                 : {}
             }
             onClick={() => {
@@ -141,14 +141,14 @@ export default function Navbar() {
               Projects
             </li>
             <li
-              onClick={() => hadleScroll(".technologies")}
+              onClick={() => hadleScroll(".tech-stack")}
               style={
-                currentSection === "technologies"
+                currentSection === "techStack"
                   ? { color: colors.purple }
                   : {}
               }
             >
-              Technologies
+              Tech Stack
             </li>
             <li
               onClick={() => hadleScroll(".contact")}
