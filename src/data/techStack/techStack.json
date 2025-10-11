@@ -43,7 +43,13 @@
         "type": "main-node",
         "svgName": "react",
         "order": 5,
-        "subnodes": []
+        "subnodes": [
+          {
+            "nodeName": "React Router",
+            "type": "sub-node",
+            "svgName": "reactrouter"
+          }
+        ]
       },
       {
         "nodeName": "HTML",

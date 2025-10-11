@@ -331,7 +331,6 @@
     width: 30px;
     height: 30px;
   }
-
 }
 
 .tech-stack .pcb .submain-node {
@@ -631,11 +630,12 @@
 
   .tech-stack .pcb-component:nth-child(1) {
     grid-area: 1 / 1 / 5 / 10;
-    max-width: 90%;
+    max-width: 82%;
   }
 
   .tech-stack .pcb-component:nth-child(2) {
     grid-area: 1 / 8 / 6 / 11;
+    max-width: 62%;
   }
 
   .tech-stack .pcb .main-node {
@@ -652,7 +652,8 @@
 
   .tech-stack .pcb .sub-node {
     font-size: 5px;
-    gap: 2.5px;
+    gap: 2px;
+    padding: 2px;
 
     & img {
       width: 15px;
