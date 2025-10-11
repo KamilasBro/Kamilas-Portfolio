@@ -540,6 +540,7 @@
 }
 
 @media (max-width: 800px) {
+
   .tech-stack h1 {
     margin-bottom: 35px;
   }
@@ -561,7 +562,7 @@
   .tech-stack .pcb .pcb-component {
     gap: 0px;
     row-gap: 20px;
-    column-gap: 10px;
+    column-gap: 10px !important;
   }
 
   .tech-stack .pcb .main-node {
@@ -615,7 +616,7 @@
   .tech-stack .pcb .pcb-component {
     gap: 0px;
     row-gap: 20px;
-    column-gap: 5px;
+    column-gap: 5px !important;
   }
 
   .tech-stack .pcb .pcb-component {

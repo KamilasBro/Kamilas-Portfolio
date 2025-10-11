@@ -63,17 +63,15 @@ export default function App() {
       </div>
       <Navbar />
       <main>
-        <section className="inner-main">
-          <Home />
-          <hr />
-          <Projects />
-          <hr />
-          <TechStack />
-          <hr />
-          <Contact />
-          <hr />
-          <About />
-        </section>
+        <Home />
+        <hr />
+        <Projects />
+        <hr />
+        <TechStack />
+        <hr />
+        <Contact />
+        <hr />
+        <About />
       </main>
       <Footer />
     </>
