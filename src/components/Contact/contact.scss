@@ -146,14 +146,13 @@
   transition: 300ms;
 
   border-radius: 50px;
-  outline: 1px solid #ffffff;
-  border: none;
+  border: 2px solid $white;
   box-shadow: 0px 0px 4px 0.5px rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(4px);
 }
 
 .contact-submit:hover {
-  background-color: #ffffff;
+  background-color: $white;
   color: $darkGray;
 
   box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.25);
@@ -353,6 +352,8 @@ select:-webkit-autofill:focus {
     font-size: 14px;
 
     margin-right: 60px;
+
+    border: 1px solid $white;
   }
 
   .contact-socials img {

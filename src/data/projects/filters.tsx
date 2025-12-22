@@ -1,1 +1,0 @@
-export const filterList: string[] = ["all", "commercial", "react", "javascript"];

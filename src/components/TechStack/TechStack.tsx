@@ -123,7 +123,8 @@ export default function TechStack() {
         // add .active to the target node now that animation finished
         if (targetNode) {
           // remove any leftover 'deactivated' on the target (we want it active)
-          const targetEl = document.querySelector(`[data-node="${targetNode}"]`);
+          const container = pcbRef.current;
+          const targetEl = container?.querySelector(`[data-node="${targetNode}"]`) as HTMLElement | null;
           if (targetEl) {
             targetEl.classList.remove("deactivated");
             targetEl.classList.add("active");
@@ -195,10 +196,11 @@ export default function TechStack() {
 
     if (pathCoords.length > 0) {
       // 1) remove any leftover 'deactivated' markers
-      document.querySelectorAll(".deactivated").forEach(el => el.classList.remove("deactivated"));
+      const container = pcbRef.current;
+      container?.querySelectorAll(".deactivated").forEach(el => el.classList.remove("deactivated"));
 
-      // 2) demote the current active node to 'deactivated' (if any)
-      const prevActive = document.querySelector(".active");
+      // 2) demote the current active node to 'deactivated' (if any) scoped to pcb
+      const prevActive = container?.querySelector(".active") as HTMLElement | null;
       if (prevActive) {
         prevActive.classList.remove("active");
         prevActive.classList.add("deactivated");
@@ -224,7 +226,7 @@ export default function TechStack() {
   // space used by the paths.
   function getNodeXY(nodeName: string) {
     const el = document.querySelector(`[data-node="${nodeName}"]`);
-    const container = document.querySelector(".pcb");
+    const container = pcbRef.current;
     if (!el || !container) return null;
 
     const elBox = el.getBoundingClientRect();

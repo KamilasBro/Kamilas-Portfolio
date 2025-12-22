@@ -4,7 +4,7 @@ import github from "../../images/socials/github.webp";
 import fiverr from "../../images/socials/fiverr.webp";
 import hadleScroll from "../functions&Variables/handleScroll";
 import socials from "../functions&Variables/socials";
-import hamburger from "../../images/hamburger.webp";
+import hamburger from "../../images/hamburger.svg";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
 //colors from _colors.scss root to manipulate
 import { colors } from "../functions&Variables/colors";

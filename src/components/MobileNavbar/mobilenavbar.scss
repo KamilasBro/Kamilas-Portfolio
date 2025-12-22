@@ -1,13 +1,16 @@
 @import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
+
 @keyframes mobileNavbarAnim {
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }
 }
+
 .mobile-navbar {
   display: none;
 
@@ -15,6 +18,23 @@
 
   animation: mobileNavbarAnim 0.5s;
 }
+
+.mobile-navbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.mobile-navbar::-webkit-scrollbar-track {
+  background: $black;
+}
+
+.mobile-navbar::-webkit-scrollbar-thumb {
+  background: $borderColor;
+}
+
+.mobile-navbar::-webkit-scrollbar-thumb:hover {
+  background: $purple;
+}
+
 @media (max-width: 1024px) {
   .mobile-navbar {
     display: block;
@@ -23,11 +43,9 @@
     height: 100%;
     box-sizing: border-box;
 
-    padding: 40px;
-
     overflow-y: auto;
 
-    background: linear-gradient(90deg, #010a08 0%, #171717 100%);
+    background: $black;
 
     transition: 500ms;
 
@@ -39,16 +57,23 @@
     border-right: 1px solid $borderColor;
     filter: drop-shadow(0px 0px 1px $borderColor);
   }
+
   .mobile-navbar-buttons {
     @include flexCenter;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: $black;
+    padding: 40px;
   }
+
   .mobile-logo {
     height: 100px;
     width: 100px;
 
     border-radius: 0px;
   }
+
   .close-navbar {
     cursor: pointer;
 
@@ -57,11 +82,13 @@
 
     transition: 300ms;
   }
+
   .mobile-navbar-menu {
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
+    padding-inline: 40px;
   }
+
   .mobile-navbar-menu li {
     cursor: pointer;
 
@@ -69,6 +96,7 @@
 
     margin-top: 30px;
   }
+
   .mobile-navbar-socials {
     @include flexCenter;
 
@@ -76,16 +104,19 @@
 
     transition: 300ms;
   }
+
   .mobile-navbar-socials img {
     height: 40px;
     width: 40px;
 
     border-radius: 100px;
   }
+
   .mobile-navbar-socials a:nth-child(2) {
     margin-inline: 20px;
   }
 }
+
 @media (max-width: 800px) {
   .mobile-navbar {
     width: 100%;
@@ -93,44 +124,54 @@
     border: none;
     box-shadow: none;
   }
+
   .mobile-logo {
     height: 80px;
     width: 80px;
   }
+
   .close-navbar {
     height: 50px;
     width: 50px;
   }
+
   .mobile-navbar-menu li {
     font-size: 20px;
 
     margin-top: 25px;
   }
+
   .mobile-navbar-socials {
     margin-top: 35px;
   }
+
   .mobile-navbar-socials img {
     height: 35px;
     width: 35px;
   }
 }
+
 @media (max-width: 600px) {
   .mobile-logo {
     height: 65px;
     width: 65px;
   }
+
   .close-navbar {
     height: 40px;
     width: 40px;
   }
+
   .mobile-navbar-menu li {
     font-size: 18px;
 
     margin-top: 20px;
   }
+
   .mobile-navbar-socials {
     margin-top: 30px;
   }
+
   .mobile-navbar-socials img {
     height: 30px;
     width: 30px;

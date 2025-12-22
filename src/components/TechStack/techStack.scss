@@ -21,7 +21,7 @@
   overflow: hidden;
   border-radius: 5px;
 
-  background: $dark;
+  background: $black;
 
   filter: drop-shadow(0px 0px 30px rgba(173, 0, 255, 0.20));
   padding: 15px;
@@ -260,7 +260,7 @@
     width: fit-content;
     height: fit-content;
     border-radius: 10px;
-    background-color: $dark;
+    background-color: $black;
 
     &.active {
       animation: powerOnBorder 700ms forwards;
@@ -356,7 +356,7 @@
   font-weight: 500;
   padding: 10px;
   border: 3px solid $purple;
-  background-color: $dark;
+  background-color: $black;
   border-radius: 10px;
   width: fit-content;
   height: fit-content;
@@ -477,6 +477,10 @@
 }
 
 @media (max-width: 1024px) {
+  .tech-stack {
+    margin-top: 175px;
+  }
+
   .tech-stack h1 {
     margin-bottom: 40px;
   }
@@ -539,6 +543,9 @@
 }
 
 @media (max-width: 800px) {
+  .tech-stack {
+    margin-top: 125px;
+  }
 
   .tech-stack h1 {
     margin-bottom: 35px;
@@ -604,6 +611,10 @@
 }
 
 @media (max-width: 600px) {
+  .tech-stack {
+    margin-top: 75px;
+  }
+
   .tech-stack h1 {
     margin-bottom: 30px;
   }

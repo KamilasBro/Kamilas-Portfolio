@@ -1,5 +1,5 @@
 import logo from "../../images/logo/logo.webp";
-import closeNavbar from "../../images/closeNavbar.webp";
+import closeSvg from "../../images/close.svg";
 import linkedin from "../../images/socials/linkedin.webp";
 import github from "../../images/socials/github.webp";
 import fiverr from "../../images/socials/fiverr.webp";
@@ -29,7 +29,7 @@ export default function MobileNavbar(props: Props) {
       <div className="mobile-navbar-buttons">
         <img src={logo} alt="logo" className="mobile-logo" />
         <img
-          src={closeNavbar}
+          src={closeSvg}
           alt="closeNavbar"
           className="close-navbar"
           onClick={() => {
@@ -69,18 +69,18 @@ export default function MobileNavbar(props: Props) {
         </li>
         <li
           style={
-            props.currentSection === "technologies"
+            props.currentSection === "Tech Stack"
               ? { color: colors.purple }
               : {}
           }
         >
           <span
             onClick={() => {
-              hadleScroll(".technologies");
+              hadleScroll(".tech-stack");
               close();
             }}
           >
-            Technologies
+            Tech Stack
           </span>
         </li>
         <li

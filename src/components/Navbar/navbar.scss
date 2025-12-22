@@ -32,7 +32,7 @@ nav {
 }
 
 nav:hover {
-  border-color: rgba(255, 0, 153, 0.7);
+  border-color: $projectsPath;
 }
 
 .inner-navbar {
@@ -54,6 +54,8 @@ nav:hover {
 }
 
 .hamburger {
+  height: 40px;
+  width: 40px;
   cursor: pointer;
 
   display: none;
