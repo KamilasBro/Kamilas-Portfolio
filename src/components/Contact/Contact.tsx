@@ -9,10 +9,10 @@ import { useInView } from "react-intersection-observer";
 
 
 export default function Contact() {
-  const { ref, inView } = useInView({
+  // const { ref, inView } = useInView({
 
-    triggerOnce: true,
-  });
+  //   triggerOnce: true,
+  // });
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
@@ -87,7 +87,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact" ref={ref}>
+    <section className="contact">
       <h1 className="section-title">Get in touch</h1>
       <div className="form-wrap">
         <form
