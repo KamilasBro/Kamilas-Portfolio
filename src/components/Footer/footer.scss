@@ -1,163 +1,125 @@
 @import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
-@keyframes footerAnim{
-    0%{
-        transform: translateY(+50%);
-    }
-    100%{
-        transform: translateY(0);
-    }
-}
-footer{
+
+footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $black;
-
-    height: 100px;
+    padding-block: 35px;
     width: 100%;
     box-sizing: border-box;
 
     margin-top: 125px;
 
+    background-color: $black;
     border-top: 1px solid $borderColor;
-}
-.inner-footer{
-    @include flexCenter;
-    justify-content: space-between;
 
-    width: 1170px;
-}
-.copyright{
-    font-weight: 500;
-    font-size: 18px;
-}
-.copyright span{
-    color: $pink;
-}
-.footer-menu{
-    display: flex;
-}
-.footer-menu li{
-    cursor: pointer;
+    .inner-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    margin-left: 50px;
+        width: 1170px;
 
-    transition: 300ms;
+        .copyright {
+            font-size: 18px;
+            font-weight: 500;
 
-    border-bottom: 1px solid transparent;
-}
-.footer-menu li:first-child{
-    margin-left: 0px;
-}
-.footer-menu li:hover{
-    border-color: $white;
-}
-.footer-socials{
-    display: flex;
-}
-.footer-socials img{
-    cursor: pointer;
+            span {
+                color: $pink;
+            }
+        }
 
-    height: 27px;
-    width: 27px;
+        .footer-menu {
+            display: flex;
+            column-gap: 50px;
 
-    filter: grayscale(100%);
+            li {
+                cursor: pointer;
 
-    transition: 500ms;
+                transition: color 300ms;
 
-    border-radius: 100px;
-}
-.footer-socials .social-aTag:nth-child(2){
-    margin-inline: 15px;
-}
-.footer-socials img:hover{
-    filter: grayscale(0%);
+                &:hover {
+                    color: $pink;
+                }
+            }
+        }
+
+        .footer-socials {
+            display: flex;
+            column-gap: 15px;
+
+            a {
+                height: 35px;
+                width: 35px;
+            }
+        }
+    }
 }
 
 @media (max-width: 1440px) {
-    .inner-footer{
+    footer .inner-footer {
         width: 940px;
     }
 }
+
 @media (max-width: 1024px) {
-    footer{
-        height: auto;
-
+    footer {
         margin-top: 100px;
-    }
-    .inner-footer{
-        flex-direction: column;
-
-        width: 724px;
-
         padding-block: 45px;
-    }
-    .footer-menu{
-        margin-block: 30px;
-    }
-    .footer-menu li{
-        margin-left: 45px;
-    }
-    .footer-socials img{
-        height: 30px;
-        width: 30px;
-    
-        filter: grayscale(0%);
+
+        .inner-footer {
+            flex-direction: column;
+            row-gap: 30px;
+
+            width: 724px;
+
+            .footer-menu {
+                column-gap: 40px;
+            }
+        }
     }
 }
-  @media (max-width: 800px) {
-    @keyframes footerAnim{
-        0%{
-            transform: translateY(0);
-        }
-        100%{
-            transform: translateY(0);
-        }
-    }
-    .inner-footer{
-        width: 570px;
 
+@media (max-width: 800px) {
+    footer {
         padding-block: 35px;
-    }
-    .footer-menu{
-        margin-block: 25px;
-    }
-    .footer-menu li{
-        margin-left: 40px;
-    }
-    .footer-menu li:hover{
-        border-color: transparent;
-    }
-    .footer-socials img{
-        height: 30px;
-        width: 30px;
-    
-        filter: grayscale(0%);
+
+        .inner-footer {
+            flex-direction: column;
+            row-gap: 25px;
+
+            width: 570px;
+
+            .footer-menu {
+                row-gap: 35px;
+            }
+        }
     }
 }
-  @media (max-width: 600px) {
-    footer{
+
+@media (max-width: 600px) {
+    footer {
         margin-top: 50px;
-    }
-    .inner-footer{
-        width: 320px;
-
         padding-block: 25px;
-    }
-    .copyright{
-        font-size: 14px;
-    }
-    .footer-menu{
-        margin-block: 25px;
-    }
-    .footer-menu li{
-        font-size: 12px;
 
-        margin-left: 20px;
-    }
-    .footer-socials img{
-        height: 25px;
-        width: 25px;
+        .inner-footer {
+            width: 320px;
+
+            padding-block: 25px;
+
+            .copyright {
+                font-size: 14px;
+            }
+
+            .footer-menu {
+                column-gap: 25px;
+
+                li {
+                    font-size: 14px;
+                }
+            }
+        }
+
     }
 }

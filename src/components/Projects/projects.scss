@@ -25,8 +25,7 @@
     position: absolute;
     inset: 0;
     padding: 1px;
-    animation: rotate linear infinite;
-    animation-duration: 10s;
+    animation: rotate linear infinite 10s;
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -121,7 +120,7 @@
         iframe.desktop {
             width: #{$iframe-width}px;
             height: 1080px;
-            transform: scale($container-width / $iframe-width);
+            transform: scale(calc($container-width / $iframe-width));
         }
 
         iframe.mobile {
@@ -265,7 +264,7 @@
 
             iframe.desktop {
                 width: #{$iframe-width}px;
-                transform: scale($container-width / $iframe-width);
+                transform: scale(calc($container-width / $iframe-width));
             }
 
             iframe.mobile {
@@ -410,7 +409,7 @@
                 padding: 10px;
                 box-sizing: border-box;
                 display: flex;
-                justify-content: end;
+                justify-content: flex-end;
 
                 @keyframes flyUpDown {
                     from {
@@ -449,7 +448,7 @@
 
             iframe.desktop {
                 width: #{$iframe-width}px;
-                transform: scale($container-width / $iframe-width);
+                transform: scale(calc($container-width / $iframe-width));
             }
 
             iframe.mobile {
@@ -597,7 +596,7 @@
 
             iframe.desktop {
                 width: #{$iframe-width}px;
-                transform: scale($container-width / $iframe-width);
+                transform: scale(calc($container-width / $iframe-width));
             }
 
             iframe.mobile {

@@ -1,5 +1,5 @@
 import "./projects.scss";
-// import { useGlitch, GlitchHandle } from 'react-powerglitch';
+
 import { PowerGlitch } from 'powerglitch';
 import React, { useState, useRef, useEffect } from "react";
 import { useInView } from "react-intersection-observer";

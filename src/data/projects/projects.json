@@ -29,6 +29,6 @@
     "designPreviewURL": "https://www.figma.com/design/r72NRYPErKgT8mdMwLLscI/Portfolio?m=auto&t=E9OoY6Ab2gS8DDUg-6",
     "repositoryURL": "https://github.com/KamilasBro/Kamilas-Portfolio",
     "description": "I don't think I need to describe it, you're already here 😊",
-    "buildStack": ["React", "PowerGlitch", "TypeScript", "SCSS"]
+    "buildStack": ["React", "TypeScript", "SCSS"]
   }
 ]

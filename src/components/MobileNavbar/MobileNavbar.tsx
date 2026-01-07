@@ -1,129 +1,64 @@
-import logo from "../../images/logo/logo.webp";
-import closeSvg from "../../images/close.svg";
-import linkedin from "../../images/socials/linkedin.webp";
-import github from "../../images/socials/github.webp";
-import fiverr from "../../images/socials/fiverr.webp";
-
-import hadleScroll from "../functions&Variables/handleScroll";
-import socials from "../functions&Variables/socials";
-//colors from _colors.scss root to manipulate
-import { colors } from "../functions&Variables/colors";
-
+import { ReactComponent as LogoSvg } from "../../images/logo/logo.svg";
+import { ReactComponent as CloseSvg } from "../../images/close.svg";
+import hadleSectionScroll from "../Utilities/hadleSectionScroll";
+import RenderSocials from "../Utilities/RenderSocials";
+import navLinks from "../Utilities/NavLinks";
+import React, { useState } from "react";
 import "./mobilenavbar.scss";
-//this works the same as navbar but with one addition
 interface Props {
   currentSection: string;
-  setMobileActive: Function;
+  setMobileActive: (active: boolean) => void;
 }
 export default function MobileNavbar(props: Props) {
-  function close() {
-    //this function will trigger the closing animation for mobile navbar
-    (document.querySelector(".mobile-navbar") as HTMLElement).style.transform =
-      "translateX(-100%)";
-    setTimeout(() => {
-      props.setMobileActive(false);
-    }, 500); //and close it after 0.5s
-  }
+  const [isClosing, setIsClosing] = useState(false);
+
   return (
-    <section className="mobile-navbar">
+    <section
+      className={`mobile-navbar ${isClosing ? "closing" : ""}`}
+      onAnimationEnd={(e) => {
+        if (isClosing && e.target === e.currentTarget) {
+          props.setMobileActive(false);
+        }
+      }}
+    >
       <div className="mobile-navbar-buttons">
-        <img src={logo} alt="logo" className="mobile-logo" />
-        <img
-          src={closeSvg}
+        <LogoSvg
+          alt="logo"
+          className={`mobile-logo ${props.currentSection === "home" && "active-section"}`}
+          onClick={() => {
+            hadleSectionScroll("home")
+            setIsClosing(true);
+          }}
+        />
+        <CloseSvg
           alt="closeNavbar"
           className="close-navbar"
           onClick={() => {
-            close();
+            setIsClosing(true);
           }}
         />
       </div>
       <ul className="mobile-navbar-menu">
-        <li
-          style={
-            props.currentSection === "home" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              document.body.scrollTop = 0;
-              document.documentElement.scrollTop = 0;
-              close();
-            }}
+        {navLinks.map((link) =>
+          <li
+            key={link.sectionName}
+            className={props.currentSection === link.sectionName ? "active-section" : ""}
           >
-            Home
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "projects" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".projects");
-              close();
-            }}
-          >
-            Projects
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "Tech Stack"
-              ? { color: colors.purple }
-              : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".tech-stack");
-              close();
-            }}
-          >
-            Tech Stack
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "contact" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".contact");
-              close();
-            }}
-          >
-            Contact
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "about" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".about");
-              close();
-            }}
-          >
-            About
-          </span>
-        </li>
+            <span
+              onClick={() => {
+                hadleSectionScroll(link.sectionDestination);
+                setIsClosing(true);
+              }}
+            >
+              {link.displayName}
+            </span>
+          </li>
+        )}
       </ul>
-      <div className="mobile-navbar-socials">
-        <a className="social-aTag" href={socials("linkedin")} target="blank">
-          <img src={linkedin} alt="linkedin" />
-        </a>
-        <a className="social-aTag" href={socials("github")} target="blank">
-          <img src={github} alt="github" />
-        </a>
-        <a className="social-aTag" href={socials("fiverr")} target="blank">
-          <img src={fiverr} alt="fiverr" />
-        </a>
+      <div className="socials mobile-navbar-socials">
+        <RenderSocials />
       </div>
-      <hr style={{ marginTop: "40px" }} />
+      <hr />
     </section>
   );
 }

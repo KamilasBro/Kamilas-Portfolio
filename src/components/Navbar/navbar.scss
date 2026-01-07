@@ -1,149 +1,117 @@
-@import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
 
-@keyframes navbarAnim {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-nav {
-  @include flexCenter;
-
+.navbar {
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
-  width: 100%;
-  height: 120px;
 
-  animation: navbarAnim 0.5s;
-
-  background: transparent;
-
-  transition: 500ms;
+  transition: background-color 500ms;
 
   position: fixed;
   z-index: 2;
   top: 0;
+  padding: 17px;
 
+  width: 100%;
+
+  background: transparent;
   border-bottom: 1px solid $borderColor;
-}
 
-nav:hover {
-  border-color: $projectsPath;
-}
+  &.scrolled {
+    background-color: $black;
+  }
 
-.inner-navbar {
-  @include flexCenter;
-  justify-content: space-between;
+  .inner-navbar {
+    display: flex;
+    justify-content: space-between;
 
-  width: 1170px;
-}
+    width: 1170px;
 
-.navbar-logo {
-  cursor: pointer;
+    .navbar-logo {
+      cursor: pointer;
+      width: 56px;
+      height: auto;
 
-  height: 80px;
-  width: 80px;
+      transition: filter 1000ms;
 
-  transition: 1000ms;
+      &.active-section {
+        filter: drop-shadow(0px 0px 6px $purple) drop-shadow(0px 0px 6px $purple)
+      }
+    }
 
-  border-radius: 0px;
-}
+    .hamburger {
+      display: none;
 
-.hamburger {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
+      cursor: pointer;
 
-  display: none;
+      height: 40px;
+      width: 40px;
+    }
 
-  border-radius: 0px;
-}
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 50px;
 
-.navbar-menu {
-  @include flexCenter;
-}
+      li {
+        cursor: pointer;
 
-.navbar-menu li {
-  cursor: pointer;
+        font-size: 18px;
+        font-weight: 500;
 
-  font-size: 18px;
-  font-weight: 500;
+        transition: color 300ms;
 
-  margin-left: 50px;
+        &.active-section {
+          color: $purple;
+        }
 
-  transition: 300ms;
-}
+        &:not(.active-section):hover {
+          color: $pink;
+        }
 
-.navbar-menu li:first-child {
-  margin-left: 0px;
-}
+      }
+    }
 
-.navbar-menu li:hover {
-  color: $pink;
-}
+    .navbar-socials {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
 
-.navbar-socials {
-  @include flexCenter;
-}
+      a {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
 
-.navbar-socials img {
-  cursor: pointer;
-
-  height: 27px;
-  width: 27px;
-
-  filter: grayscale(100%);
-
-  transition: 500ms;
-
-  border-radius: 100px;
-}
-
-.navbar-socials .social-aTag:nth-child(2) {
-  margin-inline: 15px;
-}
-
-.navbar-socials img:hover {
-  filter: none;
 }
 
 @media (max-width: 1440px) {
-  .inner-navbar {
-    width: 940px;
+  .navbar {
+    .inner-navbar {
+      width: 940px;
+    }
   }
 }
 
 @media (max-width: 1024px) {
-  nav {
-    height: 90px;
-  }
+  .navbar {
+    padding-block: 15px;
+    background-color: $black;
 
-  .inner-navbar {
-    width: 724px;
-  }
+    .inner-navbar {
+      width: 724px;
 
-  .navbar-logo {
-    display: none;
-  }
+      .navbar-logo,
+      .navbar-menu,
+      .navbar-socials {
+        display: none;
+      }
 
-  .hamburger {
-    display: block;
-  }
-
-  .navbar-menu {
-    display: none;
-  }
-
-  .navbar-menu li:hover {
-    color: #ffffff;
-  }
-
-  .navbar-socials {
-    display: none;
+      .hamburger {
+        display: block;
+      }
+    }
   }
 }
 
@@ -158,32 +126,32 @@ nav:hover {
     }
   }
 
-  nav {
-    height: 80px;
-  }
+  .navbar {
+    padding-block: 12px;
 
-  .inner-navbar {
-    width: 570px;
-  }
+    .inner-navbar {
+      width: 570px;
 
-  .hamburger {
-    height: 30px;
-    width: 30px;
+      .hamburger {
+        height: 30px;
+        width: 30px;
+      }
+    }
   }
 }
 
 @media (max-width: 600px) {
-  nav {
-    height: 55px;
+  .navbar {
+    padding-block: 10px;
     width: 100%;
-  }
 
-  .inner-navbar {
-    margin-inline: 18px;
-  }
+    .inner-navbar {
+      margin-inline: 18px;
 
-  .hamburger {
-    height: 24px;
-    width: 24px;
+      .hamburger {
+        height: 24px;
+        width: 24px;
+      }
+    }
   }
 }

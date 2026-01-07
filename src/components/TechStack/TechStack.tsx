@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./techStack.scss";
 import techStack from "../../data/techStack/techStack.json";
 import coreCords from "../../data/techStack/coreCords.json";
-import { ReactComponent as LogoSvg } from "../../images/techStack/logo.svg";
+import { ReactComponent as LogoSvg } from "../../images//logo/logoGradient.svg";
 
 import { useInView } from "react-intersection-observer";
 

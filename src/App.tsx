@@ -1,4 +1,4 @@
-import logo from "../src/images/logo/logo.webp";
+import logo from "../src/images/logo/logo.svg";
 
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
@@ -56,6 +56,8 @@ export default function App() {
       clearTimeout(fallbackTimeout);
     };
   }, []);
+
+
   return (
     <>
       <div className="loading-screen">

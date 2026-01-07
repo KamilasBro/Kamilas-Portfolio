@@ -1,26 +1,11 @@
-@import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
-
-@keyframes mobileNavbarAnim {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
 
 .mobile-navbar {
   display: none;
-
-  overflow: hidden;
-
-  animation: mobileNavbarAnim 0.5s;
 }
 
 .mobile-navbar::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
 }
 
 .mobile-navbar::-webkit-scrollbar-track {
@@ -36,8 +21,30 @@
 }
 
 @media (max-width: 1024px) {
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+
+      transform: translateX(-100%);
+    }
+  }
+
   .mobile-navbar {
-    display: block;
+    display: flex;
+    flex-direction: column;
 
     width: 512px;
     height: 100%;
@@ -45,8 +52,7 @@
 
     overflow-y: auto;
 
-    background: $black;
-
+    animation: slideIn 0.5s;
     transition: 500ms;
 
     position: fixed;
@@ -54,66 +60,88 @@
     top: 0;
     left: 0;
 
+    background: $black;
     border-right: 1px solid $borderColor;
-    filter: drop-shadow(0px 0px 1px $borderColor);
-  }
+    filter: drop-shadow(0px 0px 3px $glow);
 
-  .mobile-navbar-buttons {
-    @include flexCenter;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    background-color: $black;
-    padding: 40px;
-  }
+    &.closing {
+      animation: slideOut 0.5s forwards;
+    }
 
-  .mobile-logo {
-    height: 100px;
-    width: 100px;
+    .mobile-navbar-buttons {
+      display: flex;
+      justify-content: space-between;
 
-    border-radius: 0px;
-  }
+      position: sticky;
+      top: 0;
 
-  .close-navbar {
-    cursor: pointer;
+      background-color: $black;
 
-    height: 60px;
-    width: 60px;
+      padding: 40px;
 
-    transition: 300ms;
-  }
+      .mobile-logo {
+        width: 65px;
+        height: auto;
 
-  .mobile-navbar-menu {
-    display: flex;
-    flex-direction: column;
-    padding-inline: 40px;
-  }
+        &.active-section {
+          filter: drop-shadow(0px 0px 6px $purple) drop-shadow(0px 0px 6px $purple)
+        }
+      }
 
-  .mobile-navbar-menu li {
-    cursor: pointer;
+      .close-navbar {
+        cursor: pointer;
 
-    font-size: 22px;
+        height: 50px;
+        width: 50px;
 
-    margin-top: 30px;
-  }
+        transition: 300ms;
+      }
+    }
 
-  .mobile-navbar-socials {
-    @include flexCenter;
+    .mobile-navbar-menu {
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+      row-gap: 30px;
 
-    margin-top: 40px;
+      li {
+        cursor: pointer;
 
-    transition: 300ms;
-  }
+        font-size: 22px;
 
-  .mobile-navbar-socials img {
-    height: 40px;
-    width: 40px;
+        &.active-section {
+          color: $purple;
+        }
 
-    border-radius: 100px;
-  }
+        &:not(.active-section):hover {
+          color: $pink;
+        }
+      }
+    }
 
-  .mobile-navbar-socials a:nth-child(2) {
-    margin-inline: 20px;
+    .mobile-navbar-socials {
+      display: flex;
+
+      column-gap: 20px;
+      padding-inline: 40px;
+
+      a {
+        height: 40px;
+        width: 40px;
+
+        svg {
+          path {
+            fill: $white;
+          }
+        }
+      }
+    }
+
+    hr {
+      width: auto;
+      margin-inline: 40px;
+      margin-top: 40px;
+    }
   }
 }
 
@@ -121,59 +149,72 @@
   .mobile-navbar {
     width: 100%;
 
-    border: none;
-    box-shadow: none;
-  }
+    .mobile-navbar-buttons {
+      padding: 35px;
 
-  .mobile-logo {
-    height: 80px;
-    width: 80px;
-  }
+      .close-navbar {
+        height: 45px;
+        width: 45px;
+      }
+    }
 
-  .close-navbar {
-    height: 50px;
-    width: 50px;
-  }
+    .mobile-navbar-menu {
+      row-gap: 25px;
+      padding: 35px;
 
-  .mobile-navbar-menu li {
-    font-size: 20px;
+      li {
+        font-size: 20px;
+      }
+    }
 
-    margin-top: 25px;
-  }
+    .mobile-navbar-socials {
+      padding-inline: 35px;
 
-  .mobile-navbar-socials {
-    margin-top: 35px;
-  }
+      a {
+        height: 35px;
+        width: 35px;
+      }
+    }
 
-  .mobile-navbar-socials img {
-    height: 35px;
-    width: 35px;
+    hr {
+      margin-inline: 35px;
+      margin-top: 35px;
+    }
   }
 }
 
 @media (max-width: 600px) {
-  .mobile-logo {
-    height: 65px;
-    width: 65px;
-  }
+  .mobile-navbar {
+    .mobile-navbar-buttons {
+      padding: 30px;
 
-  .close-navbar {
-    height: 40px;
-    width: 40px;
-  }
+      .close-navbar {
+        height: 40px;
+        width: 40px;
+      }
+    }
 
-  .mobile-navbar-menu li {
-    font-size: 18px;
+    .mobile-navbar-menu {
+      row-gap: 20px;
+      padding: 30px;
 
-    margin-top: 20px;
-  }
+      li {
+        font-size: 18px;
+      }
+    }
 
-  .mobile-navbar-socials {
-    margin-top: 30px;
-  }
+    .mobile-navbar-socials {
+      padding-inline: 30px;
 
-  .mobile-navbar-socials img {
-    height: 30px;
-    width: 30px;
+      a {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    hr {
+      margin-inline: 30px;
+      margin-top: 30px;
+    }
   }
 }

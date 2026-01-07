@@ -38,8 +38,9 @@
   }
 }
 
+// to bypass darkmodes ingered color changes
 :root {
-  color-scheme: dark light;
+  color-scheme: dark;
 }
 
 html {
@@ -120,14 +121,11 @@ ul {
   list-style-type: none;
 }
 
-img {
-  border-radius: 10px;
-}
-
 h1,
 h2,
 h3,
-h4 {
+h4,
+p {
   margin: 0px;
 }
 
@@ -152,12 +150,21 @@ button:focus {
 
 textarea,
 input {
+  font-family: "Poppins", sans-serif;
   background-color: transparent;
   color: $white;
 
   resize: none;
 
   border: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $white;
+  transition: background-color 9999s ease-in-out 0s;
+
 }
 
 button {
@@ -181,8 +188,18 @@ a {
   color: $white;
 }
 
-.social-aTag {
+.socials {
   display: flex;
+  align-items: center;
+
+  a svg {
+    height: 100%;
+    width: 100%;
+
+    &:not(:hover) path {
+      fill: $white;
+    }
+  }
 }
 
 @media (max-width: 1440px) {
