@@ -2,7 +2,7 @@ import "./projects.scss";
 
 import { PowerGlitch } from 'powerglitch';
 import React, { useState, useRef, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 import projects from "../../data/projects/projects.json";
 import linkSvg from "../../images/projects/link.svg"
 import figmaSvg from "../../images/projects/figma.svg"
@@ -23,9 +23,9 @@ export default function Projects() {
     duration: 200,
   });
 
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-  });
+  // const { ref, inView } = useInView({
+  //   triggerOnce: true,
+  // });
 
 
   useEffect(() => {
@@ -153,7 +153,7 @@ export default function Projects() {
     touchActiveRef.current = false;
   };
   return (
-    <section className="projects" ref={ref}>
+    <section className="projects">
       <h1 className="section-title">Projects</h1>
       <div
         className="projects-container"

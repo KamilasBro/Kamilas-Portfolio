@@ -4,7 +4,7 @@ import techStack from "../../data/techStack/techStack.json";
 import coreCords from "../../data/techStack/coreCords.json";
 import { ReactComponent as LogoSvg } from "../../images//logo/logoGradient.svg";
 
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 
 // TechStack component
 // This component renders an interactive "circuit board" like visualization of the
@@ -14,10 +14,10 @@ import { useInView } from "react-intersection-observer";
 // along the path to the clicked node and highlights the clicked node when the
 // animation finishes.
 export default function TechStack() {
-  const { ref, inView } = useInView({
-    // see projects.js for explanation in this codebase
-    triggerOnce: true,
-  });
+  // const { ref, inView } = useInView({
+  //   // see projects.js for explanation in this codebase
+  //   triggerOnce: true,
+  // });
 
   // ballRef points to the small SVG circle used for the travel animation.
   const ballRef = useRef<SVGCircleElement>(null);
@@ -282,23 +282,13 @@ export default function TechStack() {
   }
 
   return (
-    <section
-      className="tech-stack"
-      ref={ref}
-      style={inView === true ?
-        { animation: "titleAnim 1s" }
-        :
-        { visibility: "hidden" }}>
+    <section className="tech-stack">
       <h1
-        className="section-title"
-        // when the section enters the viewport, play a simple title animation
-        style={inView === true ? { animation: "titleAnim 1s" } : {}}
-      >
+        className="section-title">
         Tech Stack
       </h1>
       <div
-        className="pcb-note"
-        style={inView === true ? { animation: "titleAnim 1.25s" } : {}}>
+        className="pcb-note">
         You can click on the nodes
       </div>
       <div className="pcb" ref={pcbRef}>

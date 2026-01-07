@@ -5,7 +5,7 @@ import { ReactComponent as MailSendingSvg } from "../../images/contact/mailSendi
 import { ReactComponent as MailSuccessSvg } from "../../images/contact/mailSuccess.svg";
 import { ReactComponent as MailFailSvg } from "../../images/contact/mailFail.svg";
 
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 
 
 export default function Contact() {
