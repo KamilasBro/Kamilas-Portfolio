@@ -31,16 +31,9 @@
   pointer-events: none;
   z-index: 1;
 
-  // background-image:
-  //   radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
-  //   radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
-  //   radial-gradient(circle at center, $darkGray 0.33px, transparent 1px);
-
   background-image:
-    radial-gradient(circle at center, rgb(226, 10, 143) 2.25px, transparent 3px),
-    radial-gradient(circle at center, rgba(109, 0, 161, 1) 2px, transparent 3px),
-    radial-gradient(circle at center, rgba(23, 23, 23, 1) 1.75px, transparent 3px);
-
+    radial-gradient(circle at center, $borderColor 1px, transparent 2px),
+    radial-gradient(circle at center, $darkGray 0.66px, transparent 1.5px);
 
   background-size: 80px 80px, 40px 40px, 40px 40px;
   background-position: -20px -20px, 0px 0px, 20px 20px;

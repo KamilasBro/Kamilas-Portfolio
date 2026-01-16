@@ -33,7 +33,6 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   background-color: $black;
-  background-image: url(./images/backgrounds/bg.webp);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -41,17 +40,14 @@ body {
   color: $white;
   overflow-x: hidden;
   overflow-y: hidden;
-  // background-image:
-  //   radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
-  //   radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
-  //   radial-gradient(circle at center, $darkGray 0.33px, transparent 1px);
+  background-image:
+    radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
+    radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
+    radial-gradient(circle at center, $darkGray 0.66px, transparent 1.5px);
 
-
-  // background-size: 80px 80px, 40px 40px, 40px 40px;
-  // background-position: -20px -20px, 0px 0px, 20px 20px;
-  // background-repeat: repeat, repeat, repeat;
-
-  // mix-blend-mode: screen;
+  background-size: 80px 80px, 40px 40px, 40px 40px;
+  background-position: -20px -20px, 0px 0px, 20px 20px;
+  background-repeat: repeat, repeat, repeat;
 
 }
 
@@ -83,30 +79,23 @@ body::-webkit-scrollbar-thumb:hover {
   height: 100%;
   width: 100%;
 
-  background-color: $black;
   position: fixed;
   z-index: 10;
   top: 0;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0px;
-    pointer-events: none;
-    z-index: 1;
+  background-color: $black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-image:
+    radial-gradient(circle at center, $borderColor 1px, transparent 2px),
+    radial-gradient(circle at center, $darkGray 0.66px, transparent 1.5px);
 
-    background-image:
-      radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
-      radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
-      radial-gradient(circle at center, $darkGray 0.33px, transparent 1px);
+  background-size: 80px 80px, 40px 40px, 40px 40px;
+  background-position: -20px -20px, 0px 0px, 20px 20px;
+  background-repeat: repeat, repeat, repeat;
 
-
-    background-size: 80px 80px, 40px 40px, 40px 40px;
-    background-position: -20px -20px, 0px 0px, 20px 20px;
-    background-repeat: repeat, repeat, repeat;
-
-    mix-blend-mode: screen;
-  }
 
   .chips-wrap {
     display: flex;
@@ -138,11 +127,11 @@ body::-webkit-scrollbar-thumb:hover {
         max-height: 176px;
         max-width: auto;
 
-        transition: filter 150ms;
-        filter: grayscale(40%);
+        transition: filter 500ms;
+        filter: grayscale(55%);
 
         &.active {
-          filter: grayscale(0%);
+          filter: grayscale(0%) drop-shadow(0px 0px 10px $glow);
         }
       }
     }
@@ -230,8 +219,8 @@ hr {
   margin-top: 100px;
 
   border: 1px solid $borderColor;
-  border-radius: 25px;
-  filter: drop-shadow(0px 0px 2px $glow);
+  border-radius: 100%;
+  filter: drop-shadow(0px 0px 10px $glow);
 }
 
 .section-title {
