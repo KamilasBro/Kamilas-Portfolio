@@ -1,18 +1,18 @@
 import RenderSocials from "../Utilities/RenderSocials";
 import React, { useState } from "react";
+import { useInView } from "react-intersection-observer";
 import "./contact.scss";
 import { ReactComponent as MailSendingSvg } from "../../images/contact/mailSending.svg";
 import { ReactComponent as MailSuccessSvg } from "../../images/contact/mailSuccess.svg";
 import { ReactComponent as MailFailSvg } from "../../images/contact/mailFail.svg";
-
-// import { useInView } from "react-intersection-observer";
+import EncryptText from "../Utilities/EncryptText";
 
 
 export default function Contact() {
-  // const { ref, inView } = useInView({
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
 
-  //   triggerOnce: true,
-  // });
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
@@ -87,8 +87,13 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact">
-      <h1 className="section-title">Get in touch</h1>
+    <section className="contact" ref={ref}>
+      <EncryptText
+        text="Get in touch"
+        HTMLtag="h1"
+        encryptInView={inView}
+        className="section-title"
+      />
       <div className="form-wrap">
         <form
           className="contact-form"
@@ -98,11 +103,9 @@ export default function Contact() {
           data-netlify-honeypot="bot-field"
           onSubmit={handleSubmit}
         >
-          {/* hidden input is require for netlify form handling */}
           <input type="hidden" name="form-name" value="contact" />
-          {/* honeypot field for netlify spam protection */}
           <input type="hidden" name="bot-field" />
-          <div className="form-field name">
+          <div className={`form-field name ${!inView && "not-in-view"}`}>
             <label htmlFor="name">Name</label>
             <div className="input-wrap">
               <input
@@ -117,7 +120,7 @@ export default function Contact() {
               />
             </div>
           </div>
-          <div className="form-field email">
+          <div className={`form-field email ${!inView && "not-in-view"}`}>
             <label htmlFor="email">Email</label>
             <div className="input-wrap">
               <input
@@ -132,7 +135,7 @@ export default function Contact() {
               />
             </div>
           </div>
-          <div className="input-wrap message">
+          <div className={`input-wrap message ${!inView && "not-in-view"}`}>
             <textarea
               id="message"
               name="message"
@@ -144,12 +147,12 @@ export default function Contact() {
             />
           </div>
           <div className="buttons-wrap">
-            <div className="submit-wrap">
+            <div className={`submit-wrap ${!inView && "not-in-view"}`}>
               <button type="submit" className="submit-btn" disabled={formStatus !== "idle"}>
                 Submit
               </button>
             </div>
-            <div className="socials contact-socials">
+            <div className={`socials contact-socials ${!inView && "not-in-view"}`}>
               <RenderSocials />
             </div>
           </div>

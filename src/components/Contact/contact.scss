@@ -378,6 +378,66 @@
   }
 }
 
+//intersection observer
+.contact-form {
+  $transitionDuration: 300ms;
+  $transitionDelay: 75ms;
+
+  .form-field {
+    transition: transform $transitionDuration, $transitionDuration*2;
+
+    &.name.not-in-view {
+      transform: translatex(-50px);
+      opacity: 0%;
+    }
+
+    &.email {
+      transition-delay: $transitionDelay;
+
+      &.not-in-view {
+        transform: translatex(50px);
+        opacity: 0%;
+      }
+    }
+  }
+
+  .message {
+    transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+    transition-delay: calc($transitionDelay*2);
+
+    &.not-in-view {
+      transform: translateY(50px);
+      opacity: 0%;
+    }
+  }
+
+  .buttons-wrap {
+    .submit-wrap {
+      transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+      transition-delay: calc($transitionDelay*3);
+
+      &.not-in-view {
+        transform: translateY(50px);
+        opacity: 0%;
+      }
+    }
+  }
+
+  .contact-socials {
+    transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+    transition-delay: calc($transitionDelay*4);
+
+    &.not-in-view {
+      transform: translateY(50px);
+      opacity: 0%;
+    }
+  }
+
+}
+
+
+
+
 
 @media (max-width: 1440px) {
   .contact-form {

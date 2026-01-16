@@ -1,4 +1,4 @@
-import hadleSectionScroll from "../Utilities/hadleSectionScroll";
+import hadleSectionScroll from "../Utilities/HadleSectionScroll";
 import RenderSocials from "../Utilities/RenderSocials";
 import navLinks from "../Utilities/NavLinks";
 import "./footer.scss";

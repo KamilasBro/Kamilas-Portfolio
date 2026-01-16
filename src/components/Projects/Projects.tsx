@@ -2,12 +2,14 @@ import "./projects.scss";
 
 import { PowerGlitch } from 'powerglitch';
 import React, { useState, useRef, useEffect } from "react";
-// import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import projects from "../../data/projects/projects.json";
 import linkSvg from "../../images/projects/link.svg"
 import figmaSvg from "../../images/projects/figma.svg"
 import githubSvg from "../../images/projects/github.svg"
 import arrowSvg from "../../images/projects/arrow.svg"
+import EncryptText from "../Utilities/EncryptText";
+
 
 export default function Projects() {
   const [currentProject, setCurrentProject] = useState(0);
@@ -23,9 +25,9 @@ export default function Projects() {
     duration: 200,
   });
 
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  // });
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
 
 
   useEffect(() => {
@@ -76,7 +78,7 @@ export default function Projects() {
         setCurrentProject(index);
         requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
       });
-    // show layers before first glitch *see line 91*
+    // show layers before first glitch
     document
       .querySelectorAll("div[data-islayer='true']")
       .forEach((el) => {
@@ -92,9 +94,9 @@ export default function Projects() {
     // run next glitches after new content is rendered
     await runGlitch();
 
-    // layers from powerglitch need to be hidden after glitching due to
-    // sizing component up if the content before was longer than current one
-    // was visible in project description
+    /* layers from powerglitch need to be hidden after glitching due to
+     sizing component up if the content before was longer than current one, it
+     was visible in project description */
     document
       .querySelectorAll("div[data-islayer='true']")
       .forEach((el) => {
@@ -120,7 +122,7 @@ export default function Projects() {
 
   const touchStartRef = useRef({ x: 0, y: 0 });
   const touchActiveRef = useRef(false);
-  const SWIPE_THRESHOLD = 100; // pixels to trigger swipe
+  const SWIPE_THRESHOLD = 100;
 
   const handleTouchStart = (e: React.TouchEvent) => {
     const t = e.touches[0];
@@ -153,15 +155,20 @@ export default function Projects() {
     touchActiveRef.current = false;
   };
   return (
-    <section className="projects">
-      <h1 className="section-title">Projects</h1>
+    <section className="projects" ref={ref}>
+      <EncryptText
+        text="Projects"
+        HTMLtag="h1"
+        encryptInView={inView}
+        className="section-title"
+      />
       <div
-        className="projects-container"
+        className={`projects-container ${!inView && "not-in-view"}`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchCancel}
       >
-        <div className="project-card-wrap">
+        <div className={`project-card-wrap ${!inView && "not-in-view"}`}>
           <div className="project-card1">
             <h2 className="project-title glitch">{projects[currentProject].title}<span className="subtitle">{` | ${projects[currentProject].subtitle}`}</span></h2>
             <div className="iframe-wrap">
@@ -247,12 +254,12 @@ export default function Projects() {
               <img className={showMore ? "show" : "hide"} src={arrowSvg} alt="arrowSvg" />
             </div>
           </>}
-          <div className="project-card-wrap-reverse">
+          <div className={`project-card-wrap-reverse ${!inView && "not-in-view"}`}>
             <div className={`project-description ${!isMobile ? ("glitch") : (showMore && "glitch")}`}>
               {projects[currentProject].description}
             </div>
           </div>
-          <div className="project-card-wrap-reverse">
+          <div className={`project-card-wrap-reverse ${!inView && "not-in-view"}`}>
             <div className={`project-stack ${!isMobile ? ("glitch") : (showMore && "glitch")}`}>
               <h3>Build Stack</h3>
               <ul className="stack-list ">
@@ -268,7 +275,7 @@ export default function Projects() {
           </div>
         </div>
       </div>
-      <ul className="dots">
+      <ul className={`dots ${!inView && "not-in-view"}`}>
         {projects.map((_, index) =>
           <li
             className={index === currentProject ? "dot active" : "dot"}

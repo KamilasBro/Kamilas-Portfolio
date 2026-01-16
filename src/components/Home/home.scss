@@ -1,276 +1,164 @@
-@import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
 
-@keyframes textAnim1 {
-  0% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes textAnim2 {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes textAnim3 {
-  0% {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes logoAnim {
-  0% {
-    position: relative;
-    transform: translateX(100px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
 .home {
-  @include flexCenter;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap-reverse;
-}
 
-/*animation delay is necessary because loading screen is about 2s long*/
-.home-slogan h1 {
-  font-weight: 600;
-  font-size: 48px;
+  .home-slogan {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
 
-}
+    h1 {
+      font-weight: 600;
+      font-size: 48px;
 
-.home-slogan h1 span {
-  background: linear-gradient(90deg, $pink 0%, $purple 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.home-slogan h2 {
-  font-weight: 500;
-  font-size: 36px;
-
-  margin-top: 5px;
-
-}
-
-.home-slogan h2 .h2-color {
-  color: $pink;
-}
-
-.home-slogan h4 {
-  font-weight: 500;
-  font-size: 28px;
-
-  margin-top: 5px;
-
-
-  color: $gray;
-}
-
-.home-logo {
-  width: 341px;
-
-  filter: drop-shadow(0px 0px 6px $glow);
-}
-
-@media (max-width: 1440px) {
-  @keyframes textAnim2 {
-    0% {
-      transform: translateX(-40px);
-      opacity: 0;
+      span {
+        background: linear-gradient(90deg, $pink 0%, $purple 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
     }
 
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
+    h2 {
+      font-weight: 500;
+      font-size: 36px;
 
-  @keyframes logoAnim {
-    0% {
-      position: relative;
-      transform: translateX(+40px);
+      span {
+        color: $pink;
+      }
     }
 
-    100% {
-      transform: translateX(0);
+    h4 {
+      font-weight: 500;
+      font-size: 28px;
+
+      color: $gray;
     }
+
   }
 
-  .home-slogan h1 {
-    font-size: 44px;
-  }
+  @keyframes logoGlow {
+    from {
+      filter: drop-shadow(0px 0px 1px $glow);
+    }
 
-  .home-slogan h2 {
-    font-size: 32px;
-  }
-
-  .home-slogan h4 {
-    font-size: 24px;
+    to {
+      filter: drop-shadow(0px 0px 20px $glow);
+    }
   }
 
   .home-logo {
-    width: 277px;
+    width: 341px;
+    height: 400px;
+
+    animation: logoGlow 2s infinite alternate ease-in;
+  }
+}
+
+@media (max-width: 1440px) {
+  .home {
+    .home-slogan {
+      h1 {
+        font-size: 44px;
+      }
+
+      h2 {
+        font-size: 32px;
+      }
+
+      h4 {
+        font-size: 24px;
+      }
+
+    }
+
+    .home-logo {
+      width: 277px;
+      height: 325px;
+    }
   }
 }
 
 @media (max-width: 1024px) {
-  @keyframes textAnim2 {
-    0% {
-      transform: translateX(-35px);
-      opacity: 0;
+  .home {
+    .home-slogan {
+      h1 {
+        font-size: 40px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      h4 {
+        font-size: 20px;
+      }
+
     }
 
-    100% {
-      transform: translateX(0);
-      opacity: 1;
+    .home-logo {
+      width: 213px;
+      height: 250px;
     }
-  }
-
-  @keyframes logoAnim {
-    0% {
-      position: relative;
-      transform: translateX(+35px);
-    }
-
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  .home-slogan h1 {
-    font-size: 40px;
-  }
-
-  .home-slogan h2 {
-    font-size: 28px;
-  }
-
-  .home-slogan h4 {
-    font-size: 20px;
-  }
-
-  .home-logo {
-    width: 213px;
   }
 }
 
 @media (max-width: 800px) {
-  @keyframes textAnim1 {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
+  .home {
+    .home-slogan {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      h4 {
+        font-size: 16px;
+      }
+
     }
 
-    100% {
-      transform: translateX(0);
-      opacity: 1;
+    .home-logo {
+      width: 150px;
+      height: 176px;
     }
-  }
-
-  @keyframes textAnim2 {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes textAnim3 {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes logoAnim {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  .home-slogan h1 {
-    font-size: 36px;
-  }
-
-  .home-slogan h2 {
-    font-size: 24px;
-  }
-
-  .home-slogan h4 {
-    font-size: 16px;
-  }
-
-  .home-logo {
-    width: 115px;
-
-    filter: drop-shadow(0px 0px 5px $glow);
   }
 }
 
 @media (max-width: 600px) {
   .home {
+    flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
+    row-gap: 35px;
+
+    .home-slogan {
+      width: 100%;
+
+
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      h4 {
+        font-size: 12px;
+      }
+    }
+
+    .home-logo {
+      width: 185px;
+      height: 217px;
+    }
   }
 
-  .home-slogan {
-    width: 95%;
-  }
 
-  .home-slogan h1 {
-    font-size: 24px;
-  }
-
-  .home-slogan h2 {
-    font-size: 12px;
-  }
-
-  .home-slogan h4 {
-    font-size: 8px;
-  }
-
-  .home-logo {
-    width: 128px;
-
-    margin-top: 35px;
-  }
 }

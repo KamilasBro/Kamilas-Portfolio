@@ -1,15 +1,7 @@
-@import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
 
 .projects {
     margin-top: 200px;
-}
-
-.projects-container {
-    display: flex;
-    column-gap: 50px;
-    margin-top: 50px;
-    align-items: center;
 }
 
 
@@ -41,6 +33,13 @@
 
 .project-card-wrap-reverse::before {
     background: $borderGradientReverse;
+}
+
+.projects-container {
+    display: flex;
+    column-gap: 50px;
+    margin-top: 50px;
+    align-items: center;
 }
 
 .project-card1 {
@@ -229,6 +228,54 @@
         box-shadow: 0px 0px 10px $glow;
     }
 }
+
+//intersector observer
+.projects {
+    $transitionDuration: 300ms;
+    $transitionDelay: 75ms;
+
+    .projects-container {
+        .project-card-wrap {
+            transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+
+            &.not-in-view {
+                transform: translatex(-50px);
+                opacity: 0%;
+            }
+        }
+
+        .project-card-wrap-reverse {
+            transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+
+            &:first-child {
+                transition-delay: $transitionDelay;
+            }
+
+            &:last-child {
+                transition-delay: calc($transitionDelay*2);
+            }
+
+            &.not-in-view {
+                transform: translatex(50px);
+                opacity: 0%;
+            }
+        }
+    }
+
+    .dots {
+        transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+        transition-delay: calc($transitionDelay*3);
+
+        &.not-in-view {
+            transform: translateY(50px);
+            opacity: 0%;
+        }
+    }
+}
+
+
+
+
 
 @media (max-width: 1440px) {
     .projects-container {
@@ -558,6 +605,61 @@
     .projects-container .project-card2.hide {
         transform: translateX(85%);
     }
+
+
+
+    //intersector observer
+    .projects {
+        $transitionDuration: 300ms;
+        $transitionDelay: 75ms;
+
+        .projects-container {
+            transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+
+            &.not-in-view {
+                transform: translatex(-50px);
+                opacity: 0%;
+            }
+
+            .project-card-wrap {
+                transition: none;
+
+                &.not-in-view {
+                    transform: none;
+                    opacity: none;
+                }
+            }
+
+            .project-card-wrap-reverse {
+                transition: none;
+
+                &:first-child {
+                    transition-delay: none;
+                }
+
+                &:last-child {
+                    transition-delay: none;
+                }
+
+                &.not-in-view {
+                    transform: none;
+                    opacity: none;
+                }
+            }
+        }
+
+        .dots {
+            transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+
+            transition-delay: $transitionDelay;
+
+            &.not-in-view {
+                transform: 50px;
+                opacity: 0%;
+            }
+        }
+    }
+
 }
 
 @media (max-width: 800px) {

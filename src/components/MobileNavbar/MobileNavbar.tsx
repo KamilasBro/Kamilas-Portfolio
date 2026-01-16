@@ -1,6 +1,6 @@
 import { ReactComponent as LogoSvg } from "../../images/logo/logo.svg";
 import { ReactComponent as CloseSvg } from "../../images/close.svg";
-import hadleSectionScroll from "../Utilities/hadleSectionScroll";
+import hadleSectionScroll from "../Utilities/HadleSectionScroll";
 import RenderSocials from "../Utilities/RenderSocials";
 import navLinks from "../Utilities/NavLinks";
 import React, { useState } from "react";

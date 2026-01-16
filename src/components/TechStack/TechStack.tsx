@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import "./techStack.scss";
 import techStack from "../../data/techStack/techStack.json";
 import coreCords from "../../data/techStack/coreCords.json";
+import EncryptText from "../Utilities/EncryptText";
 import { ReactComponent as LogoSvg } from "../../images//logo/logoGradient.svg";
 
-// import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 // TechStack component
 // This component renders an interactive "circuit board" like visualization of the
@@ -14,11 +15,9 @@ import { ReactComponent as LogoSvg } from "../../images//logo/logoGradient.svg";
 // along the path to the clicked node and highlights the clicked node when the
 // animation finishes.
 export default function TechStack() {
-  // const { ref, inView } = useInView({
-  //   // see projects.js for explanation in this codebase
-  //   triggerOnce: true,
-  // });
-
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
   // ballRef points to the small SVG circle used for the travel animation.
   const ballRef = useRef<SVGCircleElement>(null);
 
@@ -282,16 +281,22 @@ export default function TechStack() {
   }
 
   return (
-    <section className="tech-stack">
-      <h1
-        className="section-title">
-        Tech Stack
-      </h1>
-      <div
-        className="pcb-note">
-        You can click on the nodes
-      </div>
-      <div className="pcb" ref={pcbRef}>
+    <section className="tech-stack" ref={ref}>
+      <EncryptText
+        text="Tech Stack"
+        HTMLtag="h1"
+        encryptInView={inView}
+        className="section-title"
+      />
+      <EncryptText
+        text="You can click on the nodes"
+        HTMLtag="div"
+        encryptInView={inView}
+        iterationsRange={2}
+        className="pcb-note"
+        encryptInterval={10}
+      />
+      <div className={`pcb ${!inView && "not-in-view"}`} ref={pcbRef}>
         <ul className="pcb-components">
           {techStack.map((comp, idx) => (
             // Each "comp" is a section on the PCB (frontend, backend, etc.)

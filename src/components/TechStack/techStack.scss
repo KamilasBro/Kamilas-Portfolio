@@ -1,4 +1,3 @@
-@import "../../scssPartials/flexCenter";
 @import "../../scssPartials/_colors";
 
 .tech-stack {
@@ -22,8 +21,6 @@
   border-radius: 5px;
 
   background: $black;
-
-  filter: drop-shadow(0px 0px 30px rgba(173, 0, 255, 0.20));
   padding: 15px;
 }
 
@@ -33,6 +30,11 @@
   inset: 0px;
   pointer-events: none;
   z-index: 1;
+
+  // background-image:
+  //   radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
+  //   radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
+  //   radial-gradient(circle at center, $darkGray 0.33px, transparent 1px);
 
   background-image:
     radial-gradient(circle at center, rgb(226, 10, 143) 2.25px, transparent 3px),
@@ -50,7 +52,7 @@
 /* make sure content inside sits above the patterns */
 .tech-stack .pcb>* {
   position: relative;
-  z-index: 3;
+  z-index: 1;
 }
 
 .tech-stack .pcb .pcb-components {
@@ -419,6 +421,20 @@
     }
   }
 }
+
+//intersection observer
+.tech-stack .pcb {
+  $transitionDuration: 300ms;
+  $transitionDelay: 75ms;
+  transition: transform $transitionDuration, $transitionDuration*2;
+
+  &.not-in-view {
+    transform: translatey(50px);
+    opacity: 0%;
+  }
+}
+
+
 
 @media (max-width: 1440px) {
   .tech-stack h1 {

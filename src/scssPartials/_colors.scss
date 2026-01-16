@@ -33,11 +33,3 @@ $borderGradientReverse: linear-gradient(var(--angle), #AD00FF 0%, transparent 35
   initial-value: 135deg;
   inherits: false;
 }
-
-//for DOM
-:root {
-  --dark: #010a08;
-  --purple: #ad00ff;
-  --pink: #ff0099;
-  --darkGray: #171717;
-}

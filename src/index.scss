@@ -1,30 +1,6 @@
 //components css files are inside components folders
-@import "./scssPartials/_flexCenter";
 @import "./scssPartials/_colors";
-
-@keyframes loadingAnim1 {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes loadingAnim2 {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @keyframes titleAnim {
   from {
@@ -38,7 +14,7 @@
   }
 }
 
-// to bypass darkmodes ingered color changes
+// to bypass darkmodes ingeretion by browsers
 :root {
   color-scheme: dark;
 }
@@ -63,6 +39,20 @@ body {
   background-size: cover;
   background-position: center;
   color: $white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  // background-image:
+  //   radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
+  //   radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
+  //   radial-gradient(circle at center, $darkGray 0.33px, transparent 1px);
+
+
+  // background-size: 80px 80px, 40px 40px, 40px 40px;
+  // background-position: -20px -20px, 0px 0px, 20px 20px;
+  // background-repeat: repeat, repeat, repeat;
+
+  // mix-blend-mode: screen;
+
 }
 
 body::-webkit-scrollbar {
@@ -81,30 +71,137 @@ body::-webkit-scrollbar-thumb:hover {
   background: $purple;
 }
 
+
+//loading screen
 .loading-screen {
-  @include flexCenter;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  overflow: hidden;
 
   height: 100%;
   width: 100%;
 
   background-color: $black;
-
   position: fixed;
-  z-index: 4;
+  z-index: 10;
   top: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    pointer-events: none;
+    z-index: 1;
+
+    background-image:
+      radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
+      radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
+      radial-gradient(circle at center, $darkGray 0.33px, transparent 1px);
+
+
+    background-size: 80px 80px, 40px 40px, 40px 40px;
+    background-position: -20px -20px, 0px 0px, 20px 20px;
+    background-repeat: repeat, repeat, repeat;
+
+    mix-blend-mode: screen;
+  }
+
+  .chips-wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+
+    .chip {
+      background-color: $black;
+      height: 50px;
+      width: 50px;
+      border: 2px solid $projectsPath;
+      border-radius: 5px;
+      z-index: 1;
+
+      &:first-child {
+        align-self: flex-end;
+      }
+    }
+
+    .loading-logo {
+      position: relative;
+      padding: 50px;
+      z-index: 3;
+
+
+      svg {
+        height: 176px;
+        width: auto;
+        max-height: 176px;
+        max-width: auto;
+
+        transition: filter 150ms;
+        filter: grayscale(40%);
+
+        &.active {
+          filter: grayscale(0%);
+        }
+      }
+    }
+  }
+
+  .loading-paths,
+  .border-paths,
+  .ball {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    isolation: isolate;
+
+    path {
+      stroke: $projectsPath;
+      fill: none;
+      stroke-width: 2px;
+    }
+  }
+
+  .ball {
+    z-index: 2;
+
+    circle {
+      r: 4;
+      fill: $pink;
+    }
+  }
 }
 
-.loading-screen img {
-  height: 150px;
-  width: 150px;
+@media (max-height: 600px) {
+  .loading-screen {
 
-  animation: loadingAnim1 1.2s infinite;
-  border-radius: 0px;
+    .chips-wrap {
+      row-gap: 25px;
+
+      .chip {
+        height: 25px;
+        width: 25px;
+      }
+
+      .loading-logo {
+        padding: 20px;
+
+        svg {
+          height: 30vh;
+          width: auto;
+        }
+      }
+    }
+  }
 }
+
 
 main {
-  @include flexCenter;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   margin-top: 265px;
 }
@@ -202,6 +299,7 @@ a {
   }
 }
 
+
 @media (max-width: 1440px) {
   @keyframes titleAnim {
     from {
@@ -286,6 +384,51 @@ a {
   hr {
     margin-top: 50px;
   }
+
+
+  .loading-screen {
+    .chips-wrap {
+      row-gap: 40px;
+
+      .chip {
+        height: 40px;
+        width: 40px;
+      }
+
+      .loading-logo {
+        padding: 40px;
+
+        svg {
+          height: 117px;
+          width: auto;
+          max-height: 117px;
+        }
+      }
+    }
+  }
+
+  @media (max-height: 600px) {
+    .loading-screen {
+
+      .chips-wrap {
+        row-gap: 25px;
+
+        .chip {
+          height: 25px;
+          width: 25px;
+        }
+
+        .loading-logo {
+          padding: 20px;
+
+          svg {
+            height: 30vh;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 600px) {
@@ -309,5 +452,26 @@ a {
 
   hr {
     margin-top: 25px;
+  }
+
+  .loading-screen {
+
+    .chips-wrap {
+      row-gap: 25px;
+
+      .chip {
+        height: 25px;
+        width: 25px;
+      }
+
+      .loading-logo {
+        padding: 20px;
+
+        svg {
+          height: 30vh;
+          width: auto;
+        }
+      }
+    }
   }
 }

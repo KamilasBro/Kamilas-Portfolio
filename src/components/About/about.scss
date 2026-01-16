@@ -43,6 +43,35 @@
   }
 }
 
+//intersection observer
+.about-content-wrap {
+  $transitionDuration: 300ms;
+  $transitionDelay: 75ms;
+
+  div {
+    transition: transform $transitionDuration, opacity calc($transitionDuration*2);
+
+    &:first-child {
+      transition-delay: $transitionDelay;
+
+      &.not-in-view {
+        transform: translatex(-50px);
+        opacity: 0%;
+      }
+    }
+
+    &:last-child {
+      transition-delay: $transitionDelay*2;
+
+      &.not-in-view {
+        transform: translatex(50px);
+        opacity: 0%;
+      }
+    }
+
+  }
+}
+
 @media(max-width: 1440px) {
   .about {
     .easter-egg-hint {
