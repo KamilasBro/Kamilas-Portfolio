@@ -1,10 +1,5 @@
 @import "../../scssPartials/_colors";
 
-.projects {
-    margin-top: 200px;
-}
-
-
 .project-card-wrap,
 .project-card-wrap-reverse {
     position: relative;
@@ -51,6 +46,7 @@
     .project-title {
         font-size: 28px;
         font-weight: 400;
+      
 
         .subtitle {
             background: $lightGradient;
@@ -182,6 +178,7 @@
         h3 {
             font-size: 24px;
             font-weight: 400;
+          
         }
 
         .stack-list {
@@ -377,10 +374,6 @@
 }
 
 @media (max-width: 1024px) {
-    .projects {
-        margin-top: 175px;
-    }
-
     .projects-container {
         margin-top: 40px;
         display: block;
@@ -663,10 +656,6 @@
 }
 
 @media (max-width: 800px) {
-    .projects {
-        margin-top: 125px;
-    }
-
     .projects-container {
         margin-top: 35px;
     }
@@ -758,10 +747,6 @@
 }
 
 @media (max-width: 600px) {
-    .projects {
-        margin-top: 75px;
-    }
-
     .projects-container {
         margin-top: 25px;
     }

@@ -6,14 +6,17 @@
   justify-content: space-between;
   flex-wrap: wrap-reverse;
 
+
   .home-slogan {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
 
+
     h1 {
       font-weight: 600;
       font-size: 48px;
+
 
       span {
         background: linear-gradient(90deg, $pink 0%, $purple 100%);

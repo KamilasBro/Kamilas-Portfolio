@@ -1,18 +1,6 @@
 //components css files are inside components folders
 @import "./scssPartials/_colors";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-@keyframes titleAnim {
-  from {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Exo+2:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&family=Share+Tech+Mono&family=Space+Grotesk:wght@300..700&display=swap');
 
 // to bypass darkmodes ingeretion by browsers
 :root {
@@ -30,7 +18,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Exo 2", sans-serif;
   margin: 0;
   background-color: $black;
   background-repeat: no-repeat;
@@ -67,136 +55,15 @@ body::-webkit-scrollbar-thumb:hover {
   background: $purple;
 }
 
-
-//loading screen
-.loading-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-
-  height: 100%;
-  width: 100%;
-
-  position: fixed;
-  z-index: 10;
-  top: 0;
-
-  background-color: $black;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  background-image:
-    radial-gradient(circle at center, $borderColor 1px, transparent 2px),
-    radial-gradient(circle at center, $darkGray 0.66px, transparent 1.5px);
-
-  background-size: 80px 80px, 40px 40px, 40px 40px;
-  background-position: -20px -20px, 0px 0px, 20px 20px;
-  background-repeat: repeat, repeat, repeat;
-
-
-  .chips-wrap {
-    display: flex;
-    flex-direction: column;
-    row-gap: 50px;
-
-    .chip {
-      background-color: $black;
-      height: 50px;
-      width: 50px;
-      border: 2px solid $projectsPath;
-      border-radius: 5px;
-      z-index: 1;
-
-      &:first-child {
-        align-self: flex-end;
-      }
-    }
-
-    .loading-logo {
-      position: relative;
-      padding: 50px;
-      z-index: 3;
-
-
-      svg {
-        height: 176px;
-        width: auto;
-        max-height: 176px;
-        max-width: auto;
-
-        transition: filter 500ms;
-        filter: grayscale(55%);
-
-        &.active {
-          filter: grayscale(0%) drop-shadow(0px 0px 10px $glow);
-        }
-      }
-    }
-  }
-
-  .loading-paths,
-  .border-paths,
-  .ball {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    isolation: isolate;
-
-    path {
-      stroke: $projectsPath;
-      fill: none;
-      stroke-width: 2px;
-    }
-  }
-
-  .ball {
-    z-index: 2;
-
-    circle {
-      r: 4;
-      fill: $pink;
-    }
-  }
-}
-
-@media (max-height: 600px) {
-  .loading-screen {
-
-    .chips-wrap {
-      row-gap: 25px;
-
-      .chip {
-        height: 25px;
-        width: 25px;
-      }
-
-      .loading-logo {
-        padding: 20px;
-
-        svg {
-          height: 30vh;
-          width: auto;
-        }
-      }
-    }
-  }
-}
-
-
 main {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 265px;
+  row-gap: 300px;
 }
 
-section,
-hr {
+section {
   width: 1170px;
 }
 
@@ -215,17 +82,10 @@ p {
   margin: 0px;
 }
 
-hr {
-  margin-top: 100px;
-
-  border: 1px solid $borderColor;
-  border-radius: 100%;
-  filter: drop-shadow(0px 0px 10px $glow);
-}
-
 .section-title {
   font-weight: 600;
   font-size: 46px;
+
 }
 
 textarea:focus,
@@ -236,7 +96,7 @@ button:focus {
 
 textarea,
 input {
-  font-family: "Poppins", sans-serif;
+  font-family: "Exo 2", sans-serif;
   background-color: transparent;
   color: $white;
 
@@ -262,7 +122,7 @@ button {
   background-color: transparent;
   color: $white;
 
-  font-family: "Poppins", sans-serif;
+
 }
 
 a {
@@ -290,20 +150,8 @@ a {
 
 
 @media (max-width: 1440px) {
-  @keyframes titleAnim {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
 
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  section,
-  hr {
+  section{
     width: 940px;
   }
 
@@ -313,24 +161,12 @@ a {
 }
 
 @media (max-width: 1024px) {
-  @keyframes titleAnim {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   main {
     margin-top: 200px;
+    row-gap: 250px;
   }
 
-  section,
-  hr {
+  section {
     width: 724px;
   }
 
@@ -338,40 +174,20 @@ a {
     font-size: 38px;
     text-align: center;
   }
-
-  hr {
-    margin-top: 75px;
-  }
 }
 
 @media (max-width: 800px) {
-  @keyframes titleAnim {
-    from {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   main {
     margin-top: 155px;
+    row-gap: 175px;
   }
 
-  section,
-  hr {
+  section{
     width: 570px;
   }
 
   .section-title {
     font-size: 34px;
-  }
-
-  hr {
-    margin-top: 50px;
   }
 
 
@@ -428,19 +244,15 @@ a {
 
   main {
     margin-top: 110px;
+    row-gap: 100px;
   }
 
-  section,
-  hr {
+  section{
     width: 320px;
   }
 
   .section-title {
     font-size: 24px;
-  }
-
-  hr {
-    margin-top: 25px;
   }
 
   .loading-screen {

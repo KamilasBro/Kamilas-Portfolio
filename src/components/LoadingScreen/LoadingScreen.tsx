@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ReactComponent as LogoSvg } from "../../images/logo/logoGradient.svg";
+import "./loadingScreen.scss"
 export default function LoadingScreen(
     {
         isLoading,

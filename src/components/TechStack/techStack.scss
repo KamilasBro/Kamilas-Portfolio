@@ -1,9 +1,5 @@
 @import "../../scssPartials/_colors";
 
-.tech-stack {
-  margin-top: 200px;
-}
-
 .tech-stack h1 {
   margin-bottom: 50px;
 }
@@ -22,6 +18,8 @@
 
   background: $black;
   padding: 15px;
+  transition: 0ms !important;
+
 }
 
 .tech-stack .pcb::before {
@@ -486,9 +484,6 @@
 }
 
 @media (max-width: 1024px) {
-  .tech-stack {
-    margin-top: 175px;
-  }
 
   .tech-stack h1 {
     margin-bottom: 40px;
@@ -552,9 +547,6 @@
 }
 
 @media (max-width: 800px) {
-  .tech-stack {
-    margin-top: 125px;
-  }
 
   .tech-stack h1 {
     margin-bottom: 35px;
@@ -620,9 +612,6 @@
 }
 
 @media (max-width: 600px) {
-  .tech-stack {
-    margin-top: 75px;
-  }
 
   .tech-stack h1 {
     margin-bottom: 30px;

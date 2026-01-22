@@ -1,7 +1,6 @@
 @import "../../scssPartials/_colors";
 
 .about {
-  margin-top: 200px;
 
   .section-title {
     line-height: 60%;
@@ -94,7 +93,6 @@
 
 @media(max-width: 1024px) {
   .about {
-    margin-top: 175px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,10 +115,6 @@
 }
 
 @media(max-width: 800px) {
-  .about {
-    margin-top: 125px;
-  }
-
   .about-content-wrap {
     margin-top: 35px;
     width: 70%;
@@ -134,10 +128,6 @@
 }
 
 @media(max-width: 600px) {
-  .about {
-    margin-top: 75px;
-  }
-
   .about-content-wrap {
     margin-top: 25px;
     width: 100%;

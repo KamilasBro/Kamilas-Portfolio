@@ -58,7 +58,6 @@ export default function MobileNavbar(props: Props) {
       <div className="socials mobile-navbar-socials">
         <RenderSocials />
       </div>
-      <hr />
     </section>
   );
 }
