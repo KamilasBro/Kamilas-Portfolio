@@ -1,5 +1,5 @@
 import { ReactComponent as LogoSvg } from "../../images/logo/logo.svg";
-import hadleSectionScroll from "../Utilities/HadleSectionScroll";
+import HadleSectionScroll from "../Utilities/HadleSectionScroll";
 import RenderSocials from "../Utilities/RenderSocials";
 
 import navLinks from "../Utilities/NavLinks";
@@ -105,7 +105,7 @@ export default function Navbar() {
             className={`navbar-logo ${currentSection === "home" && "active-section"}`}
             alt="logo"
             onClick={() => {
-              hadleSectionScroll("home")
+              HadleSectionScroll("home")
             }}
           />
           <HamburgerSvg className="hamburger" alt="hamburger" onClick={() => {
@@ -116,7 +116,7 @@ export default function Navbar() {
               <li
                 key={link.sectionName}
                 className={currentSection === link.sectionName ? "active-section" : ""}
-                onClick={() => hadleSectionScroll(link.sectionDestination)}
+                onClick={() => HadleSectionScroll(link.sectionDestination)}
               >
                 {link.displayName}
               </li>
