@@ -16,7 +16,8 @@ import About from "./components/About/About";
 import React, { useState } from "react";
 export default function App() {
   const [isLoading, setIsLoading] = useState(true)
-  const [freeze, setFreeze] = useState(false)
+  // const [freeze, setFreeze] = useState(false)
+  const freeze = false;
   return (
     <>
       {isLoading && <LoadingScreen isLoading={isLoading} setisLoading={setIsLoading} />}
