@@ -1,4 +1,4 @@
-export default function hadleScroll(element: string) {
+export default function HandleSectionScroll(element: string) {
   if (element === "home") {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
