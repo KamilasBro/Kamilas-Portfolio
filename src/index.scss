@@ -1,6 +1,6 @@
 //components css files are inside components folders
 @import "./scssPartials/_colors";
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Exo+2:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&family=Share+Tech+Mono&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
 
 // to bypass darkmodes ingeretion by browsers
 :root {
@@ -84,7 +84,8 @@ p {
 
 .section-title {
   font-weight: 600;
-  font-size: 46px;
+  font-size: 40px;
+  font-family: "Orbitron", sans-serif;
 
 }
 
@@ -121,8 +122,7 @@ button {
   border: none;
   background-color: transparent;
   color: $white;
-
-
+  font-family: "Orbitron", sans-serif;
 }
 
 a {
@@ -150,13 +150,16 @@ a {
 
 
 @media (max-width: 1440px) {
-
-  section{
+  section {
     width: 940px;
   }
 
+  main {
+    row-gap: 275px;
+  }
+
   .section-title {
-    font-size: 42px;
+    font-size: 38px;
   }
 }
 
@@ -171,7 +174,7 @@ a {
   }
 
   .section-title {
-    font-size: 38px;
+    font-size: 34px;
     text-align: center;
   }
 }
@@ -182,12 +185,12 @@ a {
     row-gap: 175px;
   }
 
-  section{
+  section {
     width: 570px;
   }
 
   .section-title {
-    font-size: 34px;
+    font-size: 30px;
   }
 
 
@@ -247,12 +250,12 @@ a {
     row-gap: 100px;
   }
 
-  section{
+  section {
     width: 320px;
   }
 
   .section-title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .loading-screen {

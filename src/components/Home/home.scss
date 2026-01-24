@@ -11,11 +11,11 @@
     display: flex;
     flex-direction: column;
     row-gap: 5px;
-
+    font-family: "Orbitron", "Sans-serif";
 
     h1 {
       font-weight: 600;
-      font-size: 48px;
+      font-size: 42px;
 
 
       span {
@@ -28,7 +28,7 @@
 
     h2 {
       font-weight: 500;
-      font-size: 36px;
+      font-size: 30px;
 
       span {
         color: $pink;
@@ -37,7 +37,7 @@
 
     h4 {
       font-weight: 500;
-      font-size: 28px;
+      font-size: 24px;
 
       color: $gray;
     }
@@ -55,8 +55,8 @@
   }
 
   .home-logo {
-    width: 341px;
-    height: 400px;
+    width: auto;
+    height: 350px;
 
     animation: logoGlow 2s infinite alternate ease-in;
   }
@@ -66,22 +66,21 @@
   .home {
     .home-slogan {
       h1 {
-        font-size: 44px;
+        font-size: 38px;
       }
 
       h2 {
-        font-size: 32px;
+        font-size: 28px;
       }
 
       h4 {
-        font-size: 24px;
+        font-size: 22px;
       }
 
     }
 
     .home-logo {
-      width: 277px;
-      height: 325px;
+      height: 300px;
     }
   }
 }
@@ -90,21 +89,20 @@
   .home {
     .home-slogan {
       h1 {
-        font-size: 40px;
+        font-size: 34px;
       }
 
       h2 {
-        font-size: 28px;
+        font-size: 24px;
       }
 
       h4 {
-        font-size: 20px;
+        font-size: 18px;
       }
 
     }
 
     .home-logo {
-      width: 213px;
       height: 250px;
     }
   }
@@ -114,22 +112,21 @@
   .home {
     .home-slogan {
       h1 {
-        font-size: 32px;
+        font-size: 28px;
       }
 
       h2 {
-        font-size: 22px;
+        font-size: 18px;
       }
 
       h4 {
-        font-size: 16px;
+        font-size: 13px;
       }
 
     }
 
     .home-logo {
-      width: 150px;
-      height: 176px;
+      height: 175px;
     }
   }
 }
@@ -153,13 +150,12 @@
       }
 
       h4 {
-        font-size: 12px;
+        font-size: 14px;
       }
     }
 
     .home-logo {
-      width: 185px;
-      height: 217px;
+      height: 200px;
     }
   }
 

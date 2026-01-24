@@ -46,7 +46,7 @@
     .project-title {
         font-size: 28px;
         font-weight: 400;
-      
+        font-family: "Orbitron", sans-serif;
 
         .subtitle {
             background: $lightGradient;
@@ -178,7 +178,7 @@
         h3 {
             font-size: 24px;
             font-weight: 400;
-          
+            font-family: "Orbitron", sans-serif;
         }
 
         .stack-list {
@@ -567,7 +567,7 @@
             line-height: 1.5;
             height: max-content;
             align-items: center;
-
+            font-family: "Orbitron", sans-serif;
 
             position: sticky;
             top: 50%;
@@ -591,7 +591,7 @@
 
         .project-description,
         .project-stack {
-            padding: 15px;
+            padding: 30px 15px;
         }
     }
 
@@ -756,7 +756,7 @@
         row-gap: 5px;
 
         .project-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 400;
             text-align: center;
         }

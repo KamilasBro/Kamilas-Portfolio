@@ -9,7 +9,7 @@
   position: fixed;
   z-index: 2;
   top: 0;
-  padding: 17px;
+  padding: 15px;
 
   width: 100%;
 
@@ -28,7 +28,7 @@
 
     .navbar-logo {
       cursor: pointer;
-      width: 56px;
+      width: 50px;
       height: auto;
 
       transition: filter 1000ms;
@@ -54,8 +54,8 @@
 
       li {
         cursor: pointer;
-
-        font-size: 18px;
+        font-family: "Orbitron", sans-serif;
+        font-size: 16px;
         font-weight: 500;
 
         transition: color 300ms;
@@ -89,6 +89,18 @@
   .navbar {
     .inner-navbar {
       width: 940px;
+
+      .navbar-logo {
+        width: 45px;
+      }
+
+      .navbar-menu {
+        gap: 40px;
+
+        li {
+          font-size: 14px;
+        }
+      }
     }
   }
 }
@@ -115,16 +127,6 @@
 }
 
 @media (max-width: 800px) {
-  @keyframes navbarAnim {
-    0% {
-      transform: translateY(0);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  }
-
   .navbar {
     padding-block: 12px;
 

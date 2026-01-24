@@ -106,9 +106,10 @@
       row-gap: 30px;
 
       li {
+        font-family: "Orbitron", sans-serif;
         cursor: pointer;
 
-        font-size: 22px;
+        font-size: 18px;
 
         &.active-section {
           color: $purple;
@@ -164,7 +165,7 @@
       padding: 35px;
 
       li {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
 
@@ -200,7 +201,7 @@
       padding: 30px;
 
       li {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
 

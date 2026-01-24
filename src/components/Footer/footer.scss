@@ -1,14 +1,13 @@
 @import "../../scssPartials/_colors";
 
 footer {
-  
     display: flex;
     align-items: center;
     justify-content: center;
     padding-block: 35px;
     width: 100%;
     box-sizing: border-box;
-
+    font-family: "Orbitron", sans-serif;
     margin-top: 125px;
 
     background-color: $black;
@@ -22,7 +21,7 @@ footer {
         width: 1170px;
 
         .copyright {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
 
             span {
@@ -36,8 +35,8 @@ footer {
 
             li {
                 cursor: pointer;
-
                 transition: color 300ms;
+                font-size: 16px;
 
                 &:hover {
                     color: $pink;
@@ -47,7 +46,7 @@ footer {
 
         .footer-socials {
             display: flex;
-            column-gap: 15px;
+            column-gap: 5px;
 
             a {
                 height: 35px;
@@ -60,6 +59,18 @@ footer {
 @media (max-width: 1440px) {
     footer .inner-footer {
         width: 940px;
+
+        .copyright {
+            font-size: 14px;
+        }
+
+        .footer-menu {
+            gap: 40px;
+
+            li {
+                font-size: 14px;
+            }
+        }
     }
 }
 
@@ -74,8 +85,19 @@ footer {
 
             width: 724px;
 
+            .copyright {
+                font-size: 18px;
+            }
+
             .footer-menu {
-                column-gap: 40px;
+                li {
+                    font-size: 16px;
+                }
+            }
+
+            .footer-socials {
+                display: flex;
+                column-gap: 20px;
             }
         }
     }
@@ -91,8 +113,16 @@ footer {
 
             width: 570px;
 
+            .copyright {
+                font-size: 16px;
+            }
+
             .footer-menu {
-                row-gap: 35px;
+                gap: 35px;
+
+                li {
+                    font-size: 14px;
+                }
             }
         }
     }
@@ -109,14 +139,14 @@ footer {
             padding-block: 25px;
 
             .copyright {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .footer-menu {
-                column-gap: 25px;
+                gap: auto;
 
                 li {
-                    font-size: 14px;
+                    font-size: 11px;
                 }
             }
         }
