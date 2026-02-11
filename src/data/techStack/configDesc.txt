@@ -1,0 +1,10 @@
+Default config should look like this
+
+{
+  "elements": {
+
+  },
+  "translateLimits": {
+
+  }
+}

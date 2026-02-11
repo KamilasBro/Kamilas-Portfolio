@@ -12,20 +12,28 @@ import TechStack from "./components/TechStack/TechStack";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 
-
-import React, { useState } from "react";
+import { useState } from "react";
 export default function App() {
   const [isLoading, setIsLoading] = useState(true)
-  // const [freeze, setFreeze] = useState(false)
-  const freeze = false;
+  const [freeze, setFreeze] = useState(false)
   return (
     <>
-      {isLoading && <LoadingScreen isLoading={isLoading} setisLoading={setIsLoading} />}
+      {isLoading &&
+        <LoadingScreen
+          isLoading={isLoading}
+          setisLoading={setIsLoading}
+          gap={12}
+        />}
       <Navbar />
       <main>
         {!isLoading && <Home />}
         <Projects />
-        <TechStack />
+        <TechStack
+          buildMode={false}
+          setFreeze={setFreeze}
+          gridGap={60}
+          pathGap={8}
+        />
         <Contact />
         <About />
       </main>

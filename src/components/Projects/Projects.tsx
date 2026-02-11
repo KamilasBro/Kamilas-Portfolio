@@ -163,7 +163,7 @@ export default function Projects() {
         className="section-title"
       />
       <div
-        className={`projects-container ${!inView ? "not-in-view":""}`}
+        className={`projects-container ${!inView ? "not-in-view" : ""}`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchCancel}
@@ -244,7 +244,7 @@ export default function Projects() {
         (if we choose to glitch always on mobile, we could visibly see the glitching even if card was folded,
         and i didn't want to do weird opacity or conditional rendering for that)
         */}
-        <div className={`project-card2 ${isMobile ? (showMore ? "show" : "hide"):""}`}
+        <div className={`project-card2 ${isMobile ? (showMore ? "show" : "hide") : ""}`}
           style={isMobile && foldTransition.status ? { transition: `${foldTransition.duration}ms` } : {}}>
           {isMobile && <>
             <div className={`project-show-hide-panel ${showMore ? "show" : "hide"}`}

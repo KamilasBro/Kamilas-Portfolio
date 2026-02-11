@@ -202,7 +202,7 @@ export default function RandomPaths({
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-        ctx.lineJoin = "round";
+        ctx.lineJoin = "bevel";
         ctx.lineCap = "round";
 
         function spawnIfNeeded(simNow: number) {

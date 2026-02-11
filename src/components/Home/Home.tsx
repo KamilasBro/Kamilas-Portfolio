@@ -17,7 +17,7 @@ export default function Home() {
     if (inView) {
       PowerGlitch.glitch('.home-logo', {
         timing: {
-          duration: 1500,
+          duration: 750,
           iterations: 1,
         },
         glitchTimeSpan: {
@@ -26,8 +26,8 @@ export default function Home() {
         },
         shake: {
           velocity: 15,
-          amplitudeX: 0.05,
-          amplitudeY: 0,
+          amplitudeX: 0.2,
+          amplitudeY: 0.1,
         },
         slice: {
           count: 3,
@@ -39,6 +39,60 @@ export default function Home() {
         hideOverflow: true,
         createContainers: false,
       });
+      setTimeout(() => {
+        PowerGlitch.glitch('.home-logo', {
+          timing: {
+            duration: 150,
+            iterations: 1,
+          },
+          glitchTimeSpan: {
+            start: 0,
+            end: 0.9,
+          },
+          shake: {
+            velocity: 15,
+            amplitudeX: 0.2,
+            amplitudeY: 0.1,
+          },
+          slice: {
+            count: 5,
+            velocity: 25,
+            minHeight: 1,
+            maxHeight: 1,
+            cssFilters: 'blur(1px)',
+          },
+          hideOverflow: true,
+          createContainers: false,
+        });
+
+      }, 850);
+      setTimeout(() => {
+        PowerGlitch.glitch('.home-logo', {
+          timing: {
+            duration: 100,
+            iterations: 1,
+          },
+          glitchTimeSpan: {
+            start: 0,
+            end: 0.9,
+          },
+          shake: {
+            velocity: 15,
+            amplitudeX: 0.2,
+            amplitudeY: 0.1,
+          },
+          slice: {
+            count: 5,
+            velocity: 25,
+            minHeight: 1,
+            maxHeight: 1,
+            cssFilters: 'blur(1px)',
+          },
+          hideOverflow: true,
+          createContainers: false,
+        });
+
+      }, 1100);
 
       const sloganTyped = new Typed(sloganRef.current, {
         strings: [

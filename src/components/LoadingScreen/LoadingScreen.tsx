@@ -5,9 +5,11 @@ export default function LoadingScreen(
     {
         isLoading,
         setisLoading,
+        gap,
     }: {
         isLoading: boolean;
         setisLoading: React.Dispatch<React.SetStateAction<boolean>>;
+        gap: number;
     }
 ) {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -21,7 +23,6 @@ export default function LoadingScreen(
     const [logoActive, setLogoActive] = useState(false);
     const [canLeaveLoadingScreen, setCanLeaveLoadingScreen] = useState(false);
     const [pageLoaded, setPageLoaded] = useState(false);
-    const gap = 8;
     const computePaths = () => {
         if (!logoRef.current ||
             !topChipRef.current ||

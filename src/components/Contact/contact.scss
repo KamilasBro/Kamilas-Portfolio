@@ -63,13 +63,13 @@
   column-gap: var(--gap);
   margin-top: 50px;
 
+
   .input-wrap {
     position: relative;
     background-color: $transparentBlack;
     border-radius: var(--radius);
     display: flex;
     align-items: center;
-
 
     &::before {
       border-radius: var(--radius);
@@ -102,7 +102,6 @@
     flex-direction: column;
     row-gap: 25px;
 
-
     width: calc(50% - (var(--gap) / 2));
 
     label {
@@ -114,7 +113,6 @@
     input {
       border-radius: var(--radius);
       width: 100%;
-
       font-size: 20px;
       font-weight: 400;
       line-height: 30px;
@@ -382,7 +380,7 @@
   $transitionDelay: 75ms;
 
   .form-field {
-    transition: transform $transitionDuration, $transitionDuration*2;
+    transition: transform $transitionDuration, opacity calc($transitionDuration*2);
 
     &.name.not-in-view {
       transform: translatex(-50px);
