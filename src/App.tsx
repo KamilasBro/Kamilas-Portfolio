@@ -14,7 +14,7 @@ import About from "./components/About/About";
 
 import { useState } from "react";
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [freeze, setFreeze] = useState(false)
   return (
     <>
@@ -28,12 +28,13 @@ export default function App() {
       <main>
         {!isLoading && <Home />}
         <Projects />
-        <TechStack
+        {<TechStack
           buildMode={false}
           setFreeze={setFreeze}
           gridGap={60}
           pathGap={8}
-        />
+          ballSpeed={800}
+        />}
         <Contact />
         <About />
       </main>
@@ -56,7 +57,8 @@ export default function App() {
             mutateInterval={10}
             mutateChancePercent={80}
             fillColor="rgba(255, 0, 153, 0.4)"
-            charSet={["诶", "比", "西", "迪", "伊", "吉", "艾", "杰", "开", "哦", "屁", "提", "维"]} />
+            charSet={["诶", "比", "西", "迪", "伊", "吉", "艾", "杰", "开", "哦", "屁", "提", "维"]}
+          />
         </>}
     </>
   );

@@ -121,7 +121,7 @@
             transform: translate(-50%, -50%);
             padding: 35px;
             border-radius: 10px;
-            background-color: $black;
+            background-color: $transparentBlack;
 
             &::before {
                 content: "";
@@ -143,18 +143,18 @@
         }
 
         .pcb-world {
-            transform-origin: 0;
+            transform-origin: 0 0;
+
+            contain: layout style; //prevents the world elements from jumping after zooming
 
             .section-name {
                 border: 3px solid $darkPurple;
-                width: max-content;
                 font-size: 24px;
                 font-weight: 600;
                 font-family: "Orbitron";
                 padding: 15px 30px;
                 border-radius: 10px;
-                background-color: $black;
-                box-sizing: border-box;
+                background-color: $transparentBlack;
                 position: absolute;
             }
 
@@ -180,26 +180,18 @@
                         justify-self: end;
                     }
 
-                    &.path-top {
-                        align-self: flex-start;
-                    }
-
-                    &.path-bottom {
-                        align-self: flex-end;
-                    }
-
                     &>div {
                         border-radius: 10px;
                         border-style: solid;
                         border-color: $projectsPath;
                         box-sizing: border-box;
-                        background: $black;
+
+                        background-color: $transparentBlack;
                         cursor: pointer;
                         -webkit-user-drag: none;
                         -khtml-user-drag: none;
                         -moz-user-drag: none;
                         -o-user-drag: none;
-                        user-drag: none;
 
                         img {
                             border-radius: 5px;
@@ -207,7 +199,6 @@
                             -khtml-user-drag: none;
                             -moz-user-drag: none;
                             -o-user-drag: none;
-                            user-drag: none;
                         }
                     }
                 }
@@ -241,7 +232,7 @@
                     width: max-content;
                     height: max-content;
                     align-items: center;
-                    align-self: self-start;
+                    justify-self: flex-start;
 
                     font-size: 11px;
 
@@ -299,39 +290,202 @@
 }
 
 //Build Mode
-.nodes-wrap.build-mode {
-    box-sizing: border-box;
-    background-color: $darkGray;
+.pcb .pcb-world {
+    .section-name.build-mode:hover {
+        background-color: rgba(110, 110, 110, 0.5);
+    }
 
-    &:hover {
-        background-color: $gray;
+    .nodes-wrap.build-mode {
+        box-sizing: border-box;
+        background-color: rgba(46, 46, 46, 0.5);
+
+        &:hover {
+            background-color: rgba(110, 110, 110, 0.5);
+        }
     }
 }
-
-.section-name.build-mode:hover {
-    background-color: $gray !important;
-}
-
 
 //pcb paths
-.pcb-paths {
-    position: absolute;
-    fill: none;
-    stroke: $projectsPath;
-    stroke-linejoin: bevel;
-    z-index: 2;
+.pcb .pcb-world {
+    .nodes-wrap .node-wrap {
+        &.path-direction-top {
+            align-self: flex-start;
+        }
 
-    width: 1px;
-    height: 1px;
+        &.path-direction-bottom {
+            align-self: flex-end;
+        }
 
-    overflow: visible;
+        @keyframes techstackPowerOnBorder {
+            0% {
+                border-color: $projectsPath;
+            }
 
-    .path-section {
-        stroke-width: 3px;
+            25% {
+                border-color: rgba(255, 0, 153, 0.60);
+                box-shadow: (0px 0px 1px $glow);
+            }
+
+            50% {
+                border-color: $projectsPath;
+                box-shadow: none;
+            }
+
+            75% {
+                border-color: rgba(255, 0, 153, 0.70);
+                box-shadow: (0px 0px 2px $glow);
+            }
+
+            85% {
+                border-color: rgba(255, 0, 153, 0.85);
+                box-shadow: (0px 0px 4px $glow);
+            }
+
+            /* stable full power */
+            100% {
+                border-color: $pink;
+                box-shadow: (0px 0px 5px $glow);
+            }
+        }
+
+        @keyframes techStackPowerOnImg {
+
+            /* start dim */
+            0% {
+                filter: grayscale(100%);
+            }
+
+            25% {
+                filter: grayscale(30%);
+            }
+
+            50% {
+                filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
+            }
+
+            75% {
+                filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
+            }
+
+            85% {
+                filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
+            }
+
+            100% {
+                filter: drop-shadow(0px 0px 2px $glow);
+            }
+        }
+
+        //duplicate is necessary for DOM
+        @keyframes techstackPowerOnBorderReverse {
+            0% {
+                border-color: $projectsPath;
+            }
+
+            25% {
+                border-color: rgba(255, 0, 153, 0.60);
+                box-shadow: (0px 0px 1px $glow);
+            }
+
+            50% {
+                border-color: $projectsPath;
+                box-shadow: none;
+            }
+
+            75% {
+                border-color: rgba(255, 0, 153, 0.70);
+                box-shadow: (0px 0px 2px $glow);
+            }
+
+            85% {
+                border-color: rgba(255, 0, 153, 0.85);
+                box-shadow: (0px 0px 4px $glow);
+            }
+
+            /* stable full power */
+            100% {
+                border-color: $pink;
+                box-shadow: (0px 0px 5px $glow);
+            }
+        }
+
+        @keyframes techStackPowerOnImgReverse {
+
+            /* start dim */
+            0% {
+                filter: grayscale(100%);
+            }
+
+            25% {
+                filter: grayscale(30%);
+            }
+
+            50% {
+                filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
+            }
+
+            75% {
+                filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
+            }
+
+            85% {
+                filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
+            }
+
+            100% {
+                filter: drop-shadow(0px 0px 2px $glow);
+            }
+        }
+
+        .main-node,
+        .sub-node {
+            img {
+                filter: grayscale(100%)
+            }
+
+            &.active {
+                animation: techstackPowerOnBorder 500ms forwards;
+
+                & img {
+                    animation: techStackPowerOnImg 500ms forwards;
+                }
+            }
+
+            &.deactivating {
+                animation: techstackPowerOnBorderReverse 500ms reverse;
+
+                & img {
+                    animation: techStackPowerOnImgReverse 500ms reverse;
+                }
+            }
+        }
     }
 
-    .node-section,
-    .subNode-section {
-        stroke-width: 2px;
+    .pcb-paths {
+        position: absolute;
+        fill: none;
+        stroke: $projectsPath;
+        stroke-linejoin: bevel;
+        z-index: -1;
+
+        width: 1px;
+        height: 1px;
+
+        overflow: visible;
+
+        .ball {
+            fill: $pink;
+            stroke: none;
+            r: 3;
+        }
+
+        .path-section {
+            stroke-width: 3px;
+        }
+
+        .node-section,
+        .subNode-section {
+            stroke-width: 2px;
+        }
     }
 }

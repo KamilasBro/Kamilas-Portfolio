@@ -230,7 +230,7 @@
     }
 
     &.form-status-submitting {
-      @keyframes powerOnBorder {
+      @keyframes contactPowerOnBorder {
         0% {
           border-color: rgba(255, 0, 153, 0.5);
         }
@@ -261,7 +261,7 @@
         }
       }
 
-      @keyframes PowerOnImgAndText {
+      @keyframes contactPowerOnImgAndText {
         0% {
           filter: grayscale(100%);
           color: $gray;
@@ -293,11 +293,11 @@
         }
       }
 
-      animation: powerOnBorder 1500ms infinite alternate;
+      animation: contactPowerOnBorder 1500ms infinite alternate;
 
       svg,
       p {
-        animation: PowerOnImgAndText 1500ms infinite alternate;
+        animation: contactPowerOnImgAndText 1500ms infinite alternate;
       }
     }
 

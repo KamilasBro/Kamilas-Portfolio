@@ -4,6 +4,7 @@ import { PowerGlitch } from 'powerglitch';
 import React, { useState, useRef, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import projects from "../../data/projects/projects.json";
+import getTechStackImg from '../Utilities/getTechStackImg';
 import linkSvg from "../../images/projects/link.svg"
 import figmaSvg from "../../images/projects/figma.svg"
 import githubSvg from "../../images/projects/github.svg"
@@ -265,9 +266,7 @@ export default function Projects() {
               <ul className="stack-list ">
                 {projects[currentProject].buildStack.map((stackEle, index) =>
                   <li key={stackEle + index} className="stack-element">
-                    <img
-                      src={require(`../../images/techStack/${stackEle.trim().toLowerCase().replace(/\s/g, '')}.svg`)}
-                      alt={stackEle}></img>
+                    {getTechStackImg(stackEle)}
                     <span>{stackEle}</span>
                   </li>)}
               </ul>

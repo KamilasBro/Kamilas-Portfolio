@@ -1,36 +1,26 @@
-import React, { useRef, useState, useEffect, useCallback, Dispatch, SetStateAction, useLayoutEffect } from 'react';
+import React, { useRef, useState, useEffect, Dispatch, SetStateAction, useLayoutEffect } from 'react';
+
+import { TechStackEnginePropsInterface } from './Interfaces/Interfaces';
+import { ConfigInterface } from './Interfaces/Interfaces';
 
 import config from "../../data/techStack/config.json";
 
-interface TechStackProps {
-    zoomRange?: {
-        min: number;
-        max: number;
-    };
-    spacingMult?: number;
-    buildMode?: boolean;
-    setFreeze?: Dispatch<SetStateAction<boolean>>;
-}
+//=======================
+//About Engine ==========
+//=======================
 
-interface ConfigInterface {
-    elements?: Record<string, {
-        x: number;
-        y: number;
-    }>,
-    translateLimits?: Partial<{
-        minX: number;
-        maxX: number;
-        minY: number;
-        maxY: number;
-    }>
-}
+//this file is just for storing massive ammount of functions 
+//outside of render component to make it "cleaner"
+//all stuff here is used in TechStack component
+
+
 
 export default function useTechStackEngine({
     zoomRange = { min: 0.5, max: 2.5 },
     spacingMult = 50,
-    buildMode = false,
-    setFreeze = (prev) => !prev
-}: TechStackProps) {
+    buildMode,
+    setFreeze
+}: TechStackEnginePropsInterface) {
 
     //=======================
     //Build Mode (Dev Only) =
@@ -58,10 +48,10 @@ export default function useTechStackEngine({
                 const height = el.clientHeight / scale;
 
                 return {
-                    minX: Math.min(acc.minX, pos.x),
-                    minY: Math.min(acc.minY, pos.y),
-                    maxX: Math.max(acc.maxX, pos.x + width),
-                    maxY: Math.max(acc.maxY, pos.y + height),
+                    minX: Math.min(acc.minX, Math.trunc(pos.x)),
+                    minY: Math.min(acc.minY, Math.trunc(pos.y)),
+                    maxX: Math.max(acc.maxX, Math.trunc(pos.x + width)),
+                    maxY: Math.max(acc.maxY, Math.trunc(pos.y + height))
                 };
             },
             { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
@@ -127,8 +117,9 @@ export default function useTechStackEngine({
         id?: string;
     }>(null);
 
-    //Paths component needs to wait until all INIT is done
-    const [renderPaths, setRenderPaths] = useState(false);
+
+    //Paths states
+    const [initLoaded, setInitLoaded] = useState(false);
 
     //Both are loading from config file
     //limits of transforming world
@@ -151,14 +142,8 @@ export default function useTechStackEngine({
     //=======================
     //INIT ==================
     //=======================
-    useEffect(() => {
-        if (!viewportRef.current) return;
-
-        // If config is empty object or has no meaningful keys -> do nothing (use defaults)
-        if (!config.elements) {
-            // nothing to apply
-            return;
-        }
+    useLayoutEffect(() => {
+        if (!viewportRef.current || !worldRef.current || !config.elements) return;
 
         Object.keys(config.elements).forEach(id => {
             const el = document.querySelector(`[data-id="${id}"]`) as HTMLElement | null;
@@ -173,52 +158,11 @@ export default function useTechStackEngine({
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         setTranslateWorld({ x: centerX, y: centerY });
-        !buildMode && setRenderPaths(true);
+
+        //make sure that paths component is ready 
+        //in buildmode the paths are rendered on toggling button
+        !buildMode && setInitLoaded(true);
     }, []);
-
-    //to adjust number of columns in grid based of elements inside stack array
-    const getColumns = (count: number): number => {
-        if (count < 2) return count;
-
-        const sqrt = Math.sqrt(count);
-        for (let cols = Math.ceil(sqrt); cols <= count; cols++) {
-            return cols;
-        }
-        // fallback, jeśli pętla nie zwróci
-        return Math.ceil(sqrt);
-    };
-    
-    /*we manipulate order of original array to create snake layout
-    (currently manipulating only order of paths so stack render is intact)
-    for stack in left side of world we alternate only even rows
-    1 2 3   =>  3 2 1
-    4 5 6       4 5 6
-    7 8 9   =>  9 8 7
-    for stack in right side of world we alternate only odd rows
-    1 2 3       1 2 3
-    4 5 6   =>  6 5 4
-    7 8 9       7 8 9
-
-    however elements render is using only pathDirection purerly in class for scss styling
-    */
-    const snakeGrid = <T,>(target: T[], i: number, alternateEvenOdd?: boolean) => {
-        const columns = getColumns(target.length);
-        const row = Math.floor(i / columns);
-        const indexInRow = i % columns;
-
-        const displayIndex =
-            ((row % 2 === 0) !== alternateEvenOdd)
-                ? row * columns + (columns - indexInRow - 1)
-                : i;
-
-        return {
-            displayIndex,
-            node: target[displayIndex],
-            pathDirection: row % 2 === 0 ? "bottom" : "top",
-            row,
-        };
-    };
-
 
     //=======================
     //FULL SCREEN ===========
@@ -281,7 +225,7 @@ export default function useTechStackEngine({
     }, [fullScreen, toggleFullScreen]);
 
     //disable scroll visibility on fullscreen
-    useEffect(() => {
+    useLayoutEffect(() => {
         const html = document.documentElement;
 
         if (fullScreen) {
@@ -328,7 +272,7 @@ export default function useTechStackEngine({
         let newX = e.clientX - dragStart.current.x;
         let newY = e.clientY - dragStart.current.y;
 
-        // jeśli mamy translateLimits, ograniczamy ruch
+        //if translation limits are present we limit the drag world
         if (!buildMode && translateLimits) {
             const limitKeys: (keyof NonNullable<ConfigInterface["translateLimits"]>)[] = [
                 "minX", "maxX", "minY", "maxY"
@@ -449,33 +393,28 @@ export default function useTechStackEngine({
         setDragMode(null);
     };
     return {
-        // ===== refs =====
+        //REFS
         worldRef,
         viewportRef,
         logoRef,
 
-        // ===== state =====
+        //STATES
         translateWorld,
         scale,
         fullScreen,
-        renderPaths,
-        setRenderPaths,
 
-        // ===== config / data =====
-        elementPositions,
-        translateLimits,
+        //INIT
+        initLoaded,
+        setInitLoaded,
 
-        // ===== init =====
-        getColumns,
-        snakeGrid,
-
-        // ===== actions / handlers =====
-        handleCopyConfig,
-        handleReset,
+        //HANDLERS
         toggleFullScreen,
-
         handleMouseDown,
         handleMouseMove,
         handleMouseUp,
+
+        //BUILD MODE
+        handleCopyConfig,
+        handleReset,
     };
 }

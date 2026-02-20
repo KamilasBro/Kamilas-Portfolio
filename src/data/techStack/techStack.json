@@ -3,78 +3,35 @@
     "sectionName": "Front-End",
     "stack": [
       {
-        "nodeName": "HTML",
-        "type": "main-node",
-        "svgName": "html"
+        "nodeName": "HTML"
       },
       {
         "nodeName": "CSS",
-        "type": "main-node",
-        "svgName": "css",
         "subnodes": [
           {
-            "nodeName": "SASS/SCSS",
-            "type": "sub-node",
-            "svgName": "scss"
+            "nodeName": "SASS/SCSS"
           },
           {
-            "nodeName": "Bootstrap",
-            "type": "sub-node",
-            "svgName": "bootstrap"
+            "nodeName": "Bootstrap"
           },
           {
-            "nodeName": "Tailwind",
-            "type": "sub-node",
-            "svgName": "tailwind"
-          },
-          {
-            "nodeName": "Tailwin2",
-            "type": "sub-node",
-            "svgName": "tailwind"
-          },
-          {
-            "nodeName": "Tailwind3",
-            "type": "sub-node",
-            "svgName": "tailwind"
-          },
-          {
-            "nodeName": "Tailwind4",
-            "type": "sub-node",
-            "svgName": "tailwind"
-          },
-          {
-            "nodeName": "Tailwind5",
-            "type": "sub-node",
-            "svgName": "tailwind"
-          },
-          {
-            "nodeName": "Tailwind6",
-            "type": "sub-node",
-            "svgName": "tailwind"
+            "nodeName": "Tailwind"
           }
         ]
       },
       {
         "nodeName": "JavaScript",
-        "type": "main-node",
-        "svgName": "javascript",
         "subnodes": [
           {
-            "nodeName": "TypeScript",
-            "type": "sub-node",
-            "svgName": "typescript"
+            "nodeName": "TypeScript"
           }
         ]
       },
       {
         "nodeName": "React",
-        "type": "main-node",
-        "svgName": "react",
         "subnodes": [
           {
-            "nodeName": "React Router",
-            "type": "sub-node",
-            "svgName": "reactrouter"
+            "nodeName": "React Router"
           }
         ]
       }
@@ -84,14 +41,10 @@
     "sectionName": "DevTools",
     "stack": [
       {
-        "nodeName": "Vite",
-        "type": "main-node",
-        "svgName": "vite"
+        "nodeName": "Vite"
       },
       {
-        "nodeName": "GIT",
-        "type": "main-node",
-        "svgName": "git"
+        "nodeName": "GIT"
       }
     ]
   },
@@ -99,14 +52,10 @@
     "sectionName": "UX/UI Design",
     "stack": [
       {
-        "nodeName": "Figma",
-        "type": "main-node",
-        "svgName": "figma"
+        "nodeName": "Figma"
       },
       {
-        "nodeName": "Photoshop",
-        "type": "main-node",
-        "svgName": "photoshop"
+        "nodeName": "Photoshop"
       }
     ]
   },
@@ -115,13 +64,9 @@
     "stack": [
       {
         "nodeName": "WordPress",
-        "type": "main-node",
-        "svgName": "wordpress",
         "subnodes": [
           {
-            "nodeName": "Elementor",
-            "type": "sub-node",
-            "svgName": "elementor"
+            "nodeName": "Elementor"
           }
         ]
       }

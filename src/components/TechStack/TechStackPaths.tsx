@@ -1,29 +1,29 @@
-import React, { useEffect, useMemo, useRef } from "react"
-import techStack from "../../data/techStack/techStack.json";
-import useTechStackEngine from './useTechStackEngine';
+import React, { useEffect, useRef, useLayoutEffect, useState } from "react"
 
-type TechStackPathsProps = {
-    worldRef: React.RefObject<HTMLDivElement>
-    viewportRef: React.RefObject<HTMLDivElement>
-    logoRef: React.RefObject<HTMLDivElement>
-    gridGap: number,
-    pathGap: number
-}
+import { TechStackPathsPropsInterface } from "./Interfaces/Interfaces";
 
 export default function TechStackPaths({
     worldRef,
-    viewportRef,
     logoRef,
     gridGap = 60,
-    pathGap = 8
-}: TechStackPathsProps) {
+    pathGap = 8,
+    snakeGrid,
+    ballSpeed = 800,
+    ballState,
+    setBallState,
+    techStack
+}: TechStackPathsPropsInterface) {
     const gap = pathGap;
-    //empty {} we don't need to pass anything
-    const snakeGrid = useTechStackEngine({}).snakeGrid;
+    const ballRef = useRef<SVGCircleElement>(null);
 
     const calcGap = (length: number, i: number) => {
         return gap * i - gap * (length - 1) / 2;
     }
+
+    const [sectionPaths, setSectionPaths] = useState<Record<string, string>>({});
+    const [nodesPaths, setNodesPaths] = useState<Record<string, string>>({});
+    const [subNodesPaths, setSubNodesPaths] = useState<Record<string, string>>({});
+
     const getCoordsAndSize = (target: DOMRect, worldRect: DOMRect) => {
         return {
             width: target.width,
@@ -56,11 +56,11 @@ export default function TechStackPaths({
         }
     }
 
-    const sectionPaths = useMemo(() => {
+    useLayoutEffect(() => {
         const map: Record<string, string> = {}
         const logoEl = logoRef.current;
         const worldEl = worldRef.current;
-        if (!logoEl || !worldEl) return map;
+        if (!logoEl || !worldEl) return;
 
         const worldRect = worldEl.getBoundingClientRect();
         const logo = getCoordsAndSize(logoEl.getBoundingClientRect(), worldRect);
@@ -79,21 +79,20 @@ export default function TechStackPaths({
                     ? { x: target.bottomCenter.x, y: target.bottomCenter.y }
                     : { x: target.topCenter.x, y: target.topCenter.y }
                 return `
-                    M ${logoStart.x} ${logoStart.y}
-                    L ${targetEnd.x} ${logoStart.y}
-                    L ${targetEnd.x} ${targetEnd.y}
-                    `;
+                        M ${logoStart.x} ${logoStart.y}
+                        L ${targetEnd.x} ${logoStart.y}
+                        L ${targetEnd.x} ${targetEnd.y}
+                        `;
             })();
         });
 
-        return map;
-    }, []);
-
-    const nodesPaths = useMemo(() => {
+        setSectionPaths(map);
+    }, [])
+    useLayoutEffect(() => {
         const map: Record<string, string> = {}
         const worldEl = worldRef.current;
 
-        if (!worldEl) return map;
+        if (!worldEl) return;
 
         const worldRect = worldEl.getBoundingClientRect();
 
@@ -182,14 +181,13 @@ export default function TechStackPaths({
             }
         });
 
-        return map;
-    }, []);
-
-    const subNodesPaths = useMemo(() => {
+        setNodesPaths(map)
+    }, [])
+    useLayoutEffect(() => {
         const map: Record<string, string> = {}
 
         const worldEl = worldRef.current;
-        if (!worldEl) return map;
+        if (!worldEl) return;
         const worldRect = worldEl.getBoundingClientRect();
 
         techStack.forEach((stackSection) => {
@@ -198,8 +196,7 @@ export default function TechStackPaths({
                 const targetNodeEl = worldEl.querySelector(`[data-id="node-${node.nodeName}"]`) as HTMLElement | null;
                 if (!targetNodeEl) return;
                 const targetNode = getCoordsAndSize(targetNodeEl.getBoundingClientRect(), worldRect);
-
-                node.subnodes?.forEach((sub, i) => {
+                node.subnodes?.forEach((sub) => {
 
                     const targetSubNodeEl = worldEl.querySelector(`[data-id="subNode-${sub.nodeName}"]`) as HTMLElement | null;
                     if (!targetSubNodeEl) return;
@@ -304,11 +301,101 @@ export default function TechStackPaths({
             })
         });
 
-        return map;
-    }, []);
+        setSubNodesPaths(map)
+    }, [])
+
+    useEffect(() => {
+        if (!ballState.isActive) return;
+
+        const ball = ballRef.current;
+        const world = worldRef.current;
+        if (!world || !ball) return;
+
+        const paths: SVGPathElement[] = [];
+
+        const sectionPath = world.querySelector(
+            `[data-id="path-${ballState.section}"]`
+        ) as SVGPathElement | null;
+        sectionPath && paths.push(sectionPath);
+
+        if (ballState.parentNode) {
+            const nodePath = world.querySelector(
+                `[data-id="path-${ballState.parentNode}"]`
+            ) as SVGPathElement | null;
+            nodePath && paths.push(nodePath);
+
+            const subPath = world.querySelector(
+                `[data-id="path-${ballState.node}"]`
+            ) as SVGPathElement | null;
+            subPath && paths.push(subPath);
+        } else {
+            const nodePath = world.querySelector(
+                `[data-id="path-${ballState.node}"]`
+            ) as SVGPathElement | null;
+            nodePath && paths.push(nodePath);
+        }
+        if (!paths.length) return;
+
+        const lengths = paths.map(p => p.getTotalLength());
+        const totalLength = lengths.reduce((a, b) => a + b, 0);
+
+        let distance = 0;
+        let lastTime: number | null = null;
+
+        const animate = (time: number) => {
+            if (lastTime === null) {
+                lastTime = time;
+                requestAnimationFrame(animate);
+                return;
+            }
+
+            const deltaTime = (time - lastTime) / 1000;
+            lastTime = time;
+
+            distance += ballSpeed * deltaTime;
+
+            let accumulated = 0;
+
+            for (let i = 0; i < paths.length; i++) {
+                const pathLength = lengths[i];
+
+                if (distance <= accumulated + pathLength) {
+                    const localDistance = distance - accumulated;
+                    const point = paths[i].getPointAtLength(localDistance);
+
+                    ball.setAttribute("cx", point.x.toString());
+                    ball.setAttribute("cy", point.y.toString());
+                    break;
+                }
+
+                accumulated += pathLength;
+            }
+
+            if (distance < totalLength) {
+                requestAnimationFrame(animate);
+            } else {
+                setBallState((prev: any) => ({
+                    ...prev,
+                    isActive: false,
+                    destinationReached: true,
+                }));
+            }
+        };
+
+        const startPoint = paths[0].getPointAtLength(0);
+        ball.setAttribute("cx", startPoint.x.toString());
+        ball.setAttribute("cy", startPoint.y.toString());
+
+        requestAnimationFrame(animate);
+
+    }, [ballState.isActive]);
+
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="pcb-paths">
+            {ballState.isActive &&
+                <circle ref={ballRef} className="ball" />
+            }
             {techStack.map((stackSection, i) => (
                 <React.Fragment key={`path-${stackSection.sectionName}${i}`}>
                     <path
