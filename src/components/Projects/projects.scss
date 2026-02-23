@@ -576,7 +576,7 @@
             img {
                 height: 20px;
                 width: 20px;
-                transition: 300ms;
+                transition: transform 300ms;
             }
 
             img.show {
@@ -718,7 +718,7 @@
 
         .project-description,
         .project-stack {
-            padding: 15px;
+            padding: 30px;
         }
 
         .project-stack {
@@ -779,9 +779,9 @@
 
             //czego to człowiek nie zrobi żeby w jsie nie pisać xd
             iframe.desktop {
+                height: 1080px;
                 width: 415%;
                 max-width: 1920px;
-                height: 1080px;
                 transform: scale(0.24);
             }
 
@@ -824,11 +824,12 @@
 
         .project-description,
         .project-stack {
-            padding: 10px;
+            padding-inline: 10px;
+            padding-block: 20px;
         }
 
         .project-description {
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .project-stack {
