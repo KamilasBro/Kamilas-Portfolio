@@ -12,7 +12,7 @@ import arrowSvg from "../../images/projects/arrow.svg"
 import EncryptText from "../Utilities/EncryptText";
 
 
-export default function Projects() {
+export default function Projects({ isLoading }: { isLoading: boolean }) {
   const [currentProject, setCurrentProject] = useState(0);
   const [viewPortMode, setViewPortMode] = useState<'desktop' | 'mobile'>('desktop');
   const [isMobile, setIsMobile] = useState(false);
@@ -106,7 +106,6 @@ export default function Projects() {
   };
 
   const handleCardFold = () => {
-    ;
     if (foldTransition.status) {
       setTimeout(() => setFoldTransition((prev) => ({
         ...prev,
@@ -160,16 +159,16 @@ export default function Projects() {
       <EncryptText
         text="Projects"
         HTMLtag="h1"
-        encryptInView={inView}
+        encryptInView={inView && !isLoading}
         className="section-title"
       />
       <div
-        className={`projects-container ${!inView ? "not-in-view" : ""}`}
+        className={`projects-container ${(!inView || isLoading) ? "not-in-view" : ""}`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchCancel}
       >
-        <div className={`project-card-wrap ${!inView && "not-in-view"}`}>
+        <div className={`project-card-wrap ${(!inView || isLoading) ? "not-in-view" : ""}`}>
           <div className="project-card1">
             <h2 className="project-title glitch">{projects[currentProject].title}<span className="subtitle">{` | ${projects[currentProject].subtitle}`}</span></h2>
             <div className="iframe-wrap">

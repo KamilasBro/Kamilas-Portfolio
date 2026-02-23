@@ -144,10 +144,11 @@
 @media (max-width: 600px) {
   .navbar {
     padding-block: 10px;
+    padding-inline: 0px;
     width: 100%;
 
     .inner-navbar {
-      margin-inline: 18px;
+      width: 85%;
 
       .hamburger {
         height: 24px;

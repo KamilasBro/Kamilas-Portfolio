@@ -57,8 +57,8 @@ export default function About() {
         text="Something is hidden here, can you find it?"
         HTMLtag="span"
         encryptInView={inView}
-        iterationsRange={2}
         className="easter-egg-hint"
+        iterationsRange={1}
         encryptInterval={8}
       />
       <span hidden>Hey, don't look for clue here, it's cheating!</span>

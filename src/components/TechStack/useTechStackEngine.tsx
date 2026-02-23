@@ -243,8 +243,22 @@ export default function useTechStackEngine({
     }, [fullScreen]);
 
     //=======================
-    //Interactions ==========
+    // Interactions =========
     //=======================
+
+    // ----- Pinch refs -----
+    const activePointers = useRef<Map<number, PointerEvent>>(new Map());
+    const pinchStartDistance = useRef<number | null>(null);
+    const pinchStartScale = useRef<number>(1);
+
+    // ----- Helpers -----
+    const getDistance = (p1: PointerEvent, p2: PointerEvent) =>
+        Math.hypot(p2.clientX - p1.clientX, p2.clientY - p1.clientY);
+
+    const getMidpoint = (p1: PointerEvent, p2: PointerEvent) => ({
+        x: (p1.clientX + p2.clientX) / 2,
+        y: (p1.clientY + p2.clientY) / 2,
+    });
 
     const calculateTranslate = ({
         worldX,
@@ -260,31 +274,31 @@ export default function useTechStackEngine({
         scale: number;
         anchorX: number;
         anchorY: number;
-    }) => {
-        return {
-            x: anchorX - worldX * scale,
-            y: anchorY - worldY * scale,
-        };
-    };
-    const dragWorld = (e: React.MouseEvent) => {
+    }) => ({
+        x: anchorX - worldX * scale,
+        y: anchorY - worldY * scale,
+    });
+
+    const dragWorld = (clientX: number, clientY: number) => {
         if (!viewportRef.current) return;
 
-        let newX = e.clientX - dragStart.current.x;
-        let newY = e.clientY - dragStart.current.y;
+        let newX = clientX - dragStart.current.x;
+        let newY = clientY - dragStart.current.y;
 
-        //if translation limits are present we limit the drag world
         if (!buildMode && translateLimits) {
-            const limitKeys: (keyof NonNullable<ConfigInterface["translateLimits"]>)[] = [
-                "minX", "maxX", "minY", "maxY"
-            ];
+            const limitKeys: (keyof NonNullable<ConfigInterface["translateLimits"]>)[] =
+                ["minX", "maxX", "minY", "maxY"];
+
             if (limitKeys.every(k => k in translateLimits)) {
-                const { minX, maxX, minY, maxY } = translateLimits as Record<typeof limitKeys[number], number>;
+                const { minX, maxX, minY, maxY } =
+                    translateLimits as Record<typeof limitKeys[number], number>;
+
                 const vpWidth = viewportRef.current.clientWidth;
                 const vpHeight = viewportRef.current.clientHeight;
 
                 const calculatedSpacing = {
                     x: vpWidth * spacingMult / 100,
-                    y: vpHeight * spacingMult / 100
+                    y: vpHeight * spacingMult / 100,
                 };
 
                 const minTranslateX = vpWidth - (maxX * scale + calculatedSpacing.x);
@@ -300,7 +314,7 @@ export default function useTechStackEngine({
         setTranslateWorld({ x: newX, y: newY });
     };
 
-    //wheel event listener
+    // Wheel Zoom
     useEffect(() => {
         const viewport = viewportRef.current;
         if (!viewport) return;
@@ -310,15 +324,16 @@ export default function useTechStackEngine({
 
             const zoomSpeed = 0.001;
             const delta = -e.deltaY * zoomSpeed;
-            const newScale = Math.min(Math.max(zoomRange.min, scale + delta), zoomRange.max);
 
-            if (!worldRef.current) return;
+            const newScale = Math.min(
+                Math.max(zoomRange.min, scale + delta),
+                zoomRange.max
+            );
 
             const rect = viewport.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
 
-            // world coords of mouse before zoom
             const worldX = (mouseX - translateWorld.x) / scale;
             const worldY = (mouseY - translateWorld.y) / scale;
 
@@ -331,6 +346,7 @@ export default function useTechStackEngine({
                 anchorX: mouseX,
                 anchorY: mouseY
             });
+
             setScale(newScale);
             setTranslateWorld(newTranslate);
         };
@@ -339,59 +355,131 @@ export default function useTechStackEngine({
         return () => viewport.removeEventListener("wheel", handleWheel);
     }, [scale, translateWorld, zoomRange.max, zoomRange.min]);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
-        if (!buildMode) {
-            setDragMode({ type: "world" });
-            isDragging.current = true;
-            dragStart.current = {
-                x: e.clientX - translateWorld.x,
-                y: e.clientY - translateWorld.y,
-            };
+    // ----- Drag threshold -----
+    const DRAG_THRESHOLD = 5; // pixels
+    const pointerStart = useRef<{ x: number; y: number } | null>(null);
+
+    // Pointer Down
+    const handlePointerDown = (e: React.PointerEvent) => {
+        activePointers.current.set(e.pointerId, e.nativeEvent);
+
+        // ----- PINCH START -----
+        if (activePointers.current.size === 2) {
+            isDragging.current = false;
+            setDragMode(null);
+
+            const [p1, p2] = Array.from(activePointers.current.values());
+            pinchStartDistance.current = getDistance(p1, p2);
+            pinchStartScale.current = scale;
             return;
         }
 
-        const el = (e.target as HTMLElement).closest("[data-draggable]");
-        if (el) {
-            const id = el.getAttribute("data-id")!;
-            setDragMode({ type: "element", id });
+        // ----- SINGLE POINTER -----
+        if (activePointers.current.size === 1) {
+            pointerStart.current = { x: e.clientX, y: e.clientY };
+            isDragging.current = false; // drag will start after threshold
 
-            const worldRect = worldRef.current!.getBoundingClientRect();
+            const el = (e.target as HTMLElement).closest("[data-draggable]");
 
-            // mouse position in world-space
-            const worldX = (e.clientX - worldRect.left - translateWorld.x) / scale;
-            const worldY = (e.clientY - worldRect.top - translateWorld.y) / scale;
+            if (buildMode && el) {
+                const id = el.getAttribute("data-id")!;
+                setDragMode({ type: "element", id });
 
-            const pos = elementPositions[id] ?? { x: 0, y: 0 };
+                const worldRect = worldRef.current!.getBoundingClientRect();
+                const worldX = (e.clientX - worldRect.left - translateWorld.x) / scale;
+                const worldY = (e.clientY - worldRect.top - translateWorld.y) / scale;
+                const pos = elementPositions[id] ?? { x: 0, y: 0 };
 
-            elementOffset.current = {
-                x: worldX - pos.x,
-                y: worldY - pos.y,
-            };
+                elementOffset.current = { x: worldX - pos.x, y: worldY - pos.y };
+            } else {
+                setDragMode({ type: "world" });
+                dragStart.current = { x: e.clientX - translateWorld.x, y: e.clientY - translateWorld.y };
+            }
 
-            isDragging.current = true;
+            if (e.pointerType !== "mouse") e.currentTarget.setPointerCapture(e.pointerId);
+        }
+    };
+
+    // Pointer Move
+    const handlePointerMove = (e: React.PointerEvent) => {
+        if (!activePointers.current.has(e.pointerId)) return;
+        activePointers.current.set(e.pointerId, e.nativeEvent);
+
+        // ----- PINCH -----
+        if (activePointers.current.size >= 2) {
+            const [p1, p2] = Array.from(activePointers.current.values());
+            if (!pinchStartDistance.current || !viewportRef.current) return;
+
+            const rect = viewportRef.current.getBoundingClientRect();
+            const midpoint = getMidpoint(p1, p2);
+
+            const anchorX = midpoint.x - rect.left;
+            const anchorY = midpoint.y - rect.top;
+
+            const worldX = (anchorX - translateWorld.x) / scale;
+            const worldY = (anchorY - translateWorld.y) / scale;
+
+            const newDistance = getDistance(p1, p2);
+            const distanceRatio = newDistance / pinchStartDistance.current;
+
+            const pinchSensitivity = 0.75;
+            const scaleFactor = Math.pow(distanceRatio, pinchSensitivity);
+
+            const rawScale = pinchStartScale.current * scaleFactor;
+            const newScale = Math.min(Math.max(zoomRange.min, rawScale), zoomRange.max);
+
+            const newTranslate = calculateTranslate({
+                viewportWidth: rect.width,
+                viewportHeight: rect.height,
+                worldX,
+                worldY,
+                scale: newScale,
+                anchorX,
+                anchorY,
+            });
+
+            setScale(newScale);
+            setTranslateWorld(newTranslate);
             return;
         }
 
-        // fallback -> world drag
-        setDragMode({ type: "world" });
-        isDragging.current = true;
-        dragStart.current = {
-            x: e.clientX - translateWorld.x,
-            y: e.clientY - translateWorld.y,
-        };
+        // ----- SINGLE DRAG -----
+        if (activePointers.current.size === 1 && pointerStart.current && dragMode) {
+            const dx = e.clientX - pointerStart.current.x;
+            const dy = e.clientY - pointerStart.current.y;
+
+            if (!isDragging.current) {
+                if (Math.hypot(dx, dy) > DRAG_THRESHOLD) {
+                    isDragging.current = true;
+                } else {
+                    return; // small movement -> treat as click
+                }
+            }
+
+            if (dragMode.type === "world") {
+                dragWorld(e.clientX, e.clientY);
+            }
+
+            if (dragMode.type === "element" && dragMode.id && buildMode) {
+                dragElement(e, dragMode.id);
+            }
+        }
     };
 
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging.current || !dragMode) return
+    // Pointer Up / Cancel
+    const handlePointerUp = (e: React.PointerEvent) => {
+        activePointers.current.delete(e.pointerId);
 
-        if (dragMode.type === "world") dragWorld(e);
-        if (dragMode.type === "element" && dragMode.id) dragElement(e, dragMode.id);
+        if (activePointers.current.size < 2) pinchStartDistance.current = null;
+        if (activePointers.current.size === 0) {
+            isDragging.current = false;
+            setDragMode(null);
+        }
+
+        pointerStart.current = null;
+        e.currentTarget.releasePointerCapture(e.pointerId);
     };
 
-    const handleMouseUp = () => {
-        isDragging.current = false;
-        setDragMode(null);
-    };
     return {
         //REFS
         worldRef,
@@ -409,9 +497,9 @@ export default function useTechStackEngine({
 
         //HANDLERS
         toggleFullScreen,
-        handleMouseDown,
-        handleMouseMove,
-        handleMouseUp,
+        handlePointerDown,
+        handlePointerMove,
+        handlePointerUp,
 
         //BUILD MODE
         handleCopyConfig,

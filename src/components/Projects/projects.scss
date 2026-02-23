@@ -18,7 +18,6 @@
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-
     pointer-events: none;
 }
 
@@ -753,69 +752,49 @@
     }
 
     .project-card1 {
-        padding: 10px 1px;
-        row-gap: 5px;
+        padding: 10px 5px;
+        row-gap: 10px;
 
         .project-title {
-            font-size: 16px;
-            font-weight: 400;
-            text-align: center;
+            font-size: 18px;
         }
 
         .iframe-wrap {
+            width: calc(100% - 38px);
             flex-direction: column;
         }
 
         .iframe-switches {
-            width: auto;
-            justify-content: space-between;
-            margin-inline: 10px;
+            width: 100%;
+            padding-block: 5px;
 
             //on mobiles if there is no padding we can see
-            //content passing through navbar even tho websites are fine
-            padding-block: 7.5px !important;
+            //content passing through previews navbar even tho websites are fine
+            // padding-block: 7.5px !important;
         }
 
         .iframe-container {
-            $container-width: 425;
-            $container-height: 370;
-            $iframe-width: 1920;
+            height: 270px;
+            width: 100%;
 
-
-            width: #{$container-width}px;
-            height: #{$container-height}px;
-
-            .gesture-overlay {
-                width: 318px;
-
-                p {
-                    margin-right: 35px;
-
-                    img {
-                        transform: rotate(25deg);
-                    }
-                }
-            }
-
+            //czego to człowiek nie zrobi żeby w jsie nie pisać xd
             iframe.desktop {
-                width: #{$iframe-width}px;
-                height: 2250px;
-                transform: scale(0.1645);
+                width: 415%;
+                max-width: 1920px;
+                height: 1080px;
+                transform: scale(0.24);
             }
 
             iframe.mobile {
-                width: #{$container-width}px;
-                height: 500px;
-                transform: scale(0.748);
+                width: 125%;
+                height: 125%;
+                min-width: 320px;
+                transform: scale(0.8);
             }
-
-
         }
 
         .project-panel {
-            gap: 10px;
-            justify-content: center;
-            margin: 7.5px;
+            gap: 5px;
 
             .project-panel-button {
                 font-size: 12px;
@@ -831,8 +810,6 @@
     }
 
     .projects-container .project-card2 {
-        height: 370.5px;
-        top: 76px;
 
         .project-show-hide-panel {
             font-size: 12px;
@@ -874,7 +851,7 @@
     }
 
     .projects-container .project-card2.hide {
-        transform: translateX(88%);
+        transform: translateX(calc(100% - 38px));
     }
 
     .projects .dots {

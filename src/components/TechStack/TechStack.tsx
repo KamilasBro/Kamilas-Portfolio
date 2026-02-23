@@ -5,7 +5,6 @@ import { TechStackPropsInterface } from './Interfaces/Interfaces';
 
 import "./techStack.scss";
 import useFontsLoaded from '../Utilities/useFontsLoaded';
-
 import { ReactComponent as LogoSvg } from "../../images//logo/logoGradient.svg";
 import { ReactComponent as OpenFullScreen } from "../../images/techStack/functional/openFullScreen.svg"
 import { ReactComponent as CloseFullScreen } from "../../images/techStack/functional/closeFullScreen.svg"
@@ -16,6 +15,8 @@ import getTechStackImg from '../Utilities/getTechStackImg';
 import useTechStackEngine from './useTechStackEngine';
 import TechStackPaths from './TechStackPaths';
 
+import { useInView } from "react-intersection-observer";
+import EncryptText from "../Utilities/EncryptText";
 
 //we pass options as props, optional one will go to TechStackPaths
 export default function TechStack({
@@ -27,6 +28,10 @@ export default function TechStack({
     pathGap,
     ballSpeed
 }: TechStackPropsInterface) {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+    });
+
     const techStack = techStackJSON as TechStackInterface[];
     //getting necessary things from engine file
     const {
@@ -46,9 +51,9 @@ export default function TechStack({
 
         //HANDLERS
         toggleFullScreen,
-        handleMouseDown,
-        handleMouseMove,
-        handleMouseUp,
+        handlePointerDown,
+        handlePointerMove,
+        handlePointerUp,
 
         //BUILD MODE
         handleCopyConfig,
@@ -150,12 +155,22 @@ export default function TechStack({
     };
 
     return (
-        <section className='test-stack tech-stack'>
-            <h1 className='section-title '>Tech Stack</h1>
-            <span className='pcb-note'>
-                Interact by scrolling, dragging, clicking or use menu below.
-            </span>
-            <div className={`pcb-wrap ${fullScreen ? "full-screen" : ""}`}>
+        <section className='tech-stack' ref={ref}>
+            <EncryptText
+                text="Tech Stack"
+                HTMLtag="h1"
+                encryptInView={inView}
+                className="section-title"
+            />
+            <EncryptText
+                text="Interact by scrolling, dragging, clicking or use menu below."
+                HTMLtag="span"
+                encryptInView={inView}
+                className="pcb-note"
+                iterationsRange={1}
+                encryptInterval={8}
+            />
+            <div className={`pcb-wrap ${fullScreen ? "full-screen" : ""} ${!inView ? "not-in-view" : ""}`}>
                 <div className='pcb-menu-wrap'>
                     <div className='pcb-menu'>
                         {buildMode && <>
@@ -182,10 +197,10 @@ export default function TechStack({
                 <div
                     className={`pcb ${fullScreen ? "full-screen" : ""}`}
                     ref={viewportRef}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerLeave={handlePointerUp}
                 >
                     <div
                         className='pcb-world'

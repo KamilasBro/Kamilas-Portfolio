@@ -14,7 +14,7 @@ import About from "./components/About/About";
 
 import { useState } from "react";
 export default function App() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [freeze, setFreeze] = useState(false)
   return (
     <>
@@ -26,15 +26,20 @@ export default function App() {
         />}
       <Navbar />
       <main>
-        {!isLoading && <Home />}
-        <Projects />
-        {<TechStack
+        {/*
+        Most of the time home and projects are
+        active in intersection observer at render but hidden from user during loading 
+        In that case we pass isLoading prop to prevent inView during that time
+        */}
+        <Home isLoading={isLoading} />
+        <Projects isLoading={isLoading} />
+        <TechStack
           buildMode={false}
           setFreeze={setFreeze}
           gridGap={60}
           pathGap={8}
           ballSpeed={800}
-        />}
+        />
         <Contact />
         <About />
       </main>
