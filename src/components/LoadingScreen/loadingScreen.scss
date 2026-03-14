@@ -42,7 +42,7 @@
 
             background-color: $black;
 
-            border: 2px solid $projectsPath;
+            border: 2px solid $pathColor;
             border-radius: 5px;
 
             &:first-child {
@@ -84,7 +84,7 @@
         isolation: isolate;
 
         path {
-            stroke: $projectsPath;
+            stroke: $pathColor;
             fill: none;
             stroke-width: 2px;
             stroke-linejoin: bevel;

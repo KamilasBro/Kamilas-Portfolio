@@ -24,6 +24,7 @@ export interface RandomPathsProps {
   lengthsAmp?: { min: number; max: number };
   strokeColor: string;
   strokeWidth: number;
+  zIndex: number;
   advancedConfig?: RandomPathsAdvCfg;
   freeze: boolean;
 }
@@ -59,6 +60,7 @@ export interface MatrixTextProps {
   mutateChancePercent?: number;
   fillColor: string;
   charSet: string[];
+  zIndex: number;
   sizeAmps?: {
     length: { min: number; max: number };
     maxColumns: number;

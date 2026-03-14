@@ -49,14 +49,6 @@ export default function App() {
       <Footer />
       {!isLoading &&
         <>
-          <RandomPathCanvas
-            freeze={freeze}
-            baseInterval={30}
-            animationDuration={5000}
-            pathSegments={8}
-            strokeColor="rgba(255, 0, 153, 0.25)"
-            strokeWidth={1.5}
-          />
           <MatrixText
             freeze={freeze}
             baseInterval={100}
@@ -66,7 +58,18 @@ export default function App() {
             mutateChancePercent={80}
             fillColor="rgba(255, 0, 153, 0.4)"
             charSet={["诶", "比", "西", "迪", "伊", "吉", "艾", "杰", "开", "哦", "屁", "提", "维"]}
+            zIndex={-1}
           />
+          <RandomPathCanvas
+            freeze={freeze}
+            baseInterval={30}
+            animationDuration={5000}
+            pathSegments={8}
+            strokeColor="rgba(255, 0, 153, 0.25)"
+            strokeWidth={1.5}
+            zIndex={-2}
+          />
+
         </>}
     </>
   );

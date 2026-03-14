@@ -3,7 +3,7 @@
 
 @keyframes techstackPowerOnBorder {
     0% {
-        border-color: $projectsPath;
+        border-color: $pathColor;
     }
 
     25% {
@@ -12,7 +12,7 @@
     }
 
     50% {
-        border-color: $projectsPath;
+        border-color: $pathColor;
         box-shadow: none;
     }
 
@@ -61,7 +61,7 @@
 //duplicate is necessary for DOM to register change
 @keyframes techstackPowerOnBorderReverse {
     0% {
-        border-color: $projectsPath;
+        border-color: $pathColor;
     }
 
     25% {
@@ -70,7 +70,7 @@
     }
 
     50% {
-        border-color: $projectsPath;
+        border-color: $pathColor;
         box-shadow: none;
     }
 
@@ -191,8 +191,8 @@
 
             background-color: $black;
 
-            border-bottom: 1px solid $projectsPath;
-            border-left: 1px solid $projectsPath;
+            border-bottom: 1px solid $pathColor;
+            border-left: 1px solid $pathColor;
 
             p {
                 span {
@@ -346,7 +346,7 @@
 
                         border-radius: 10px;
                         border-style: solid;
-                        border-color: $projectsPath;
+                        border-color: $pathColor;
 
                         cursor: pointer;
                         -webkit-user-drag: none;
@@ -522,7 +522,7 @@
         overflow: visible;
 
         fill: none;
-        stroke: $projectsPath;
+        stroke: $pathColor;
         stroke-linejoin: bevel;
 
         width: 1px;

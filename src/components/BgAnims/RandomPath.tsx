@@ -1,5 +1,3 @@
-import "./bgAnims.scss";
-
 import { RandomPathsProps } from "./Interfaces/Interfaces";
 import { RandomPathsPoint } from "./Interfaces/Interfaces";
 import { RandomPathsItem } from "./Interfaces/Interfaces";
@@ -31,9 +29,10 @@ export default function RandomPaths({
     // Acts as geometric scaling control.
     lengthsAmp = { min: 0.04, max: 0.16 },
 
-    // Canvas stroke styling.
+    // Canvas styling.
     strokeColor,
     strokeWidth,
+    zIndex,
 
     // Advanced performance tuning.
     // Controls adaptive frame skipping and spawn throttling.
@@ -375,7 +374,7 @@ export default function RandomPaths({
         //check if canvas is ready
         const ctx = canvasRef.current?.getContext("2d");
         if (!ctx) return;
-        
+
         const updateAndRender = (simNow: number, dt: number) => {
             // check if path should be drawn and adapt rendering step.
             const { shouldDrawThisFrame } = adaptRendering(
@@ -526,5 +525,18 @@ export default function RandomPaths({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [canvasRef]);
 
-    return <canvas ref={canvasRef} className="random-paths" />;
+    return <canvas
+        ref={canvasRef}
+        className="random-paths"
+        style={{
+            position: "fixed",
+            zIndex: zIndex,
+            inset: 0,
+
+            width: "100vw",
+            height: "100vh",
+
+            pointerEvents: "none"
+        }}
+    />;
 }

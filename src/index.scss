@@ -31,7 +31,7 @@ body {
   background-size: cover;
   background-position: center;
   background-image:
-    radial-gradient(circle at center, $projectsPath 1px, transparent 2px),
+    radial-gradient(circle at center, $pathColor 1px, transparent 2px),
     radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
     radial-gradient(circle at center, $darkGray 0.66px, transparent 1.5px);
   background-size: 80px 80px, 40px 40px, 40px 40px;

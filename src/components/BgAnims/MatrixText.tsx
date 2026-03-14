@@ -1,5 +1,3 @@
-import "./bgAnims.scss";
-
 import { MatrixColumnItem } from "./Interfaces/Interfaces";
 import { MatrixTextProps } from "./Interfaces/Interfaces";
 
@@ -25,6 +23,10 @@ export default function MatrixText({
 
     //characters set
     charSet,
+
+    // Canvas styling.
+    zIndex,
+
 
     //interval for changing character in column in ms
     mutateInterval = 100,
@@ -356,5 +358,19 @@ export default function MatrixText({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [canvasRef]);
 
-    return <canvas ref={canvasRef} className="matrix" />;
+    return <canvas
+        ref={canvasRef}
+        className="matrix"
+        style={{
+            position: "fixed",
+            zIndex: zIndex,
+            top: 0,
+            inset: 0,
+
+            width: "100vw",
+            height: "100vh",
+
+            pointerEvents: "none"
+        }}
+    />;
 }
