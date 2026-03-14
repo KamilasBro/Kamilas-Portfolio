@@ -1,72 +1,73 @@
 @import "../../scssPartials/_colors";
+@import "../../scssPartials/_breakpoints";
 
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+
+    transform: translateX(-100%);
+  }
+}
+
+//mobile-navbar is not rendered in desktop resolutions
+//so this is just a extra guard
 .mobile-navbar {
-
   display: none;
 }
 
-.mobile-navbar::-webkit-scrollbar {
-  width: 3px;
-}
-
-.mobile-navbar::-webkit-scrollbar-track {
-  background: $black;
-}
-
-.mobile-navbar::-webkit-scrollbar-thumb {
-  background: $borderColor;
-}
-
-.mobile-navbar::-webkit-scrollbar-thumb:hover {
-  background: $purple;
-}
-
-@media (max-width: 1024px) {
-  @keyframes slideIn {
-    from {
-      transform: translateX(-100%);
-    }
-
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-
-      transform: translateX(-100%);
-    }
-  }
-
+@media (max-width: $lg-mb) {
   .mobile-navbar {
     display: flex;
     flex-direction: column;
-
-    width: 512px;
-    height: 100%;
     box-sizing: border-box;
-
     overflow-y: auto;
-
-    animation: slideIn 0.25s;
-    transition: transfrom 500ms;
 
     position: fixed;
     z-index: 3;
     top: 0;
     left: 0;
 
+    width: calc($lg-mb / 2);
+    height: 100%;
+
     background: $black;
     border-right: 1px solid $borderColor;
+
+    animation: slideIn 0.25s;
+    transition: transform 500ms;
     filter: drop-shadow(0px 0px 3px $glow);
 
     &.closing {
       animation: slideOut 0.25s forwards;
+    }
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $black;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $borderColor;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $purple;
     }
 
     .mobile-navbar-buttons {
@@ -75,10 +76,9 @@
 
       position: sticky;
       top: 0;
+      padding: 40px;
 
       background-color: $black;
-
-      padding: 40px;
 
       .mobile-logo {
         width: 65px;
@@ -90,24 +90,23 @@
       }
 
       .close-navbar {
-        cursor: pointer;
-
-        height: 50px;
         width: 50px;
+        height: auto;
       }
     }
 
     .mobile-navbar-menu {
       display: flex;
       flex-direction: column;
+
       padding: 40px;
       row-gap: 30px;
 
       li {
         font-family: "Orbitron", sans-serif;
-        cursor: pointer;
-
         font-size: 18px;
+
+        cursor: pointer;
 
         &.active-section {
           color: $purple;
@@ -126,8 +125,8 @@
       padding-inline: 40px;
 
       a {
-        height: 40px;
         width: 40px;
+        height: auto;
 
         svg {
           path {
@@ -138,16 +137,18 @@
     }
 
     hr {
-      width: auto;
       margin-inline: 40px;
       margin-top: 40px;
+
+      width: auto;
     }
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $md-mb) {
   .mobile-navbar {
     width: 100%;
+
     border: none;
     filter: none;
 
@@ -155,7 +156,6 @@
       padding: 35px;
 
       .close-navbar {
-        height: 45px;
         width: 45px;
       }
     }
@@ -173,7 +173,6 @@
       padding-inline: 35px;
 
       a {
-        height: 35px;
         width: 35px;
       }
     }
@@ -185,13 +184,12 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $sm-mb) {
   .mobile-navbar {
     .mobile-navbar-buttons {
       padding: 30px;
 
       .close-navbar {
-        height: 40px;
         width: 40px;
       }
     }
@@ -209,7 +207,6 @@
       padding-inline: 30px;
 
       a {
-        height: 30px;
         width: 30px;
       }
     }

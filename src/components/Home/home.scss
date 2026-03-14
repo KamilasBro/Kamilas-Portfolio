@@ -1,4 +1,15 @@
 @import "../../scssPartials/_colors";
+@import "../../scssPartials/_breakpoints";
+
+@keyframes logoGlow {
+  from {
+    filter: drop-shadow(0px 0px 1px $glow);
+  }
+
+  to {
+    filter: drop-shadow(0px 0px 20px $glow);
+  }
+}
 
 .home {
   display: flex;
@@ -6,17 +17,17 @@
   justify-content: space-between;
   flex-wrap: wrap-reverse;
 
-
   .home-slogan {
     display: flex;
     flex-direction: column;
+
     row-gap: 5px;
+
     font-family: "Orbitron", "Sans-serif";
 
     h1 {
-      font-weight: 600;
       font-size: 42px;
-
+      font-weight: 600;
 
       span {
         background: linear-gradient(90deg, $pink 0%, $purple 100%);
@@ -27,8 +38,8 @@
     }
 
     h2 {
-      font-weight: 500;
       font-size: 30px;
+      font-weight: 500;
 
       span {
         color: $pink;
@@ -36,22 +47,12 @@
     }
 
     h4 {
-      font-weight: 500;
       font-size: 24px;
+      font-weight: 500;
 
       color: $gray;
     }
 
-  }
-
-  @keyframes logoGlow {
-    from {
-      filter: drop-shadow(0px 0px 1px $glow);
-    }
-
-    to {
-      filter: drop-shadow(0px 0px 20px $glow);
-    }
   }
 
   .home-logo {
@@ -62,7 +63,7 @@
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $sm-d) {
   .home {
     .home-slogan {
       h1 {
@@ -85,7 +86,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: $lg-mb) {
   .home {
     .home-slogan {
       h1 {
@@ -108,7 +109,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $md-mb) {
   .home {
     .home-slogan {
       h1 {
@@ -131,10 +132,11 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $sm-mb) {
   .home {
     flex-direction: column;
     justify-content: center;
+
     row-gap: 35px;
 
     .home-slogan {
@@ -158,6 +160,4 @@
       height: 200px;
     }
   }
-
-
 }

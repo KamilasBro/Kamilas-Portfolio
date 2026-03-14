@@ -1,4 +1,121 @@
 @import "../../scssPartials/_colors";
+@import "../../scssPartials/_breakpoints";
+
+
+@keyframes techstackPowerOnBorder {
+    0% {
+        border-color: $projectsPath;
+    }
+
+    25% {
+        border-color: rgba(255, 0, 153, 0.60);
+        box-shadow: (0px 0px 1px $glow);
+    }
+
+    50% {
+        border-color: $projectsPath;
+        box-shadow: none;
+    }
+
+    75% {
+        border-color: rgba(255, 0, 153, 0.70);
+        box-shadow: (0px 0px 2px $glow);
+    }
+
+    85% {
+        border-color: rgba(255, 0, 153, 0.85);
+        box-shadow: (0px 0px 4px $glow);
+    }
+
+    100% {
+        border-color: $pink;
+        box-shadow: (0px 0px 5px $glow);
+    }
+}
+
+@keyframes techStackPowerOnImg {
+    0% {
+        filter: grayscale(100%);
+    }
+
+    25% {
+        filter: grayscale(30%);
+    }
+
+    50% {
+        filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
+    }
+
+    75% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
+    }
+
+    85% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
+    }
+
+    100% {
+        filter: drop-shadow(0px 0px 2px $glow);
+    }
+}
+
+//duplicate is necessary for DOM to register change
+@keyframes techstackPowerOnBorderReverse {
+    0% {
+        border-color: $projectsPath;
+    }
+
+    25% {
+        border-color: rgba(255, 0, 153, 0.60);
+        box-shadow: (0px 0px 1px $glow);
+    }
+
+    50% {
+        border-color: $projectsPath;
+        box-shadow: none;
+    }
+
+    75% {
+        border-color: rgba(255, 0, 153, 0.70);
+        box-shadow: (0px 0px 2px $glow);
+    }
+
+    85% {
+        border-color: rgba(255, 0, 153, 0.85);
+        box-shadow: (0px 0px 4px $glow);
+    }
+
+    100% {
+        border-color: $pink;
+        box-shadow: (0px 0px 5px $glow);
+    }
+}
+
+@keyframes techStackPowerOnImgReverse {
+    0% {
+        filter: grayscale(100%);
+    }
+
+    25% {
+        filter: grayscale(30%);
+    }
+
+    50% {
+        filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
+    }
+
+    75% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
+    }
+
+    85% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
+    }
+
+    100% {
+        filter: drop-shadow(0px 0px 2px $glow);
+    }
+}
 
 .tech-stack {
     user-select: none;
@@ -9,57 +126,72 @@
 
     .pcb-note {
         display: flex;
+        justify-content: flex-end;
+
         font-size: 18px;
+
         color: $gray;
-        justify-content: end;
     }
 
     .pcb-wrap {
         position: relative;
+
         background-color: $black;
 
         &::before {
-            content: "";
             position: absolute;
+            z-index: 1;
             inset: 0;
             padding: 1px;
-            animation: rotate linear infinite 10s;
+
+            background: $borderGradientReverse;
+
             -webkit-mask:
                 linear-gradient(#fff 0 0) content-box,
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
 
+            animation: rotate linear infinite 10s;
+
             pointer-events: none;
-            background: $borderGradientReverse;
-            z-index: 1;
+            content: "";
         }
 
         &.full-screen {
             position: fixed;
-            height: 100vh;
-            width: 100vw;
+            z-index: 100;
+
             top: 0;
             left: 0;
-            z-index: 100;
+
+            height: 100vh;
+            width: 100vw;
         }
     }
 
     .pcb-menu-wrap {
-        position: absolute;
-        width: 100%;
-        z-index: 1;
         display: flex;
         justify-content: flex-end;
+
+        position: absolute;
+        z-index: 1;
+
         gap: 15px;
+
+        width: 100%;
+
         pointer-events: none;
 
         .pcb-menu {
-            background-color: $black;
             display: flex;
             align-items: center;
+
             padding: 10px;
             gap: 10px;
+
+            background-color: $black;
+
             border-bottom: 1px solid $projectsPath;
             border-left: 1px solid $projectsPath;
 
@@ -74,30 +206,35 @@
             }
 
             button {
-                pointer-events: initial;
-                border: 1px solid $pink;
                 padding: 5px 10px;
+
+                border: 1px solid $pink;
+
+                pointer-events: initial;
             }
 
             svg {
-                cursor: pointer;
                 width: 30px;
                 height: auto;
+
                 pointer-events: initial;
+                cursor: pointer;
 
                 &:hover path {
                     fill: $pink;
                 }
             }
         }
-
-
     }
 
     .pcb {
-        height: 600px;
         position: relative;
         overflow: hidden;
+
+        padding: 15px;
+
+        height: 600px;
+
         border-radius: 5px;
 
         background-image:
@@ -107,9 +244,8 @@
         background-size: 40px 40px, 40px 40px;
         background-position: -0px -0px, 0px 0px;
         background-repeat: repeat, repeat;
-        padding: 15px;
-        cursor: grab;
 
+        cursor: grab;
         touch-action: none;
 
         &:active {
@@ -124,16 +260,27 @@
         .pcb-logo-wrap {
             position: absolute;
             top: 0;
-            transform: translate(-50%, -50%);
+
             padding: 35px;
-            border-radius: 10px;
+
             background-color: $transparentBlack;
 
+            border-radius: 10px;
+
+
+            transform: translate(-50%, -50%);
+
             &::before {
-                content: "";
                 position: absolute;
+                z-index: 1;
                 inset: 0;
+
                 padding: 3px;
+
+                background: $borderGradient;
+
+                border-radius: 10px;
+
                 animation: rotate linear infinite 10s;
                 -webkit-mask:
                     linear-gradient(#fff 0 0) content-box,
@@ -142,41 +289,48 @@
                 mask-composite: exclude;
 
                 pointer-events: none;
-                background: $borderGradient;
-                z-index: 1;
-                border-radius: 10px;
+                content: "";
             }
         }
 
         .pcb-world {
             transform-origin: 0 0;
 
+            //!IMPORTANT
             contain: layout style; //prevents the world elements from jumping after zooming
+            //!IMPORTANT
 
             .section-name {
-                border: 3px solid $darkPurple;
+                position: absolute;
+
+                padding: 15px 30px;
+
+                font-family: "Orbitron";
                 font-size: 24px;
                 font-weight: 600;
-                font-family: "Orbitron";
-                padding: 15px 30px;
-                border-radius: 10px;
+
                 background-color: $transparentBlack;
-                position: absolute;
+
+                border: 3px solid $darkPurple;
+                border-radius: 10px;
             }
 
             .nodes-wrap {
-                position: absolute;
                 display: grid;
+                position: absolute;
 
                 .node-wrap {
                     display: grid;
                     grid-template-columns: repeat(3, auto);
                     grid-template-rows: repeat(4, auto);
+                    position: relative;
+
                     grid-column-gap: 15px;
                     grid-row-gap: 10px;
+
                     width: min-content;
                     height: min-content;
-                    position: relative;
+
 
                     &:has(.sub-node) {
                         justify-self: start;
@@ -187,64 +341,69 @@
                     }
 
                     &>div {
-                        border-radius: 10px;
-                        border-style: solid;
-                        border-color: $projectsPath;
                         box-sizing: border-box;
 
                         background-color: $transparentBlack;
+
+                        border-radius: 10px;
+                        border-style: solid;
+                        border-color: $projectsPath;
+
                         cursor: pointer;
                         -webkit-user-drag: none;
-                        -khtml-user-drag: none;
-                        -moz-user-drag: none;
-                        -o-user-drag: none;
+                        user-drag: none;
 
                         img {
+                            height: auto;
+
                             border-radius: 5px;
+
                             -webkit-user-drag: none;
-                            -khtml-user-drag: none;
-                            -moz-user-drag: none;
-                            -o-user-drag: none;
+                            user-drag: none;
                         }
                     }
                 }
 
                 .main-node {
-                    border-width: 2px;
-                    grid-area: 2 / 2 / 4 / 3;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     align-self: center;
+                    grid-area: 2 / 2 / 4 / 3;
+
                     gap: 5px;
                     padding: 5px 10px;
+
                     width: max-content;
                     height: max-content;
 
                     font-size: 13px;
 
+                    border-width: 2px;
+
                     img {
                         width: 60px;
-                        height: 60px;
                     }
                 }
 
                 .sub-node {
-                    border-width: 1px;
-                    gap: 5px;
                     display: flex;
-                    padding: 5px;
-                    width: max-content;
-                    height: max-content;
                     align-items: center;
                     justify-self: flex-start;
 
+                    gap: 5px;
+                    padding: 5px;
+
+                    width: max-content;
+                    height: max-content;
+
                     font-size: 11px;
+
+                    border-width: 1px;
 
                     img {
                         width: 30px;
-                        height: 30px;
                     }
                 }
 
@@ -254,20 +413,27 @@
 
                 .sub-node:nth-child(3) {
                     grid-area: 2 / 1 / 3 / 2;
+
                     justify-self: flex-end;
                 }
 
+                $subNodeshorizontalSpacing: 47.5px;
+
                 .sub-node:nth-child(4) {
                     grid-area: 1 / 1 / 2 / 2;
-                    position: relative;
                     justify-self: flex-end;
-                    left: 47.5px;
+
+                    position: relative;
+
+                    left: $subNodeshorizontalSpacing;
                 }
 
                 .sub-node:nth-child(5) {
                     grid-area: 1 / 3 / 2 / 4;
+
                     position: relative;
-                    right: 47.5px;
+
+                    right: $subNodeshorizontalSpacing;
                 }
 
                 .sub-node:nth-child(6) {
@@ -280,15 +446,19 @@
 
                 .sub-node:nth-child(8) {
                     grid-area: 4 / 3 / 5 / 4;
+
                     position: relative;
-                    right: 47.5px;
+
+                    right: $subNodeshorizontalSpacing;
                 }
 
                 .sub-node:nth-child(9) {
                     grid-area: 4 / 1 / 5 / 2;
-                    position: relative;
                     justify-self: flex-end;
-                    left: 47.5px;
+
+                    position: relative;
+
+                    left: $subNodeshorizontalSpacing;
                 }
             }
         }
@@ -303,6 +473,7 @@
 
     .nodes-wrap.build-mode {
         box-sizing: border-box;
+
         background-color: rgba(46, 46, 46, 0.5);
 
         &:hover {
@@ -320,127 +491,6 @@
 
         &.path-direction-bottom {
             align-self: flex-end;
-        }
-
-        @keyframes techstackPowerOnBorder {
-            0% {
-                border-color: $projectsPath;
-            }
-
-            25% {
-                border-color: rgba(255, 0, 153, 0.60);
-                box-shadow: (0px 0px 1px $glow);
-            }
-
-            50% {
-                border-color: $projectsPath;
-                box-shadow: none;
-            }
-
-            75% {
-                border-color: rgba(255, 0, 153, 0.70);
-                box-shadow: (0px 0px 2px $glow);
-            }
-
-            85% {
-                border-color: rgba(255, 0, 153, 0.85);
-                box-shadow: (0px 0px 4px $glow);
-            }
-
-            /* stable full power */
-            100% {
-                border-color: $pink;
-                box-shadow: (0px 0px 5px $glow);
-            }
-        }
-
-        @keyframes techStackPowerOnImg {
-
-            /* start dim */
-            0% {
-                filter: grayscale(100%);
-            }
-
-            25% {
-                filter: grayscale(30%);
-            }
-
-            50% {
-                filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
-            }
-
-            75% {
-                filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
-            }
-
-            85% {
-                filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
-            }
-
-            100% {
-                filter: drop-shadow(0px 0px 2px $glow);
-            }
-        }
-
-        //duplicate is necessary for DOM
-        @keyframes techstackPowerOnBorderReverse {
-            0% {
-                border-color: $projectsPath;
-            }
-
-            25% {
-                border-color: rgba(255, 0, 153, 0.60);
-                box-shadow: (0px 0px 1px $glow);
-            }
-
-            50% {
-                border-color: $projectsPath;
-                box-shadow: none;
-            }
-
-            75% {
-                border-color: rgba(255, 0, 153, 0.70);
-                box-shadow: (0px 0px 2px $glow);
-            }
-
-            85% {
-                border-color: rgba(255, 0, 153, 0.85);
-                box-shadow: (0px 0px 4px $glow);
-            }
-
-            /* stable full power */
-            100% {
-                border-color: $pink;
-                box-shadow: (0px 0px 5px $glow);
-            }
-        }
-
-        @keyframes techStackPowerOnImgReverse {
-
-            /* start dim */
-            0% {
-                filter: grayscale(100%);
-            }
-
-            25% {
-                filter: grayscale(30%);
-            }
-
-            50% {
-                filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
-            }
-
-            75% {
-                filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
-            }
-
-            85% {
-                filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
-            }
-
-            100% {
-                filter: drop-shadow(0px 0px 2px $glow);
-            }
         }
 
         .main-node,
@@ -469,20 +519,21 @@
 
     .pcb-paths {
         position: absolute;
+        z-index: -1;
+        overflow: visible;
+
         fill: none;
         stroke: $projectsPath;
         stroke-linejoin: bevel;
-        z-index: -1;
 
         width: 1px;
         height: 1px;
 
-        overflow: visible;
-
         .ball {
+            r: 3;
+
             fill: $pink;
             stroke: none;
-            r: 3;
         }
 
         .path-section {
@@ -503,13 +554,12 @@
 
     &.not-in-view {
         transform: translatex(-50px);
-        opacity: 0%;
+        opacity: 0;
     }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $sm-d) {
     .tech-stack {
-
         .section-title {
             margin-bottom: 45px;
         }
@@ -532,7 +582,7 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: $lg-mb) {
     .tech-stack {
 
         .section-title {
@@ -562,9 +612,8 @@
 
 }
 
-@media (max-width: 800px) {
+@media (max-width: $md-mb) {
     .tech-stack {
-
         .section-title {
             margin-bottom: 35px;
         }
@@ -593,7 +642,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $sm-mb) {
     .tech-stack {
         .section-title {
             margin-bottom: 30px;

@@ -1,32 +1,41 @@
-import React, { useEffect, useRef } from "react";
-import Typed from "typed.js";
-import { ReactComponent as LogoSvg } from "../../images/logo/logoConnected.svg";
-import { useInView } from "react-intersection-observer";
-import { PowerGlitch } from 'powerglitch';
 import "./home.scss";
+import { ReactComponent as LogoSvg } from "../../images/logo/logoConnected.svg";
+
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import Typed from "typed.js";
+import { PowerGlitch } from 'powerglitch';
+
 export default function Home({ isLoading }: { isLoading: boolean }) {
 
+  //intersection observer
   const { ref, inView } = useInView({
     triggerOnce: true,
   });
 
+  // Refs for text elements to apply Typed.js animations
+  const sloganRef = useRef<HTMLSpanElement>(null);
+  const nameRef = useRef<HTMLHeadingElement>(null);
+  const proficiencyRef = useRef<HTMLHeadingElement>(null);
 
-  const sloganRef = useRef(null);
-  const nameRef = useRef(null);
-  const proficiencyRef = useRef(null);
-
+  // Ref for the logo wrapper div (required for PowerGlitch)
+  const logoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!inView || isLoading) return;
+    const logo = logoRef.current
+    //home during load is technicly visible for the browser 
+    //so we dont launch animation during loading
+    if (!inView || isLoading || !logo) return;
 
     const baseDuration = 750;
-    const baseCount = 3;
+    const baseSlices = 3;
 
-    const timeouts: NodeJS.Timeout[] = [];
-    let intervalId: NodeJS.Timeout;
+    // Store all timeouts for cleanup
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+    let intervalId: ReturnType<typeof setInterval>;
 
     const triggerGlitch = (duration: number, count: number) => {
-      PowerGlitch.glitch(".home-logo", {
+      PowerGlitch.glitch(logo, {
         timing: {
           duration,
           iterations: 1,
@@ -45,27 +54,27 @@ export default function Home({ isLoading }: { isLoading: boolean }) {
           cssFilters: 'blur(1px)',
         },
         hideOverflow: true,
-        createContainers: false,
       });
     };
 
     // Initial glitch
-    triggerGlitch(baseDuration, baseCount);
+    triggerGlitch(baseDuration, baseSlices);
 
-    // Recurring animation
+    // Recurring glitch animations scheduled via setInterval + setTimeout
     intervalId = setInterval(() => {
       const t1 = setTimeout(() => {
-        triggerGlitch(baseDuration / 4, baseCount * 2);
+        triggerGlitch(baseDuration / 4, baseSlices * 2);
       }, baseDuration);
 
       const t2 = setTimeout(() => {
-        triggerGlitch(baseDuration / 4, baseCount * 2);
+        triggerGlitch(baseDuration / 4, baseSlices * 2);
       }, baseDuration * 1.4);
 
+      // Keep track of timeouts to clear them on cleanup
       timeouts.push(t1, t2);
     }, baseDuration * 5);
 
-    // Typed instances
+    // Typed.js instances for typing effect on each text element
     const sloganTyped = new Typed(sloganRef.current!, {
       strings: [
         "Code With Intent",
@@ -110,7 +119,10 @@ export default function Home({ isLoading }: { isLoading: boolean }) {
         <h2 ref={nameRef} />
         <h4 ref={proficiencyRef} />
       </header>
-      <LogoSvg className="home-logo" />
+      {/* Wrapper div for PowerGlitch */}
+      <div ref={logoRef}>
+        <LogoSvg className="home-logo" />
+      </div>
     </section>
   );
 }

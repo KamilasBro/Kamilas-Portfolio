@@ -1,39 +1,45 @@
-import React, { useState } from 'react';
-
-import { TechStackInterface } from './Interfaces/Interfaces';
-import { TechStackPropsInterface } from './Interfaces/Interfaces';
-
 import "./techStack.scss";
-import useFontsLoaded from '../Utilities/useFontsLoaded';
 import { ReactComponent as LogoSvg } from "../../images//logo/logoGradient.svg";
 import { ReactComponent as OpenFullScreen } from "../../images/techStack/functional/openFullScreen.svg"
 import { ReactComponent as CloseFullScreen } from "../../images/techStack/functional/closeFullScreen.svg"
 
-import techStackJSON from "../../data/techStack/techStack.json";
-import getTechStackImg from '../Utilities/getTechStackImg';
+import { TechStackInterface } from './Interfaces/Interfaces';
+import { TechStackPropsInterface } from './Interfaces/Interfaces';
 
 import useTechStackEngine from './useTechStackEngine';
 import TechStackPaths from './TechStackPaths';
 
-import { useInView } from "react-intersection-observer";
-import EncryptText from "../Utilities/EncryptText";
+import techStackJSON from "../../data/techStack/techStack.json";
 
-//we pass options as props, optional one will go to TechStackPaths
+import React, { useState } from 'react';
+import { useInView } from "react-intersection-observer";
+
+import useFontsLoaded from '../Utilities/useFontsLoaded';
+import getTechStackImg from '../Utilities/getTechStackImg';
+import EncryptText from "../Utilities/DecryptText";
+
 export default function TechStack({
     zoomRange,
     spacingMult, // in precentages
-    buildMode,
+    buildMode, //for creating config (Dev Only)
     setFreeze,
-    gridGap,
-    pathGap,
+    //bot gaps are used in paths calculations
+    gridGap, // gap between nodes in grid
+    pathGap, //gap between paths
+
     ballSpeed
 }: TechStackPropsInterface) {
     const { ref, inView } = useInView({
         triggerOnce: true,
     });
 
+    // static stack definition loaded from JSON with interface
     const techStack = techStackJSON as TechStackInterface[];
-    //getting necessary things from engine file
+    //engine hold functionality like 
+    // - drag / pan behaviour
+    // - zoom handling
+    // - fullscreen state
+    // - build mode utilities
     const {
         //REFS
         worldRef,
@@ -56,7 +62,7 @@ export default function TechStack({
         handlePointerUp,
 
         //BUILD MODE
-        handleCopyConfig,
+        copyLayoutConfig,
         handleReset,
     } = useTechStackEngine({
         zoomRange,
@@ -65,7 +71,7 @@ export default function TechStack({
         setFreeze,
     });
 
-    //both related stuff is kept in here instead of engine
+    //both paths and render functionality is kept here instead of engine
 
     //to adjust number of columns in grid based of elements inside stack array
     const getColumns = (count: number): number => {
@@ -86,7 +92,7 @@ export default function TechStack({
     4 5 6   =>  6 5 4
     7 8 9       7 8 9
 
-    however elements render is using only pathDirection in class for scss styling
+    however JSX is using only pathDirection in class for scss styling
     */
     const snakeGrid = <T,>(target: T[], i: number, alternateEvenOdd?: boolean) => {
         const columns = getColumns(target.length);
@@ -106,6 +112,8 @@ export default function TechStack({
         };
     };
 
+    //ball state with necessary properties
+    //ball simulates the current on paths
     const [ballState, setBallState] = useState<{
         isActive: boolean
         section: string;
@@ -129,8 +137,6 @@ export default function TechStack({
             if (ballState.node && ballState.node !== targetNode) {
                 setPreviousNode(ballState.node);
             }
-
-            //state for ball (imitation of paths current)
             setBallState(({
                 isActive: true,
                 section: targetSection,
@@ -141,7 +147,7 @@ export default function TechStack({
         }
     }
 
-    //state for detecting if class should change
+    //state for detecting if class should change when node is inactive
     const [previousNode, setPreviousNode] = useState<string | null>(null);
 
     const handleClassChange = (targetNode: string) => {
@@ -168,21 +174,23 @@ export default function TechStack({
                 encryptInView={inView}
                 className="pcb-note"
                 iterationsRange={1}
-                encryptInterval={8}
+                decryptInterval={8}
             />
             <div className={`pcb-wrap ${fullScreen ? "full-screen" : ""} ${!inView ? "not-in-view" : ""}`}>
                 <div className='pcb-menu-wrap'>
                     <div className='pcb-menu'>
-                        {buildMode && <>
-                            <h3>Build Mode</h3>
-                            <button onClick={() => setInitLoaded((prev) => !prev)}>
-                                {!initLoaded ? "Show" : "Hide"} Paths
-                            </button>
-                            <button onClick={handleReset}>Reset ViewPort</button>
-                            <button onClick={handleCopyConfig}>Copy Config</button>
-                        </>
+                        {buildMode &&
+                            <>
+                                <h3>Build Mode</h3>
+                                <button onClick={() => setInitLoaded((prev) => !prev)}>
+                                    {!initLoaded ? "Show" : "Hide"} Paths
+                                </button>
+                                <button onClick={handleReset}>Reset ViewPort</button>
+                                <button onClick={copyLayoutConfig}>Copy Config</button>
+                            </>
                         }
-                        <p>Full Screen {" "}
+                        <p>
+                            Full Screen {" "}
                             <span className={fullScreen ? "full-screen" : ""}>
                                 {fullScreen ? "ON" : "OFF"}
                             </span>
@@ -308,8 +316,10 @@ export default function TechStack({
                         5. The visible effect is a few-pixel misalignment between nodes and paths,
                             which only occurs on the first render before the font is fully loaded.
 
-                        that's why this hook is used
-                        */}
+                        that's why this hook is used here
+                        */
+                            //Path calculation and animation logic are in TechStackPaths.
+                        }
                         {useFontsLoaded() && initLoaded && (
                             <TechStackPaths
                                 techStack={techStack}

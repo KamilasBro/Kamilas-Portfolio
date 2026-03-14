@@ -1,14 +1,19 @@
 @import "../../scssPartials/_colors";
+@import "../../scssPartials/_breakpoints";
+@import "../../scssPartials/_containerWidths";
 
 footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-block: 35px;
-    width: 100%;
     box-sizing: border-box;
-    font-family: "Orbitron", sans-serif;
+
+    padding-block: 35px;
     margin-top: 125px;
+
+    width: 100%;
+
+    font-family: "Orbitron", sans-serif;
 
     background-color: $black;
     border-top: 1px solid $borderColor;
@@ -18,11 +23,13 @@ footer {
         align-items: center;
         justify-content: space-between;
 
-        width: 1170px;
+        width: $fhd-w;
 
         .copyright {
             font-size: 16px;
             font-weight: 500;
+
+            user-select: none;
 
             span {
                 color: $pink;
@@ -31,14 +38,23 @@ footer {
 
         .footer-menu {
             display: flex;
+
             column-gap: 50px;
 
             li {
-                cursor: pointer;
-                transition: color 300ms;
                 font-size: 16px;
 
-                &:hover {
+                transition: color 300ms;
+                cursor: pointer;
+
+                //anti mobile hover 
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover {
+                        color: $pink;
+                    }
+                }
+
+                &:active {
                     color: $pink;
                 }
             }
@@ -46,6 +62,7 @@ footer {
 
         .footer-socials {
             display: flex;
+
             column-gap: 5px;
 
             a {
@@ -56,34 +73,38 @@ footer {
     }
 }
 
-@media (max-width: 1440px) {
-    footer .inner-footer {
-        width: 940px;
 
-        .copyright {
-            font-size: 14px;
-        }
+@media (max-width: $sm-d) {
+    footer {
+        .inner-footer {
+            width: $sm-d-w;
 
-        .footer-menu {
-            gap: 40px;
-
-            li {
+            .copyright {
                 font-size: 14px;
+            }
+
+            .footer-menu {
+                gap: 40px;
+
+                li {
+                    font-size: 14px;
+                }
             }
         }
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: $lg-mb) {
     footer {
         margin-top: 100px;
         padding-block: 45px;
 
         .inner-footer {
             flex-direction: column;
+
             row-gap: 30px;
 
-            width: 724px;
+            width: $lg-mb-w;
 
             .copyright {
                 font-size: 18px;
@@ -97,21 +118,23 @@ footer {
 
             .footer-socials {
                 display: flex;
+
                 column-gap: 20px;
             }
         }
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $md-mb) {
     footer {
         padding-block: 35px;
 
         .inner-footer {
             flex-direction: column;
+
             row-gap: 25px;
 
-            width: 570px;
+            width: $md-mb-w;
 
             .copyright {
                 font-size: 16px;
@@ -128,23 +151,22 @@ footer {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $sm-mb) {
     footer {
         margin-top: 50px;
         padding-block: 25px;
 
         .inner-footer {
-            width: 320px;
-
             padding-block: 25px;
+
+            width: $sm-mb-w-precent;
+            min-width: $sm-mb-w;
 
             .copyright {
                 font-size: 13px;
             }
 
             .footer-menu {
-                gap: auto;
-
                 li {
                     font-size: 11px;
                 }

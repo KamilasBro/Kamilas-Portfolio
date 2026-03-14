@@ -1,104 +1,100 @@
+import "./navbar.scss";
 import { ReactComponent as LogoSvg } from "../../images/logo/logo.svg";
+import { ReactComponent as HamburgerSvg } from "../../images/hamburger.svg";
+
+import sectionsJSON from "../../data/sections/sections.json"
 import HandleSectionScroll from "../Utilities/HandleSectionScroll";
 import RenderSocials from "../Utilities/RenderSocials";
 
-import navLinks from "../Utilities/NavLinks";
-import { ReactComponent as HamburgerSvg } from "../../images/hamburger.svg";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
 
-import React, { useState, useEffect } from "react";
-import "./navbar.scss";
+import { useState, useEffect } from "react";
+
 export default function Navbar() {
+  // navlinks in render are styled based on this
   const [currentSection, setCurrentSection] = useState<string>("home");
-  const [Ypos, setYPos] = useState<boolean>(true);
+  // logo and navbar are styled based on that
+  const [isPageAtTop, setIsPageAtTop] = useState<boolean>(true);
+
   const [mobileActive, setMobileActive] = useState<boolean>(false);
 
+  // we track the position of scroll on website and sections sizes
+  // based on that we set currentSection and check if site is scrolled to top
   useEffect(() => {
-    const sectionsOffsets = {
-      minusNavbar:
-        (document.querySelector(".navbar") as HTMLDivElement).offsetHeight * 2,
-      projects: (document.querySelector(".projects") as HTMLDivElement)
-        .offsetTop,
-      techStack: (document.querySelector(".tech-stack") as HTMLDivElement)
-        .offsetTop,
-      contact: (document.querySelector(".contact") as HTMLDivElement).offsetTop,
-      about: (document.querySelector(".about") as HTMLDivElement).offsetTop,
+    //getting navbar
+    const navbar = document.querySelector(".navbar") as HTMLDivElement;
+    let navbarHeight: number
+    let sectionsOffsets: Record<string, number> = {};
+
+    const computeOffsets = () => {
+      //navbar is fixed and it is overlapping content so we subtract its height during calculations
+      //for better UX navbar height is multiplied
+      navbarHeight = navbar.offsetHeight * 2;
+      sectionsOffsets = {};
+
+      sectionsJSON.forEach(link => {
+        if (link.sectionName === "home") {
+          sectionsOffsets[link.sectionName] = 0;
+        } else {
+          const linkEl = document.querySelector(
+            `.${link.sectionDestination}`
+          ) as HTMLDivElement;
+          if (linkEl) sectionsOffsets[link.sectionName] = linkEl.offsetTop;
+        }
+      });
     };
+    // compute once initially
+    computeOffsets();
+
     const handleScroll = () => {
-      if (window.pageYOffset === 0) {
-        setYPos(true);
-      } else {
-        setYPos(false);
+      //current scroll position
+      const scrollPos = window.pageYOffset;
+      //if page is at top we change this state for styling purposes
+      setIsPageAtTop(scrollPos === 0);
+
+      //if user scrolled to the very bottom we set last section from array as current one
+      if (window.innerHeight + scrollPos >= document.body.scrollHeight) {
+        setCurrentSection(sectionsJSON[sectionsJSON.length - 1].sectionName);
+        return;
       }
-      if (
-        window.pageYOffset >= 0 &&
-        window.pageYOffset <
-        sectionsOffsets.projects - sectionsOffsets.minusNavbar
-      ) {
-        setCurrentSection("home");
-      }
-      else if (
-        window.innerHeight + window.pageYOffset >=
-        document.documentElement.scrollHeight - 1
-      ) {
-        setCurrentSection("about");
-      }
-      else if (
-        window.pageYOffset >=
-        sectionsOffsets.projects - sectionsOffsets.minusNavbar &&
-        window.pageYOffset <
-        sectionsOffsets.techStack - sectionsOffsets.minusNavbar
-      ) {
-        setCurrentSection("projects");
-      } else if (
-        window.pageYOffset >=
-        sectionsOffsets.techStack - sectionsOffsets.minusNavbar &&
-        window.pageYOffset < sectionsOffsets.contact - sectionsOffsets.minusNavbar
-      ) {
-        setCurrentSection("techStack");
-      } else if (
-        window.pageYOffset >=
-        sectionsOffsets.contact - sectionsOffsets.minusNavbar &&
-        window.pageYOffset < sectionsOffsets.about - sectionsOffsets.minusNavbar
-      ) {
-        setCurrentSection("contact");
-      } else {
-        setCurrentSection("about");
+      // we iterating backwards
+      for (let i = sectionsJSON.length - 1; i >= 0; i--) {
+        const sectionName = sectionsJSON[i].sectionName;
+        const offset = sectionsOffsets[sectionName] - navbarHeight;
+
+        //because we check backwards we don't need to check the prev section offset
+        if (scrollPos >= offset) {
+          setCurrentSection(sectionName);
+          break;
+        }
       }
     };
 
+    // observe navbar and all sections for size changes
+    const ro = new ResizeObserver(() => {
+      // immediately update currentSection after layout change
+      computeOffsets();
+      handleScroll();
+    });
+    ro.observe(navbar);
+    sectionsJSON.forEach(link => {
+      const el = document.querySelector(`.${link.sectionDestination}`) as HTMLDivElement;
+      if (el) ro.observe(el);
+    });
+    //add scroll event
     window.addEventListener("scroll", handleScroll);
+
+    //unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      ro.disconnect();
     };
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) {
-        setMobileActive(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-
-    };
-  }, []);
-
-  useEffect(() => {
-    const html = document.documentElement;
-    html.style.overflowY = mobileActive ? "hidden" : "visible";
-
-    return () => {
-      html.style.overflowY = "visible";
-    };
-  }, [mobileActive]);
   return (
     <>
       <nav
-        className={`${Ypos ? "" : "scrolled"} navbar`}
+        className={`${isPageAtTop ? "" : "scrolled"} navbar`}
       >
         <div className="inner-navbar">
           <LogoSvg
@@ -112,24 +108,27 @@ export default function Navbar() {
             setMobileActive(true);
           }} />
           <ul className="navbar-menu">
-            {navLinks.map((link) =>
-              <li
-                key={link.sectionName}
-                className={currentSection === link.sectionName ? "active-section" : ""}
-                onClick={() => HandleSectionScroll(link.sectionDestination)}
-              >
-                {link.displayName}
-              </li>
-            )}
+            {sectionsJSON
+              .filter(link => link.sectionName !== "home")
+              .map((link) => {
+                return (
+                  <li
+                    key={link.sectionName}
+                    className={currentSection === link.sectionName ? "active-section" : ""}
+                    onClick={() => HandleSectionScroll(link.sectionDestination)}
+                  >
+                    {link.displayName}
+                  </li>
+                )
+              })}
           </ul>
-          <div className="socials navbar-socials">
-            <RenderSocials />
-          </div>
+          <RenderSocials propClass="navbar-socials"/>
         </div>
       </nav>
       {mobileActive && (
         <MobileNavbar
           currentSection={currentSection}
+          mobileActive={mobileActive}
           setMobileActive={setMobileActive}
         />
       )}

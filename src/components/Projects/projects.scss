@@ -1,243 +1,285 @@
 @import "../../scssPartials/_colors";
+@import "../../scssPartials/_breakpoints";
 
-.project-card-wrap,
-.project-card-wrap-reverse {
-    position: relative;
-    background-color: $transparentBlack;
-}
+//we trick browser here to show desktop preview scaled down (instead it is going on mobile breakpoint)
+@mixin iframe-preview($containerWidth, $containerHeight) {
+    width: #{$containerWidth}px;
+    height: #{$containerHeight}px;
 
-.project-card-wrap::before,
-.project-card-wrap-reverse::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    animation: rotate linear infinite 10s;
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
+    // desktop preview scaled down
+    iframe.desktop {
+        width: 1920px;
+        height: 1080px;
 
-.project-card-wrap::before {
-    background: $borderGradient;
-}
-
-.project-card-wrap-reverse::before {
-    background: $borderGradientReverse;
-}
-
-.projects-container {
-    display: flex;
-    column-gap: 50px;
-    margin-top: 50px;
-    align-items: center;
-}
-
-.project-card1 {
-    display: flex;
-    flex-direction: column;
-    padding: 25px 50px;
-    row-gap: 25px;
-
-    .project-title {
-        font-size: 28px;
-        font-weight: 400;
-        font-family: "Orbitron", sans-serif;
-
-        .subtitle {
-            background: $lightGradient;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        transform: scale(calc($containerWidth / 1920));
     }
 
-    .iframe-switches {
-        display: flex;
-        justify-content: space-between;
+    // mobile preview (no scaling)
+    iframe.mobile {
+        width: #{$containerWidth}px;
+        height: #{$containerHeight}px;
+    }
+}
 
-        button {
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            transition: 300ms;
-            color: $gray;
-            font-family: "Exo 2", sans-serif;
-        }
-
-        .viewport-switch {
-            display: flex;
-            column-gap: 5px;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-
-            button:hover {
-                color: $white;
-            }
-
-            button.active {
-                color: $pink;
-            }
-        }
-
-        .gesture-overlay-switch {
-            display: none;
-        }
+@keyframes flyUpDown {
+    from {
+        transform: translateY(0px);
     }
 
-    .iframe-container {
+    to {
+        transform: translateY(5px);
+    }
+}
+
+.projects {
+
+    .project-card-wrap,
+    .project-card-wrap-reverse {
         position: relative;
-        /* scss wont calculate if there are just numbers, thats why there are variables*/
-        $container-width: 550;
-        $container-height: 309;
-        /* the desktop version is showing HD viewport scaled down*/
-        $iframe-width: 1920;
 
+        background-color: $transparentBlack;
 
-        width: #{$container-width}px;
-        height: #{$container-height}px;
-        overflow: hidden;
+        &::before {
+            position: absolute;
+            inset: 0;
+            padding: 1px;
 
-        .gesture-overlay {
-            display: none;
+            animation: rotate linear infinite 10s;
+
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            content: "";
         }
-
-        /* iframe is full-resolution and then scaled down */
-        iframe {
-            transform-origin: 0 0;
-            border: none;
-            display: block;
-
-        }
-
-        iframe.desktop {
-            width: #{$iframe-width}px;
-            height: 1080px;
-            transform: scale(calc($container-width / $iframe-width));
-        }
-
-        iframe.mobile {
-            width: #{$container-width}px;
-            height: #{$container-height}px;
-        }
-
-
     }
 
-    .project-panel {
+    .project-card-wrap::before {
+        background: $borderGradient;
+    }
+
+    .project-card-wrap-reverse::before {
+        background: $borderGradientReverse;
+    }
+
+    .projects-container {
         display: flex;
-        column-gap: 15px;
+        align-items: center;
 
-        .project-panel-button {
-            font-size: 16px;
-            font-weight: 400;
+        column-gap: 50px;
+        margin-top: 50px;
+
+        .project-card1 {
             display: flex;
-            column-gap: 5px;
-            align-items: center;
-            cursor: pointer;
+            flex-direction: column;
 
-            img {
-                width: 25px;
-                height: 25px;
+            padding: 25px 50px;
+            row-gap: 25px;
+
+            .project-title {
+                font-family: "Orbitron", sans-serif;
+
+                font-size: 28px;
+                font-weight: 400;
+
+                .subtitle {
+                    background: $lightGradient;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+            }
+
+            .iframe-switches {
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    font-family: "Exo 2", sans-serif;
+                    font-size: 14px;
+                    letter-spacing: 0.5px;
+
+                    color: $gray;
+
+                    transition: color 300ms;
+                }
+
+                .viewport-switch {
+                    display: flex;
+
+                    column-gap: 5px;
+
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: transparent;
+
+                    button:hover {
+                        color: $white;
+                    }
+
+                    button.active {
+                        color: $pink;
+                    }
+                }
+
+                .gesture-overlay-switch {
+                    display: none;
+                }
+            }
+
+
+            .iframe-container {
+                position: relative;
+                overflow: hidden;
+
+                .gesture-overlay {
+                    display: none;
+                }
+
+                iframe {
+                    display: block;
+
+                    transform-origin: 0 0;
+
+                    border: none;
+
+                }
+
+                @include iframe-preview(550, 309)
+            }
+
+            .project-panel {
+                display: flex;
+                column-gap: 15px;
+
+                .project-panel-button {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 5px;
+
+                    font-size: 16px;
+                    font-weight: 400;
+
+                    cursor: pointer;
+
+                    svg {
+                        width: 25px;
+                        height: auto;
+                    }
+                }
+
+                .project-panel-button:hover {
+                    background: $lightGradient;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
             }
         }
 
-        .project-panel-button:hover {
-            background: $lightGradient;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-    }
-}
 
-.projects-container .project-card2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    gap: 50px;
-
-    .project-show-hide-panel {
-        display: none;
-    }
-
-    .project-description,
-    .project-stack {
-        padding: 25px;
-    }
-
-
-    .project-stack {
-        display: flex;
-        flex-direction: column;
-        row-gap: 15px;
-
-        h3 {
-            font-size: 24px;
-            font-weight: 400;
-            font-family: "Orbitron", sans-serif;
-        }
-
-        .stack-list {
+        .project-card2 {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            flex-direction: column;
+            justify-content: center;
 
-            .stack-element {
+            gap: 50px;
+
+            width: 100%;
+
+            .project-show-hide-panel {
+                display: none;
+            }
+
+            .project-description,
+            .project-stack {
+                padding: 25px;
+            }
+
+            .project-stack {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                row-gap: 2px;
-                font-size: 13px;
-                font-weight: 300;
 
-                img {
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 5px;
+                row-gap: 15px;
+
+                h3 {
+                    font-family: "Orbitron", sans-serif;
+
+                    font-size: 24px;
+                    font-weight: 400;
+                }
+
+                .stack-list {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    gap: 15px;
+
+                    .stack-element {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        row-gap: 2px;
+
+                        font-size: 13px;
+                        font-weight: 300;
+
+                        img {
+                            width: 45px;
+                            height: auto;
+
+                            border-radius: 5px;
+                        }
+                    }
                 }
             }
         }
     }
-}
 
-.projects .dots {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    column-gap: 15px;
-    margin-top: 30px;
+    .dots {
+        display: flex;
+        justify-content: center;
 
-    .dot {
-        cursor: pointer;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: $darkGradient;
-        transition: 300ms;
-    }
+        column-gap: 15px;
+        margin-top: 30px;
 
-    .dot.active {
-        background: $lightGradient;
-        box-shadow: 0px 0px 10px $glow;
+        width: 100%;
+
+        .dot {
+            width: 15px;
+            height: 15px;
+
+            background: $darkGradient;
+
+            border-radius: 50%;
+
+            transition: 300ms;
+
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: $lightGradient;
+
+            box-shadow: 0px 0px 10px $glow;
+        }
     }
 }
 
 //intersector observer
-.projects {
-    $transitionDuration: 300ms;
-    $transitionDelay: 75ms;
+$transitionDuration: 300ms;
+$transitionDelay: 75ms;
 
+.projects {
     .projects-container {
         .project-card-wrap {
             transition: transform $transitionDuration, opacity calc($transitionDuration*2);
 
             &.not-in-view {
-                transform: translatex(-50px);
-                opacity: 0%;
+                transform: translateX(-50px);
+                opacity: 0;
             }
         }
 
@@ -253,8 +295,8 @@
             }
 
             &.not-in-view {
-                transform: translatex(50px);
-                opacity: 0%;
+                transform: translateX(50px);
+                opacity: 0;
             }
         }
     }
@@ -265,353 +307,318 @@
 
         &.not-in-view {
             transform: translateY(50px);
-            opacity: 0%;
+            opacity: 0;
         }
     }
 }
 
 
+@media (max-width: $sm-d) {
+    .projects {
+        .projects-container {
+            column-gap: 40px;
+            margin-top: 45px;
 
+            .project-card1 {
+                padding: 20px 40px;
+                row-gap: 20px;
 
-
-@media (max-width: 1440px) {
-    .projects-container {
-        column-gap: 40px;
-        margin-top: 45px;
-    }
-
-    .project-card1 {
-        padding: 20px 40px;
-        row-gap: 20px;
-
-        .project-title {
-            font-size: 24px;
-        }
-
-        .iframe-switches button {
-            font-size: 12px;
-            letter-spacing: 0.5px;
-
-        }
-
-        .iframe-container {
-            /* scss wont calculate if there are just numbers, thats why there are variables*/
-            $container-width: 450;
-            $container-height: 271;
-            /* the desktop version is showing HD viewport scaled down*/
-            $iframe-width: 1920;
-
-
-            width: #{$container-width}px;
-            height: #{$container-height}px;
-
-
-            iframe.desktop {
-                width: #{$iframe-width}px;
-                transform: scale(calc($container-width / $iframe-width));
-            }
-
-            iframe.mobile {
-                width: #{$container-width}px;
-                height: #{$container-height}px;
-            }
-
-
-        }
-
-        .iframe-switches {
-            font-size: 12px;
-        }
-
-        .project-panel {
-            column-gap: 10px;
-
-            .project-panel-button {
-                font-size: 14px;
-
-                img {
-                    width: 20px;
-                    height: 20px;
+                .project-title {
+                    font-size: 24px;
                 }
-            }
-        }
-    }
 
-    .projects-container .project-card2 {
-        gap: 40px;
+                .iframe-switches button {
+                    font-size: 12px;
+                    letter-spacing: 0.5px;
+                }
 
+                .iframe-container {
+                    @include iframe-preview(450, 271)
+                }
 
-        .project-description,
-        .project-stack {
-            padding: 20px;
-        }
+                .iframe-switches {
+                    font-size: 12px;
+                }
 
-        .project-description {
-            font-size: 14px;
-        }
+                .project-panel {
+                    column-gap: 10px;
 
-        .project-stack {
-            row-gap: 10px;
+                    .project-panel-button {
+                        font-size: 14px;
 
-            h3 {
-                font-size: 20px;
-            }
-
-            .stack-list {
-                gap: 10px;
-
-                .stack-element {
-                    font-size: 11px;
-
-                    img {
-                        width: 35px;
-                        height: 35px;
+                        svg {
+                            width: 20px;
+                        }
                     }
                 }
             }
-        }
-    }
-}
 
-@media (max-width: 1024px) {
-    .projects-container {
-        margin-top: 40px;
-        display: block;
-        position: relative;
-        max-width: 100%;
-        overflow: hidden;
-    }
+            .project-card2 {
+                gap: 40px;
 
-    .project-card-wrap-reverse {
-        background-color: transparent;
-    }
 
-    .project-card-wrap-reverse::before {
-        padding: none;
-        animation: none;
-        animation-duration: none;
-        -webkit-mask: none;
-        -webkit-mask-composite: none;
-        mask-composite: none;
+                .project-description,
+                .project-stack {
+                    padding: 20px;
+                }
 
-        pointer-events: none;
+                .project-description {
+                    font-size: 14px;
+                }
 
-        background: none;
-    }
+                .project-stack {
+                    row-gap: 10px;
 
-    .project-card1 {
-        padding: 25px 50px;
-        row-gap: 25px;
+                    h3 {
+                        font-size: 20px;
+                    }
 
-        $container-width: 500;
-        $container-height: 281;
+                    .stack-list {
+                        gap: 10px;
 
-        .iframe-switches {
-            width: #{$container-width}px;
+                        .stack-element {
+                            font-size: 11px;
 
-            .gesture-overlay-switch {
-                display: flex;
-
-                button {
-                    color: $white;
-
-                    span {
-                        transition: 300ms;
-
-                        &.enabled {
-                            color: $pink;
-                        }
-
-                        &.disabled {
-                            color: $gray;
+                            img {
+                                width: 35px;
+                            }
                         }
                     }
                 }
             }
         }
 
-        .iframe-container {
-            $iframe-width: 1920;
+    }
 
 
-            width: #{$container-width}px;
-            height: #{$container-height}px;
+
+
+}
+
+@media (max-width: $lg-mb) {
+    .projects {
+        .project-card-wrap-reverse {
+            background-color: transparent;
+        }
+
+        .project-card-wrap-reverse::before {
+            padding: none;
+            animation: none;
+            animation-duration: none;
+            -webkit-mask: none;
+            -webkit-mask-composite: none;
+            mask-composite: none;
+
+            pointer-events: none;
+
+            background: none;
+        }
+
+        .projects-container {
+            display: block;
             position: relative;
+            overflow: hidden;
 
-            .gesture-overlay {
-                display: flex;
-                background-color: $transparentBlack;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-                letter-spacing: 0.5px;
-                padding: 10px;
+            margin-top: 40px;
+
+
+            .project-card1 {
+                padding: 25px 50px;
+                row-gap: 25px;
+
+                $containerWidth: 500;
+
+                .iframe-switches {
+                    width: #{$containerWidth}px;
+
+                    .gesture-overlay-switch {
+                        display: flex;
+
+                        button {
+                            color: $white;
+
+                            span {
+                                transition: transform 300ms;
+
+                                &.enabled {
+                                    color: $pink;
+                                }
+
+                                &.disabled {
+                                    color: $gray;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .iframe-container {
+                    .gesture-overlay {
+                        display: flex;
+                        justify-content: flex-end;
+                        box-sizing: border-box;
+
+                        position: absolute;
+                        z-index: 1;
+
+                        padding: 10px;
+
+                        width: 100%;
+                        height: 100%;
+
+                        background-color: $transparentBlack;
+
+                        p {
+                            margin-block: 0px;
+
+                            width: 120px;
+
+                            font-size: 8px;
+                            letter-spacing: 0.5px;
+                            text-align: right;
+
+                            animation: flyUpDown 300ms linear alternate infinite;
+
+                            span {
+                                background: $lightGradient;
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                background-clip: text;
+                                text-transform: capitalize;
+                            }
+
+                            svg {
+                                width: 20px;
+                                height: auto;
+
+                                float: right;
+                            }
+                        }
+                    }
+
+                    @include iframe-preview($containerWidth, 281)
+                }
+
+                .project-panel {
+                    .project-panel-button {
+                        font-size: 15px;
+                    }
+                }
+            }
+
+            .project-card2 {
+                display: grid;
+                grid-template-columns: min-content;
+                grid-template-rows: min-content;
+                justify-content: start;
                 box-sizing: border-box;
-                display: flex;
-                justify-content: flex-end;
 
-                @keyframes flyUpDown {
-                    from {
-                        transform: translateY(0px);
-                    }
+                overflow-y: auto;
+                overflow-x: hidden;
+                position: absolute;
+                z-index: 1;
+                top: 0px;
+                right: 0px;
+                margin: 2px 2px;
+                gap: 0px;
 
-                    to {
-                        transform: translateY(5px);
-                    }
+                width: 50%;
+                height: calc(100% - 4px);
+
+                background-color: rgba(1, 10, 8, 0.9);
+
+                &.show {
+                    border-left: 1px solid $borderColor;
                 }
 
-                p {
-                    margin-block: 0px;
-                    font-size: 8px;
-                    width: 120px;
-                    text-align: right;
-                    animation: flyUpDown 300ms linear alternate infinite;
+                &.hide {
+                    transform: translateX(85%);
+                }
 
-                    span {
-                        background: $lightGradient;
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        text-transform: capitalize;
-                    }
+                &::-webkit-scrollbar {
+                    width: 3px;
+                }
 
-                    img {
+                &::-webkit-scrollbar-track {
+                    background: $darkGray;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: $borderColor;
+                }
+
+                &::-webkit-scrollbar-thumb:hover {
+                    background: $purple;
+                }
+
+                div:nth-child(1) {
+                    grid-area: 1 / 1 / 3 / 2;
+                }
+
+                div:nth-child(2) {
+                    grid-area: 1 / 2 / 2 / 3;
+                }
+
+                div:nth-child(3) {
+                    grid-area: 2 / 2 / 3 / 3;
+                    align-self: flex-end;
+                }
+
+                .project-show-hide-panel {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    position: sticky;
+                    top: 50%;
+                    padding: 15px;
+                    column-gap: 5px;
+
+                    height: max-content;
+
+                    font-family: "Orbitron", sans-serif;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    writing-mode: vertical-rl;
+
+                    transform: translateY(-50%) rotate(180deg);
+
+                    cursor: pointer;
+
+                    svg {
                         width: 20px;
-                        height: 20px;
-                        float: right;
-                        margin: 1px;
+                        height: auto;
+
+                        transition: transform 300ms;
+
+                        &.show {
+                            transform: rotate(270deg);
+                        }
+
+                        &.hide {
+                            transform: rotate(90deg);
+                        }
                     }
                 }
-            }
 
-
-            iframe.desktop {
-                width: #{$iframe-width}px;
-                transform: scale(calc($container-width / $iframe-width));
-            }
-
-            iframe.mobile {
-                width: #{$container-width}px;
-                height: #{$container-height}px;
-            }
-
-
-        }
-
-        .project-panel {
-            .project-panel-button {
-                font-size: 15px;
+                .project-description,
+                .project-stack {
+                    padding: 30px 15px;
+                }
             }
         }
     }
-
-    .projects-container .project-card2::-webkit-scrollbar {
-        width: 3px;
-    }
-
-    .projects-container .project-card2::-webkit-scrollbar-track {
-        background: $darkGray;
-    }
-
-    .projects-container .project-card2::-webkit-scrollbar-thumb {
-        background: $borderColor;
-    }
-
-    .projects-container .project-card2::-webkit-scrollbar-thumb:hover {
-        background: $purple;
-    }
-
-    .projects-container .project-card2 {
-        display: grid;
-        grid-template-columns: min-content;
-        grid-template-rows: min-content;
-        position: absolute;
-        box-sizing: border-box;
-        justify-content: start;
-        top: 0px;
-        right: 0px;
-        margin: 2px 2px;
-        width: 50%;
-        height: calc(100% - 4px);
-        gap: 0px;
-        background-color: rgba(1, 10, 8, 0.9);
-        overflow-y: auto;
-        overflow-x: hidden;
-        border-left: 1px solid $borderColor;
-        z-index: 1;
-
-        div:nth-child(1) {
-            grid-area: 1 / 1 / 3 / 2;
-        }
-
-        div:nth-child(2) {
-            grid-area: 1 / 2 / 2 / 3;
-        }
-
-        div:nth-child(3) {
-            grid-area: 2 / 2 / 3 / 3;
-            align-self: flex-end;
-        }
-
-        .project-show-hide-panel {
-            display: flex;
-            cursor: pointer;
-            justify-content: center;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: 400;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            column-gap: 5px;
-            line-height: 1.5;
-            height: max-content;
-            align-items: center;
-            font-family: "Orbitron", sans-serif;
-
-            position: sticky;
-            top: 50%;
-            transform: translateY(-50%) rotate(180deg);
-
-            img {
-                height: 20px;
-                width: 20px;
-                transition: transform 300ms;
-            }
-
-            img.show {
-                transform: rotate(270deg);
-
-            }
-
-            img.hide {
-                transform: rotate(90deg);
-            }
-        }
-
-        .project-description,
-        .project-stack {
-            padding: 30px 15px;
-        }
-    }
-
-    .projects-container .project-card2.hide {
-        transform: translateX(85%);
-    }
-
-
 
     //intersector observer
+    //we disable wrap reverse animation and adjust animation delay in dots
     .projects {
-        $transitionDuration: 300ms;
-        $transitionDelay: 75ms;
-
         .projects-container {
             transition: transform $transitionDuration, opacity calc($transitionDuration*2);
 
             &.not-in-view {
-                transform: translatex(-50px);
-                opacity: 0%;
+                transform: translateX(-50px);
+                opacity: 0;
             }
 
             .project-card-wrap {
@@ -619,7 +626,7 @@
 
                 &.not-in-view {
                     transform: none;
-                    opacity: none;
+                    opacity: 1;
                 }
             }
 
@@ -627,235 +634,215 @@
                 transition: none;
 
                 &:first-child {
-                    transition-delay: none;
+                    transition-delay: 0s;
                 }
 
                 &:last-child {
-                    transition-delay: none;
+                    transition-delay: 0s;
                 }
 
                 &.not-in-view {
                     transform: none;
-                    opacity: none;
+                    opacity: 1;
                 }
             }
         }
 
         .dots {
-            transition: transform $transitionDuration, opacity calc($transitionDuration*2);
-
             transition-delay: $transitionDelay;
 
             &.not-in-view {
-                transform: 50px;
-                opacity: 0%;
+                transform: translateY(50px);
+                opacity: 0;
             }
         }
     }
 
 }
 
-@media (max-width: 800px) {
-    .projects-container {
-        margin-top: 35px;
+@media (max-width: $md-mb) {
+    .projects {
+        .projects-container {
+            margin-top: 35px;
+
+            .project-card1 {
+                padding: 20px 40px;
+                row-gap: 20px;
+
+                .project-title {
+                    font-size: 22px;
+                    font-weight: 400;
+                }
+
+                $container-width: 400;
+
+                .iframe-switches {
+                    width: #{$container-width}px;
+                }
+
+                .iframe-container {
+                    @include iframe-preview($container-width, 225)
+                }
+
+                .project-panel {
+                    .project-panel-button {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .project-card2 {
+                width: calc(100% - 3px);
+
+                &.show {
+                    border-left: none;
+                }
+
+                &.hide {
+                    transform: translateX(91%);
+                }
+
+                .project-show-hide-panel {
+                    font-size: 14px;
+                }
+
+                .project-description,
+                .project-stack {
+                    padding: 30px;
+                }
+
+                .project-stack {
+                    h3 {
+                        font-size: 20px;
+                    }
+
+                    .stack-list {
+                        gap: 10px;
+
+                        .stack-element {
+                            font-size: 12px;
+
+                            img {
+                                width: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+}
 
-    .project-card1 {
-        padding: 20px 40px;
-        row-gap: 20px;
+@media (max-width: $sm-mb) {
+    .projects {
+        .projects-container {
+            margin-top: 25px;
 
-        .project-title {
-            font-size: 22px;
-            font-weight: 400;
-        }
+            .project-card1 {
+                padding: 10px 5px;
+                row-gap: 10px;
 
-        $container-width: 400;
-        $container-height: 225;
+                .project-title {
+                    font-size: 18px;
+                }
 
-        .iframe-switches {
-            width: #{$container-width}px;
-        }
+                .iframe-wrap {
+                    flex-direction: column;
 
-        .iframe-container {
+                    width: calc(100% - 38px);
+                }
 
-            $iframe-width: 1920;
+                .iframe-switches {
+                    padding-block: 5px;
 
+                    width: 100%;
+                }
 
-            width: #{$container-width}px;
-            height: #{$container-height}px;
+                //czego to człowiek nie zrobi żeby w jsie nie pisać xd
+                .iframe-container {
+                    height: 270px;
+                    width: 100%;
 
+                    iframe.desktop {
+                        width: 415%;
+                        max-width: 1920px;
 
-            iframe.desktop {
-                width: #{$iframe-width}px;
-                transform: scale(calc($container-width / $iframe-width));
+                        transform: scale(0.24);
+                    }
+
+                    iframe.mobile {
+                        width: 125%;
+                        height: 125%;
+                        min-width: $sm-mb;
+
+                        transform: scale(0.8);
+                    }
+                }
+
+                //
+
+                .project-panel {
+                    gap: 5px;
+
+                    .project-panel-button {
+                        gap: 2.5px;
+
+                        font-size: 12px;
+
+                        svg {
+                            width: 15px;
+                        }
+                    }
+
+                }
             }
 
-            iframe.mobile {
-                width: #{$container-width}px;
-                height: #{$container-height}px;
-            }
+            .project-card2 {
+                &.hide {
+                    transform: translateX(calc(100% - 38px));
+                }
 
-
-        }
-
-        .project-panel {
-            .project-panel-button {
-                font-size: 14px;
-            }
-        }
-    }
-
-    .projects-container .project-card2 {
-        width: calc(100% - 3px);
-
-        &.show {
-            border-left: none;
-        }
-
-        .project-show-hide-panel {
-            font-size: 14px;
-        }
-
-        .project-description,
-        .project-stack {
-            padding: 30px;
-        }
-
-        .project-stack {
-            h3 {
-                font-size: 20px;
-            }
-
-            .stack-list {
-                gap: 10px;
-
-                .stack-element {
+                .project-show-hide-panel {
                     font-size: 12px;
 
-                    img {
-                        width: 40px;
-                        height: 40px;
+                    padding: 10px;
+
+                    svg {
+                        width: 15px;
+                    }
+                }
+
+                .project-description,
+                .project-stack {
+                    padding-inline: 10px;
+                    padding-block: 20px;
+                }
+
+                .project-description {
+                    font-size: 13px;
+                }
+
+                .project-stack {
+
+                    h3 {
+                        font-size: 20px;
+                    }
+
+                    .stack-list {
+                        .stack-element {
+                            font-size: 10px;
+
+                            img {
+                                width: 30px;
+                            }
+                        }
                     }
                 }
             }
         }
-    }
 
-    .projects-container .project-card2.hide {
-        transform: translateX(91%);
-    }
-}
-
-@media (max-width: 600px) {
-    .projects-container {
-        margin-top: 25px;
-    }
-
-    .project-card1 {
-        padding: 10px 5px;
-        row-gap: 10px;
-
-        .project-title {
-            font-size: 18px;
+        .dots {
+            margin-top: 25px;
         }
-
-        .iframe-wrap {
-            width: calc(100% - 38px);
-            flex-direction: column;
-        }
-
-        .iframe-switches {
-            width: 100%;
-            padding-block: 5px;
-
-            //on mobiles if there is no padding we can see
-            //content passing through previews navbar even tho websites are fine
-            // padding-block: 7.5px !important;
-        }
-
-        .iframe-container {
-            height: 270px;
-            width: 100%;
-
-            //czego to człowiek nie zrobi żeby w jsie nie pisać xd
-            iframe.desktop {
-                height: 1080px;
-                width: 415%;
-                max-width: 1920px;
-                transform: scale(0.24);
-            }
-
-            iframe.mobile {
-                width: 125%;
-                height: 125%;
-                min-width: 320px;
-                transform: scale(0.8);
-            }
-        }
-
-        .project-panel {
-            gap: 5px;
-
-            .project-panel-button {
-                font-size: 12px;
-                gap: 2.5px;
-
-                img {
-                    height: 15px;
-                    width: 15px;
-                }
-            }
-
-        }
-    }
-
-    .projects-container .project-card2 {
-
-        .project-show-hide-panel {
-            font-size: 12px;
-
-            padding: 10px;
-
-            img {
-                height: 15px;
-                width: 15px;
-            }
-        }
-
-        .project-description,
-        .project-stack {
-            padding-inline: 10px;
-            padding-block: 20px;
-        }
-
-        .project-description {
-            font-size: 13px;
-        }
-
-        .project-stack {
-
-            h3 {
-                font-size: 20px;
-            }
-
-            .stack-list {
-                .stack-element {
-                    font-size: 10px;
-
-                    img {
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
-            }
-        }
-    }
-
-    .projects-container .project-card2.hide {
-        transform: translateX(calc(100% - 38px));
-    }
-
-    .projects .dots {
-        margin-top: 25px;
     }
 }

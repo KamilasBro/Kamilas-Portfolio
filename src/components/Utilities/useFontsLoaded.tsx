@@ -1,28 +1,22 @@
 import { useState, useEffect } from 'react';
 
+//Tech Stack paths were slightly mismatched due to font not loading at time
+//so now we check if font is loaded
+
 export default function useFontsLoaded() {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        let cancelled = false;
-
         async function checkFonts() {
             if ("fonts" in document) {
                 try {
                     await document.fonts.ready;
-                } catch { }
+                } catch {}
             }
-
-            if (!cancelled) {
-                setLoaded(true);
-            }
+            setLoaded(true);
         }
 
         checkFonts();
-
-        return () => {
-            cancelled = true;
-        };
     }, []);
 
     return loaded;

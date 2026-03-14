@@ -1,20 +1,23 @@
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-
 import RandomPathCanvas from "./components/BgAnims/RandomPath";
 import MatrixText from "./components/BgAnims/MatrixText";
 
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Projects from "./components/Projects/Projects";
 import TechStack from "./components/TechStack/TechStack";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
+import Footer from "./components/Footer/Footer";
 
 import { useState } from "react";
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true)
+
+  //sometimes we want to freeze our background 
+  // to not waste resource if the background is not visible
   const [freeze, setFreeze] = useState(false)
   return (
     <>
@@ -29,7 +32,7 @@ export default function App() {
         {/*
         Most of the time home and projects are
         active in intersection observer at render but hidden from user during loading 
-        In that case we pass isLoading prop to prevent inView during that time
+        In that case we pass isLoading prop to observer to run during that time
         */}
         <Home isLoading={isLoading} />
         <Projects isLoading={isLoading} />
@@ -50,7 +53,7 @@ export default function App() {
             freeze={freeze}
             baseInterval={30}
             animationDuration={5000}
-            pathFragments={8}
+            pathSegments={8}
             strokeColor="rgba(255, 0, 153, 0.25)"
             strokeWidth={1.5}
           />

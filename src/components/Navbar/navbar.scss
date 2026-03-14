@@ -1,10 +1,11 @@
 @import "../../scssPartials/_colors";
+@import "../../scssPartials/_breakpoints";
+@import "../../scssPartials/_containerWidths";
 
 .navbar {
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  transition: background-color 300ms;
 
   position: fixed;
   z-index: 2;
@@ -13,8 +14,10 @@
 
   width: 100%;
 
-  background: transparent;
+  background: $transparentBlack;
   border-bottom: 1px solid $borderColor;
+
+  transition: background-color 300ms;
 
   &.scrolled {
     background-color: $black;
@@ -24,12 +27,13 @@
     display: flex;
     justify-content: space-between;
 
-    width: 1170px;
+    width: $fhd-w;
 
     .navbar-logo {
-      cursor: pointer;
       width: 50px;
       height: auto;
+
+      cursor: pointer;
 
       transition: filter 1000ms;
 
@@ -40,55 +44,51 @@
 
     .hamburger {
       display: none;
-
-      cursor: pointer;
-
-      height: 40px;
-      width: 40px;
     }
 
     .navbar-menu {
       display: flex;
       align-items: center;
+
       gap: 50px;
 
       li {
-        cursor: pointer;
         font-family: "Orbitron", sans-serif;
         font-size: 16px;
         font-weight: 500;
 
         transition: color 300ms;
-
-        &.active-section {
-          color: $purple;
-        }
+        cursor: pointer;
 
         &:not(.active-section):hover {
           color: $pink;
         }
 
+        &.active-section {
+          color: $purple;
+        }
       }
     }
 
     .navbar-socials {
       display: flex;
       align-items: center;
+
       column-gap: 5px;
 
       a {
-        height: 40px;
         width: 40px;
+        height: auto;
       }
     }
   }
 
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $sm-d) {
   .navbar {
     .inner-navbar {
-      width: 940px;
+      width: $sm-d-w;
 
       .navbar-logo {
         width: 45px;
@@ -105,13 +105,14 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: $lg-mb) {
   .navbar {
     padding-block: 15px;
+
     background-color: $black;
 
     .inner-navbar {
-      width: 724px;
+      width: $lg-mb-w;
 
       .navbar-logo,
       .navbar-menu,
@@ -121,37 +122,39 @@
 
       .hamburger {
         display: block;
+
+        width: 40px;
+        height: auto;
+
+        cursor: pointer;
       }
     }
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $md-mb) {
   .navbar {
     padding-block: 12px;
 
     .inner-navbar {
-      width: 570px;
+      width: $md-mb-w;
 
       .hamburger {
-        height: 30px;
         width: 30px;
       }
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $sm-mb) {
   .navbar {
     padding-block: 10px;
     padding-inline: 0px;
-    width: 100%;
 
     .inner-navbar {
-      width: 85%;
+      width: $sm-mb-w-precent;
 
       .hamburger {
-        height: 24px;
         width: 24px;
       }
     }
