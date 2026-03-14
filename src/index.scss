@@ -1,8 +1,8 @@
 //scss files for components are inside components folders and are imported to components
 
-@import "./scssPartials/_colors";
-@import "./scssPartials/_breakpoints";
-@import "./scssPartials/_containerWidths.scss";
+@use "./scssPartials/_colors" as *;
+@use "./scssPartials/_breakpoints" as *;
+@use "./scssPartials/_containerWidths" as *;
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
 
 // to bypass darkmodes ingeretion by browsers

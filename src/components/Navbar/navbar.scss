@@ -1,6 +1,6 @@
-@import "../../scssPartials/_colors";
-@import "../../scssPartials/_breakpoints";
-@import "../../scssPartials/_containerWidths";
+@use "../../scssPartials/_colors" as *;
+@use "../../scssPartials/_breakpoints" as *;
+@use "../../scssPartials/_containerWidths" as *;
 
 .navbar {
   display: flex;

@@ -1,4 +1,4 @@
-@import "../../scssPartials/_colors";
+@use "../../scssPartials/_colors" as *;
 
 .random-paths {
     position: fixed;

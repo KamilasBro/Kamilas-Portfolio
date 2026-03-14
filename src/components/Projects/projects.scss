@@ -1,5 +1,6 @@
-@import "../../scssPartials/_colors";
-@import "../../scssPartials/_breakpoints";
+@use "../../scssPartials/_colors" as *;
+@use "../../scssPartials/_breakpoints" as *;
+@use "../../scssPartials/_containerWidths" as *;
 
 //we trick browser here to show desktop preview scaled down (instead it is going on mobile breakpoint)
 @mixin iframe-preview($containerWidth, $containerHeight) {

@@ -1,5 +1,5 @@
-@import "../../scssPartials/_colors";
-@import "../../scssPartials/_breakpoints";
+@use "../../scssPartials/_colors" as *;
+@use "../../scssPartials/_breakpoints" as *;
 
 @keyframes logoGlow {
   from {
