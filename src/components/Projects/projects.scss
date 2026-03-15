@@ -527,10 +527,7 @@ $transitionDelay: 75ms;
                 height: calc(100% - 4px);
 
                 background-color: rgba(1, 10, 8, 0.9);
-
-                &.show {
-                    border-left: 1px solid $borderColor;
-                }
+                border-left: 1px solid $borderColor;
 
                 &.hide {
                     transform: translateX(85%);
@@ -696,7 +693,7 @@ $transitionDelay: 75ms;
                 width: calc(100% - 3px);
 
                 &.show {
-                    border-left: none;
+                    border-left: 1px solid $borderColor;
                 }
 
                 &.hide {
@@ -774,7 +771,7 @@ $transitionDelay: 75ms;
                     iframe.mobile {
                         width: 125%;
                         height: 125%;
-                        min-width: $sm-mb;
+                        min-width: $sm-mb-w;
 
                         transform: scale(0.8);
                     }

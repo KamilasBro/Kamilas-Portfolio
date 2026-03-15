@@ -353,8 +353,6 @@
                         user-drag: none;
 
                         img {
-                            height: auto;
-
                             border-radius: 5px;
 
                             -webkit-user-drag: none;
@@ -383,6 +381,7 @@
 
                     img {
                         width: 60px;
+                        height: 60px;
                     }
                 }
 
@@ -403,6 +402,7 @@
 
                     img {
                         width: 30px;
+                        height: 30px;
                     }
                 }
 

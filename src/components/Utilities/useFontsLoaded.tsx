@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 
-//Tech Stack paths were slightly mismatched due to font not loading at time
-//so now we check if font is loaded
-
 export default function useFontsLoaded() {
     const [loaded, setLoaded] = useState(false);
 

@@ -14,7 +14,7 @@ import techStackJSON from "../../data/techStack/techStack.json";
 import React, { useState } from 'react';
 import { useInView } from "react-intersection-observer";
 
-import useFontsLoaded from '../Utilities/useFontsLoaded';
+
 import getTechStackImg from '../Utilities/getTechStackImg';
 import EncryptText from "../Utilities/DecryptText";
 
@@ -294,33 +294,8 @@ export default function TechStack({
                                 </React.Fragment>
                             )
                         })}
-                        {/*
-                        Rendering paths glitch explained:
-
-                        1. When the component initially renders, the custom font defined in SCSS
-                            might not have loaded yet. During this time, the browser falls back
-                            to a default system font (the “placeholder font”).
-
-                        2. Because the placeholder font has different character widths,
-                            text inside nodes and section names is slightly wider or narrower
-                            than it will be once the correct font loads.
-
-                        3. TechStackPaths are rendered only once after init is done,
-                            so the paths are calculated based on the initial widths of the text
-                            using the fallback font.
-
-                        4. When the custom font finishes loading, text widths update to their
-                            correct sizes, but the paths have already been drawn. This results
-                            in a small offset between the paths and their corresponding nodes.
-
-                        5. The visible effect is a few-pixel misalignment between nodes and paths,
-                            which only occurs on the first render before the font is fully loaded.
-
-                        that's why this hook is used here
-                        */
-                            //Path calculation and animation logic are in TechStackPaths.
-                        }
-                        {useFontsLoaded() && initLoaded && (
+                        {/*Path calculation and animation logic are in TechStackPaths.*/}
+                        {initLoaded && (
                             <TechStackPaths
                                 techStack={techStack}
                                 worldRef={worldRef}

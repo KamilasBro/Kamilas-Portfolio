@@ -37,7 +37,8 @@
 
 <h2 id="random-backgrounds">Random Generated Backgrounds</h2>
 <p>Both are based on the same canvas engine file to keep repeating logic in one place.  
-They can be included in any React & TypeScript project easily (for now i don't plan to extract them to custom library). Below is a breakdown of customization for each background.</p>
+They can be included in any React & TypeScript project easily (for now i don't plan to extract them to custom library). Below is a breakdown of customization for each background. They are mobile friendly with builded in size adjustments based on viewport size
+</p>
 
 <h3 id="random-paths">Random Paths</h3>
 <p>Random snaked paths simulating a printed circuit board.</p>

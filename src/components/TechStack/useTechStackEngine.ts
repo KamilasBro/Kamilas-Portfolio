@@ -1,5 +1,7 @@
 import { TechStackEnginePropsInterface } from "./Interfaces/Interfaces";
 
+import config from "../../data/techStack/config.json";
+
 import React, {
   useRef,
   useState,
@@ -8,7 +10,8 @@ import React, {
   useCallback,
 } from "react";
 
-import config from "../../data/techStack/config.json";
+import useFontsLoaded from "../Utilities/useFontsLoaded";
+import useImagesLoaded from "../Utilities/useImagesLoaded";
 
 //=======================
 //About Engine ==========
@@ -163,29 +166,58 @@ export default function useTechStackEngine({
   // INIT =================
   //=======================
 
+  /*
+    Rendering paths glitch explained:
+
+    When the component initially renders, the custom font defined in SCSS
+    might not have loaded yet. During this time, the browser falls back
+    to a default system font (the “placeholder font”).
+
+    Because the placeholder font has different character widths,
+    text inside nodes and section names is slightly wider or narrower
+    than it will be once the correct font loads.
+
+    TechStackPaths are rendered only once after init is done,
+    so the paths are calculated based on the initial widths of the text
+    using the fallback font.
+
+    When the custom font finishes loading, text widths update to their
+    correct sizes, but the paths have already been drawn. This results
+    in a small offset between the paths and their corresponding nodes.
+
+    The visible effect is a few-pixel misalignment between nodes and paths,
+    which only occurs on the first render before the font is fully loaded.
+
+    Same thing is occuring with late images load, 
+    thats why we check if all things that changes layout is loaded first
+  */
+
+  const imagesLoaded = useImagesLoaded(worldRef);
+  const fontsLoaded = useFontsLoaded();
+
   useLayoutEffect(() => {
     if (!viewportRef.current || !worldRef.current || !config.elements) return;
 
-    // Position all elements based on config on first render
     Object.keys(config.elements).forEach((id) => {
       const el = document.querySelector(
         `[data-id="${id}"]`,
       ) as HTMLElement | null;
+
       if (el) {
         const { x, y } = elementPositions[id];
         el.style.transform = `translate(${x}px, ${y}px)`;
       }
     });
 
-    // Center the "camera" in the middle of the viewport
     const rect = viewportRef.current.getBoundingClientRect();
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     setTranslateWorld({ x: centerX, y: centerY });
 
-    // In normal mode (not build mode), mark paths as ready
-    if (!buildMode) setInitLoaded(true);
-  }, [buildMode, elementPositions]);
+    if (!buildMode && fontsLoaded && imagesLoaded) {
+      setInitLoaded(true);
+    }
+  }, [buildMode, elementPositions, fontsLoaded, imagesLoaded]);
 
   //=======================
   // FULL SCREEN =========
