@@ -159,6 +159,3 @@ advancedConfig = {
 <p>
   What started as a quick revamp evolved into a <strong>code playground</strong> where I experimented with new ideas and learned a lot. While it consumed more time than anticipated, it was a valuable learning experience.
 </p>
-<p>
-  <strong>Vibe coding</strong> played a part throughout the process (I’m not proud of that), but I tried to use AI to assist me rather than do the work for me. Messy code was later refactored into cleaner solutions.
-</p>
