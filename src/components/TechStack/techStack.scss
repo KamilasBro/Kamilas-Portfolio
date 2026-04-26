@@ -1,681 +1,672 @@
-@import "../../scssPartials/flexCenter";
-@import "../../scssPartials/_colors";
+@use "../../scssPartials/_colors" as *;
+@use "../../scssPartials/_breakpoints" as *;
+
+@keyframes techstackPowerOnBorder {
+    0% {
+        border-color: $pathColor;
+    }
+
+    25% {
+        border-color: rgba(255, 0, 153, 0.60);
+        box-shadow: (0px 0px 1px $glow);
+    }
+
+    50% {
+        border-color: $pathColor;
+        box-shadow: none;
+    }
+
+    75% {
+        border-color: rgba(255, 0, 153, 0.70);
+        box-shadow: (0px 0px 2px $glow);
+    }
+
+    85% {
+        border-color: rgba(255, 0, 153, 0.85);
+        box-shadow: (0px 0px 4px $glow);
+    }
+
+    100% {
+        border-color: $pink;
+        box-shadow: (0px 0px 5px $glow);
+    }
+}
+
+@keyframes techStackPowerOnImg {
+    0% {
+        filter: grayscale(100%);
+    }
+
+    25% {
+        filter: grayscale(30%);
+    }
+
+    50% {
+        filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
+    }
+
+    75% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
+    }
+
+    85% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
+    }
+
+    100% {
+        filter: drop-shadow(0px 0px 2px $glow);
+    }
+}
+
+//duplicate is necessary for DOM to register change
+@keyframes techstackPowerOnBorderReverse {
+    0% {
+        border-color: $pathColor;
+    }
+
+    25% {
+        border-color: rgba(255, 0, 153, 0.60);
+        box-shadow: (0px 0px 1px $glow);
+    }
+
+    50% {
+        border-color: $pathColor;
+        box-shadow: none;
+    }
+
+    75% {
+        border-color: rgba(255, 0, 153, 0.70);
+        box-shadow: (0px 0px 2px $glow);
+    }
+
+    85% {
+        border-color: rgba(255, 0, 153, 0.85);
+        box-shadow: (0px 0px 4px $glow);
+    }
+
+    100% {
+        border-color: $pink;
+        box-shadow: (0px 0px 5px $glow);
+    }
+}
+
+@keyframes techStackPowerOnImgReverse {
+    0% {
+        filter: grayscale(100%);
+    }
+
+    25% {
+        filter: grayscale(30%);
+    }
+
+    50% {
+        filter: grayscale(100%) drop-shadow(0px 0px 0.5px $glow);
+    }
+
+    75% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1px $glow);
+    }
+
+    85% {
+        filter: grayscale(25%) drop-shadow(0px 0px 1.5px $glow);
+    }
+
+    100% {
+        filter: drop-shadow(0px 0px 2px $glow);
+    }
+}
 
 .tech-stack {
-  margin-top: 200px;
-}
+    user-select: none;
 
-.tech-stack h1 {
-  margin-bottom: 50px;
-}
-
-.tech-stack .pcb-note {
-  color: $gray;
-  font-size: 18px;
-}
-
-.tech-stack .pcb {
-  margin-top: 0px;
-  height: 600px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 5px;
-
-  background: $dark;
-
-  filter: drop-shadow(0px 0px 30px rgba(173, 0, 255, 0.20));
-  padding: 15px;
-}
-
-.tech-stack .pcb::before {
-  content: "";
-  position: absolute;
-  inset: 0px;
-  pointer-events: none;
-  z-index: 1;
-
-  background-image:
-    radial-gradient(circle at center, rgb(226, 10, 143) 2.25px, transparent 3px),
-    radial-gradient(circle at center, rgba(109, 0, 161, 1) 2px, transparent 3px),
-    radial-gradient(circle at center, rgba(23, 23, 23, 1) 1.75px, transparent 3px);
-
-
-  background-size: 80px 80px, 40px 40px, 40px 40px;
-  background-position: -20px -20px, 0px 0px, 20px 20px;
-  background-repeat: repeat, repeat, repeat;
-
-  mix-blend-mode: screen;
-}
-
-/* make sure content inside sits above the patterns */
-.tech-stack .pcb>* {
-  position: relative;
-  z-index: 3;
-}
-
-.tech-stack .pcb .pcb-components {
-  display: grid;
-  grid-template-columns: repeat(10, auto);
-  grid-template-rows: repeat(10, auto);
-  height: 100%;
-}
-
-.tech-stack .pcb .pcb-component {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  height: fit-content;
-
-}
-
-.tech-stack .pcb-component:nth-child(1) {
-  grid-area: 1 / 1 / 5 / 5;
-  max-width: 70%;
-
-
-  ul:nth-child(3) {
-    align-items: end;
-    height: auto;
-  }
-}
-
-.tech-stack .pcb-component:nth-child(2) {
-  grid-area: 1 / 6 / 6 / 11;
-  justify-content: end;
-  max-width: 90%;
-  justify-self: right;
-
-  ul:nth-child(2) {
-    align-items: end;
-    height: auto;
-  }
-
-}
-
-// .tech-stack .pcb-component:nth-child(3) { backend
-//   grid-area: 6 / 1 / 11 / 6;
-// }
-
-.tech-stack .pcb-component:nth-child(3) {
-  grid-area: 6 / 6 / 11 / 11;
-  justify-content: end;
-  align-self: flex-end;
-  align-items: center;
-
-  & ul {
-    order: 2;
-  }
-
-  li.pcb-section {
-    align-self: flex-start;
-  }
-}
-
-@keyframes powerOnBorder {
-
-  /* start dim */
-  0% {
-    border-color: rgba(255, 0, 153, 0.5);
-  }
-
-  25% {
-    border-color: rgba(255, 0, 153, 0.60);
-    filter: drop-shadow(0px 0px 3px $glow);
-  }
-
-  50% {
-    border-color: rgba(255, 0, 153, 0.50);
-    filter: none;
-  }
-
-  75% {
-    border-color: rgba(255, 0, 153, 0.70);
-    filter: drop-shadow(0px 0px 3.5px $glow);
-  }
-
-  85% {
-    border-color: rgba(255, 0, 153, 0.85);
-    filter: drop-shadow(0px 0px 6.5px $glow);
-  }
-
-  /* stable full power */
-  100% {
-    border-color: $pink;
-    filter: drop-shadow(0px 0px 10px $glow);
-  }
-}
-
-@keyframes PowerOnImg {
-
-  /* start dim */
-  0% {
-    filter: grayscale(100%);
-  }
-
-  25% {
-    filter: grayscale(30%);
-  }
-
-  50% {
-    filter: grayscale(100%);
-  }
-
-  75% {
-    filter: grayscale(25%);
-  }
-
-  85% {
-    filter: grayscale(15%);
-  }
-
-  /* stable full power */
-  100% {
-    filter: none;
-  }
-}
-
-//it essentially just copy the animation for DOM to detect class change and added reverse to it at invoking
-@keyframes powerOnBorderReverse {
-
-  /* start dim */
-  0% {
-    border-color: rgba(255, 0, 153, 0.5);
-  }
-
-  25% {
-    border-color: rgba(255, 0, 153, 0.60);
-    filter: drop-shadow(0px 0px 3px $glow);
-  }
-
-  50% {
-    border-color: rgba(255, 0, 153, 0.50);
-    filter: none;
-  }
-
-  75% {
-    border-color: rgba(255, 0, 153, 0.70);
-    filter: drop-shadow(0px 0px 3.5px $glow);
-  }
-
-  85% {
-    border-color: rgba(255, 0, 153, 0.85);
-    filter: drop-shadow(0px 0px 6.5px $glow);
-  }
-
-  /* stable full power */
-  100% {
-    border-color: $pink;
-    filter: drop-shadow(0px 0px 10px $glow);
-  }
-}
-
-@keyframes PowerOnImgReverse {
-
-  /* start dim */
-  0% {
-    filter: grayscale(100%);
-  }
-
-  25% {
-    filter: grayscale(30%);
-  }
-
-  50% {
-    filter: grayscale(100%);
-  }
-
-  75% {
-    filter: grayscale(25%);
-  }
-
-  85% {
-    filter: grayscale(15%);
-  }
-
-  /* stable full power */
-  100% {
-    filter: none;
-  }
-}
-
-
-
-.tech-stack .pcb .pcb-component .nodes {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(3, auto);
-  width: fit-content;
-  height: fit-content;
-
-  li:nth-child(1) {
-    grid-area: 2 / 1 / 4 / 2;
-  }
-
-  li:nth-child(2) {
-    grid-area: 1 / 1 / 2 / 3;
-  }
-
-
-  li {
-    width: fit-content;
-    height: fit-content;
-    border-radius: 10px;
-    background-color: $dark;
-
-    &.active {
-      animation: powerOnBorder 700ms forwards;
-
-      & img {
-        animation: PowerOnImg 700ms forwards;
-      }
+    .section-title {
+        margin-bottom: 50px;
     }
 
-    &.deactivated {
-      animation: powerOnBorderReverse 700ms reverse forwards;
+    .pcb-note {
+        display: flex;
+        justify-content: flex-end;
 
-      & img {
-        animation: PowerOnImgReverse 700ms reverse forwards;
-      }
+        font-size: 18px;
+
+        color: $gray;
     }
-  }
 
-  & img {
-    border-radius: 5px;
-    filter: grayscale(100%);
-  }
+    .pcb-wrap {
+        position: relative;
+
+        background-color: $black;
+
+        &::before {
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            padding: 1px;
+
+            background: $borderGradientReverse;
+
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+
+            animation: rotate linear infinite 10s;
+
+            pointer-events: none;
+            content: "";
+        }
+
+        &.full-screen {
+            position: fixed;
+            z-index: 100;
+
+            top: 0;
+            left: 0;
+
+            height: 100vh;
+            width: 100vw;
+        }
+    }
+
+    .pcb-menu-wrap {
+        display: flex;
+        justify-content: flex-end;
+
+        position: absolute;
+        z-index: 1;
+
+        gap: 15px;
+
+        width: 100%;
+
+        pointer-events: none;
+
+        .pcb-menu {
+            display: flex;
+            align-items: center;
+
+            padding: 10px;
+            gap: 10px;
+
+            background-color: $black;
+
+            border-bottom: 1px solid $pathColor;
+            border-left: 1px solid $pathColor;
+
+            p {
+                span {
+                    color: $gray;
+
+                    &.full-screen {
+                        color: $pink;
+                    }
+                }
+            }
+
+            button {
+                padding: 5px 10px;
+
+                border: 1px solid $pink;
+
+                pointer-events: initial;
+            }
+
+            svg {
+                width: 30px;
+                height: auto;
+
+                pointer-events: initial;
+                cursor: pointer;
+
+                &:hover path {
+                    fill: $pink;
+                }
+            }
+        }
+    }
+
+    .pcb {
+        position: relative;
+        overflow: hidden;
+
+        padding: 15px;
+
+        height: 600px;
+
+        border-radius: 5px;
+
+        background-image:
+            radial-gradient(circle at center, $gray 1px, transparent 1.5px),
+            radial-gradient(circle at center, $darkGray 0.66px, transparent 1px);
+
+        background-size: 40px 40px, 40px 40px;
+        background-position: -0px -0px, 0px 0px;
+        background-repeat: repeat, repeat;
+
+        cursor: grab;
+        touch-action: none;
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        &.full-screen {
+            height: 100%;
+            width: 100%;
+        }
+
+        .pcb-logo-wrap {
+            position: absolute;
+            top: 0;
+
+            padding: 35px;
+
+            background-color: $transparentBlack;
+
+            border-radius: 10px;
+
+
+            transform: translate(-50%, -50%);
+
+            &::before {
+                position: absolute;
+                z-index: 1;
+                inset: 0;
+
+                padding: 3px;
+
+                background: $borderGradient;
+
+                border-radius: 10px;
+
+                animation: rotate linear infinite 10s;
+                -webkit-mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+
+                pointer-events: none;
+                content: "";
+            }
+        }
+
+        .pcb-world {
+            transform-origin: 0 0;
+
+            //!IMPORTANT
+            contain: layout style; //prevents the world elements from jumping after zooming
+            //!IMPORTANT
+
+            .section-name {
+                position: absolute;
+
+                padding: 15px 30px;
+
+                font-family: "Orbitron";
+                font-size: 24px;
+                font-weight: 600;
+
+                background-color: $transparentBlack;
+
+                border: 3px solid $darkPurple;
+                border-radius: 10px;
+            }
+
+            .nodes-wrap {
+                display: grid;
+                position: absolute;
+
+                .node-wrap {
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    grid-template-rows: repeat(4, auto);
+                    position: relative;
+
+                    grid-column-gap: 15px;
+                    grid-row-gap: 10px;
+
+                    width: min-content;
+                    height: min-content;
+
+
+                    &:has(.sub-node) {
+                        justify-self: start;
+                    }
+
+                    &:not(:has(.sub-node)) {
+                        justify-self: end;
+                    }
+
+                    &>div {
+                        box-sizing: border-box;
+
+                        background-color: $transparentBlack;
+
+                        border-radius: 10px;
+                        border-style: solid;
+                        border-color: $pathColor;
+
+                        cursor: pointer;
+                        -webkit-user-drag: none;
+                        user-drag: none;
+
+                        img {
+                            border-radius: 5px;
+
+                            -webkit-user-drag: none;
+                            user-drag: none;
+                        }
+                    }
+                }
+
+                .main-node {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    align-self: center;
+                    grid-area: 2 / 2 / 4 / 3;
+
+                    gap: 5px;
+                    padding: 5px 10px;
+
+                    width: max-content;
+                    height: max-content;
+
+                    font-size: 13px;
+
+                    border-width: 2px;
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+
+                .sub-node {
+                    display: flex;
+                    align-items: center;
+                    justify-self: flex-start;
+
+                    gap: 5px;
+                    padding: 5px;
+
+                    width: max-content;
+                    height: max-content;
+
+                    font-size: 11px;
+
+                    border-width: 1px;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+
+                .sub-node:nth-child(2) {
+                    grid-area: 3 / 1 / 4 / 2;
+                }
+
+                .sub-node:nth-child(3) {
+                    grid-area: 2 / 1 / 3 / 2;
+
+                    justify-self: flex-end;
+                }
+
+                $subNodeshorizontalSpacing: 47.5px;
+
+                .sub-node:nth-child(4) {
+                    grid-area: 1 / 1 / 2 / 2;
+                    justify-self: flex-end;
+
+                    position: relative;
+
+                    left: $subNodeshorizontalSpacing;
+                }
+
+                .sub-node:nth-child(5) {
+                    grid-area: 1 / 3 / 2 / 4;
+
+                    position: relative;
+
+                    right: $subNodeshorizontalSpacing;
+                }
+
+                .sub-node:nth-child(6) {
+                    grid-area: 2 / 3 / 3 / 4;
+                }
+
+                .sub-node:nth-child(7) {
+                    grid-area: 3 / 3 / 4 / 4;
+                }
+
+                .sub-node:nth-child(8) {
+                    grid-area: 4 / 3 / 5 / 4;
+
+                    position: relative;
+
+                    right: $subNodeshorizontalSpacing;
+                }
+
+                .sub-node:nth-child(9) {
+                    grid-area: 4 / 1 / 5 / 2;
+                    justify-self: flex-end;
+
+                    position: relative;
+
+                    left: $subNodeshorizontalSpacing;
+                }
+            }
+        }
+    }
 }
 
-.tech-stack .pcb .pcb-component {
-  & .nodes:has(.sub-node) {
-    row-gap: 10px;
-  }
+//Build Mode
+.tech-stack .pcb .pcb-world {
+    .section-name.build-mode:hover {
+        background-color: rgba(110, 110, 110, 0.5);
+    }
 
-  & .nodes:has(.sub-node + .sub-node) {
-    column-gap: 10px;
-  }
+    .nodes-wrap.build-mode {
+        box-sizing: border-box;
+
+        background-color: rgba(46, 46, 46, 0.5);
+
+        &:hover {
+            background-color: rgba(110, 110, 110, 0.5);
+        }
+    }
+}
+
+//pcb paths
+.tech-stack .pcb .pcb-world {
+    .nodes-wrap .node-wrap {
+        &.path-direction-top {
+            align-self: flex-start;
+        }
+
+        &.path-direction-bottom {
+            align-self: flex-end;
+        }
+
+        .main-node,
+        .sub-node {
+            img {
+                filter: grayscale(100%)
+            }
+
+            &.active {
+                animation: techstackPowerOnBorder 500ms forwards;
+
+                & img {
+                    animation: techStackPowerOnImg 500ms forwards;
+                }
+            }
+
+            &.deactivating {
+                animation: techstackPowerOnBorderReverse 500ms reverse;
+
+                & img {
+                    animation: techStackPowerOnImgReverse 500ms reverse;
+                }
+            }
+        }
+    }
+
+    .pcb-paths {
+        position: absolute;
+        z-index: -1;
+        overflow: visible;
+
+        fill: none;
+        stroke: $pathColor;
+        stroke-linejoin: bevel;
+
+        width: 1px;
+        height: 1px;
+
+        .ball {
+            r: 3;
+
+            fill: $pink;
+            stroke: none;
+        }
+
+        .path-section {
+            stroke-width: 3px;
+        }
+
+        .node-section,
+        .subNode-section {
+            stroke-width: 2px;
+        }
+    }
 }
 
 
+//intersector observer
+.tech-stack .pcb-wrap {
+    transition: transform 300ms, opacity 300ms;
 
-.tech-stack .pcb .main-node {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 5px;
-  font-size: 13px;
-  font-weight: 400;
-  padding-inline: 10px;
-  padding-block: 5px;
-  border: 3px solid rgba(255, 0, 153, 0.5);
+    &.not-in-view {
+        transform: translatex(-50px);
+        opacity: 0;
+    }
+}
 
+@media (max-width: $sm-d) {
+    .tech-stack {
+        .section-title {
+            margin-bottom: 45px;
+        }
 
-  & img {
-    width: 60px;
-    height: 60px;
-  }
+        .pcb-note {
+            font-size: 16px;
+        }
+
+        .pcb-menu-wrap {
+            .pcb-menu {
+                p {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .pcb {
+            height: 525px;
+        }
+    }
+}
+
+@media (max-width: $lg-mb) {
+    .tech-stack {
+
+        .section-title {
+            margin-bottom: 40px;
+        }
+
+        .pcb-note {
+            font-size: 14px;
+        }
+
+        .pcb-menu-wrap {
+            .pcb-menu {
+                p {
+                    font-size: 13px;
+                }
+
+                svg {
+                    width: 27.5px;
+                }
+            }
+        }
+
+        .pcb {
+            height: 410px;
+        }
+    }
 
 }
 
-.tech-stack .pcb .sub-node {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  column-gap: 5px;
-  font-size: 11px;
-  font-weight: 400;
-  padding: 5px;
-  border: 1px solid rgba(255, 0, 153, 0.5);
+@media (max-width: $md-mb) {
+    .tech-stack {
+        .section-title {
+            margin-bottom: 35px;
+        }
 
-  & img {
-    width: 30px;
-    height: 30px;
-  }
+        .pcb-note {
+            font-size: 11px;
+        }
 
+        .pcb-menu-wrap {
+            .pcb-menu {
+                padding: 5px;
+
+                p {
+                    font-size: 12px;
+                }
+
+                svg {
+                    width: 25px;
+                }
+            }
+        }
+
+        .pcb {
+            height: 350px;
+        }
+    }
 }
 
-.tech-stack .pcb .submain-node {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 5px;
-  font-size: 11px;
-  font-weight: 400;
-  padding: 5px;
-  border: 1px solid rgba(255, 0, 153, 0.5);
+@media (max-width: $sm-mb) {
+    .tech-stack {
+        .section-title {
+            margin-bottom: 30px;
+        }
 
-  & img {
-    width: 30px;
-    height: 30px;
-  }
+        .pcb-note {
+            font-size: 9px;
+        }
 
-}
+        .pcb-menu-wrap {
+            .pcb-menu {
+                padding: 5px;
 
-.tech-stack .pcb .pcb-section {
-  font-size: 18px;
-  font-weight: 500;
-  padding: 10px;
-  border: 3px solid $purple;
-  background-color: $dark;
-  border-radius: 10px;
-  width: fit-content;
-  height: fit-content;
-  filter: drop-shadow(0px 0px 5px $glow);
-}
+                p {
+                    font-size: 11px;
+                }
 
-@keyframes CorePulse {
-  0% {
-    filter: drop-shadow(0px 0px 5px $glow);
-  }
+                svg {
+                    width: 22.5px;
+                }
+            }
+        }
 
-  50% {
-    filter: drop-shadow(0px 0px 150px $glow);
-  }
-
-  100% {
-    filter: drop-shadow(0px 0px 5px $glow);
-  }
-}
-
-.tech-stack .pcb .core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  & svg {
-    filter: drop-shadow(0px 0px 5px $glow);
-  }
-
-  &.triggered {
-    & svg {
-      animation: CorePulse 1000ms;
+        .pcb {
+            height: 260px;
+        }
     }
-  }
-}
-
-.tech-stack .pcb .paths {
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  & path {
-    stroke: rgba(255, 0, 153, 0.5);
-    fill: none;
-  }
-
-  .ball {
-    position: inherit;
-    top: 0;
-    left: 0;
-
-    & circle {
-      fill: $pink;
-      stroke: rgba(255, 0, 153, 0.3);
-      stroke-width: 8px;
-    }
-  }
-}
-
-@media (max-width: 1440px) {
-  .tech-stack h1 {
-    margin-bottom: 45px;
-  }
-
-  .tech-stack .pcb-note {
-    font-size: 17px;
-  }
-
-  .tech-stack .pcb {
-    height: 525px;
-  }
-
-  .tech-stack .pcb-component:nth-child(1) {
-    max-width: 80%;
-
-  }
-
-  .tech-stack .pcb .main-node {
-    font-size: 12px;
-
-
-    & img {
-      width: 50px;
-      height: 50px;
-    }
-  }
-
-  .tech-stack .pcb .sub-node {
-    font-size: 9px;
-    padding: 5px;
-
-    & img {
-      width: 25px;
-      height: 25px;
-    }
-  }
-
-  .tech-stack .pcb .submain-node {
-    font-size: 9px;
-
-    & img {
-      width: 25px;
-      height: 25px;
-    }
-  }
-
-  .tech-stack .pcb .pcb-section {
-    font-size: 16px;
-  }
-
-  .tech-stack .pcb .core svg {
-    width: 125px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .tech-stack h1 {
-    margin-bottom: 40px;
-  }
-
-  .tech-stack .pcb-note {
-    font-size: 16px;
-  }
-
-  .tech-stack .pcb {
-    height: 450px;
-    padding: 10px;
-  }
-
-  .tech-stack .pcb-component:nth-child(1) {
-    max-width: 90%;
-
-  }
-
-  .tech-stack .pcb .pcb-component {
-    gap: 25px;
-  }
-
-  .tech-stack .pcb .main-node {
-    font-size: 11px;
-
-    & img {
-      width: 40px;
-      height: 40px;
-    }
-
-    border-width: 2px;
-  }
-
-  .tech-stack .pcb .sub-node {
-    font-size: 7px;
-
-    & img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .tech-stack .pcb .submain-node {
-    font-size: 7px;
-
-    & img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .tech-stack .pcb .pcb-section {
-    font-size: 14px;
-    border-width: 2px;
-  }
-
-  .tech-stack .pcb .core svg {
-    width: 100px;
-  }
-}
-
-@media (max-width: 800px) {
-
-  .tech-stack h1 {
-    margin-bottom: 35px;
-  }
-
-  .tech-stack .pcb-note {
-    font-size: 15px;
-  }
-
-  .tech-stack .pcb {
-    height: 380px;
-    padding: 5px;
-  }
-
-  .tech-stack .pcb-component:nth-child(1) {
-    max-width: 100%;
-
-  }
-
-  .tech-stack .pcb .pcb-component {
-    gap: 0px;
-    row-gap: 20px;
-    column-gap: 10px !important;
-  }
-
-  .tech-stack .pcb .main-node {
-    font-size: 10px;
-
-    & img {
-      width: 35px;
-      height: 35px;
-    }
-
-    border-width: 2px;
-  }
-
-  .tech-stack .pcb .sub-node {
-    font-size: 6px;
-
-    & img {
-      width: 17.5px;
-      height: 17.5px;
-    }
-  }
-
-  .tech-stack .pcb .submain-node {
-    font-size: 6px;
-
-    & img {
-      width: 17.5px;
-      height: 17.5px;
-    }
-  }
-
-  .tech-stack .pcb .pcb-section {
-    font-size: 11px;
-    padding: 5px;
-  }
-
-  .tech-stack .pcb .core svg {
-    width: 75px;
-  }
-}
-
-@media (max-width: 600px) {
-  .tech-stack h1 {
-    margin-bottom: 30px;
-  }
-
-  .tech-stack .pcb-note {
-    font-size: 14px;
-  }
-
-  .tech-stack .pcb .pcb-component {
-    gap: 0px;
-    row-gap: 20px;
-    column-gap: 5px !important;
-  }
-
-  .tech-stack .pcb .pcb-component {
-    & .nodes:has(.sub-node) {
-      row-gap: 2.5px;
-    }
-
-    & .nodes:has(.sub-node + .sub-node) {
-      column-gap: 2.5px;
-    }
-  }
-
-  .tech-stack .pcb-component:nth-child(1) {
-    grid-area: 1 / 1 / 5 / 10;
-    max-width: 90%;
-  }
-
-  .tech-stack .pcb-component:nth-child(2) {
-    grid-area: 1 / 8 / 6 / 11;
-  }
-
-  .tech-stack .pcb .main-node {
-    font-size: 8px;
-    gap: 1px;
-    padding-inline: 5px;
-    border-width: 1.5px;
-
-    & img {
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  .tech-stack .pcb .sub-node {
-    font-size: 5px;
-    gap: 2.5px;
-
-    & img {
-      width: 15px;
-      height: 15px;
-    }
-  }
-
-  .tech-stack .pcb .submain-node {
-    font-size: 5px;
-    gap: 2.5px;
-
-    & img {
-      width: 15px;
-      height: 15px;
-    }
-  }
-
-  .tech-stack .pcb .pcb-section {
-    font-size: 10px;
-    padding: 5px;
-  }
-
-  .tech-stack .pcb .core svg {
-    width: 50px;
-  }
 }

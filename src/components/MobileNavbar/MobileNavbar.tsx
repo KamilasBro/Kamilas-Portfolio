@@ -1,129 +1,95 @@
-import logo from "../../images/logo/logo.webp";
-import closeNavbar from "../../images/closeNavbar.webp";
-import linkedin from "../../images/socials/linkedin.webp";
-import github from "../../images/socials/github.webp";
-import fiverr from "../../images/socials/fiverr.webp";
-
-import hadleScroll from "../functions&Variables/handleScroll";
-import socials from "../functions&Variables/socials";
-//colors from _colors.scss root to manipulate
-import { colors } from "../functions&Variables/colors";
-
 import "./mobilenavbar.scss";
-//this works the same as navbar but with one addition
-interface Props {
+import { ReactComponent as LogoSvg } from "../../images/logo/logo.svg";
+import { ReactComponent as CloseSvg } from "../../images/close.svg";
+
+import sectionsJSON from "../../data/sections/sections.json"
+import hadleSectionScroll from "../Utilities/HandleSectionScroll";
+import RenderSocials from "../Utilities/RenderSocials";
+
+import { useState, useEffect } from "react";
+
+interface PropsInterface {
   currentSection: string;
-  setMobileActive: Function;
+  mobileActive: boolean;
+  setMobileActive: (active: boolean) => void;
 }
-export default function MobileNavbar(props: Props) {
-  function close() {
-    //this function will trigger the closing animation for mobile navbar
-    (document.querySelector(".mobile-navbar") as HTMLElement).style.transform =
-      "translateX(-100%)";
-    setTimeout(() => {
-      props.setMobileActive(false);
-    }, 500); //and close it after 0.5s
-  }
+
+export default function MobileNavbar({
+  currentSection,
+  mobileActive,
+  setMobileActive
+}: PropsInterface) {
+  const [isClosing, setIsClosing] = useState(false);
+
+  //disable scroll if mobileNavbar is active
+  useEffect(() => {
+    const html = document.documentElement;
+    html.style.overflowY = mobileActive ? "hidden" : "visible";
+
+    return () => {
+      html.style.overflowY = "visible";
+    };
+  }, [mobileActive]);
+
+
+  //disable mobile navbar if window width is higher than mobile breakpoint
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setMobileActive(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setMobileActive]);
+
   return (
-    <section className="mobile-navbar">
+    <section
+      className={`mobile-navbar ${isClosing ? "closing" : ""}`}
+      onAnimationEnd={(e) => e.target === e.currentTarget && isClosing && setMobileActive(false)}
+    >
       <div className="mobile-navbar-buttons">
-        <img src={logo} alt="logo" className="mobile-logo" />
-        <img
-          src={closeNavbar}
+        <LogoSvg
+          alt="logo"
+          className={`mobile-logo ${currentSection === "home" ? "active-section" : ""}`}
+          onClick={() => {
+            hadleSectionScroll("home")
+            setIsClosing(true);
+          }}
+        />
+        <CloseSvg
           alt="closeNavbar"
           className="close-navbar"
           onClick={() => {
-            close();
+            setIsClosing(true);
           }}
         />
       </div>
       <ul className="mobile-navbar-menu">
-        <li
-          style={
-            props.currentSection === "home" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              document.body.scrollTop = 0;
-              document.documentElement.scrollTop = 0;
-              close();
-            }}
-          >
-            Home
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "projects" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".projects");
-              close();
-            }}
-          >
-            Projects
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "technologies"
-              ? { color: colors.purple }
-              : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".technologies");
-              close();
-            }}
-          >
-            Technologies
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "contact" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".contact");
-              close();
-            }}
-          >
-            Contact
-          </span>
-        </li>
-        <li
-          style={
-            props.currentSection === "about" ? { color: colors.purple } : {}
-          }
-        >
-          <span
-            onClick={() => {
-              hadleScroll(".about");
-              close();
-            }}
-          >
-            About
-          </span>
-        </li>
+        {sectionsJSON
+          .filter(link => link.sectionName !== "home")
+          .map((link) => {
+            return (
+              <li
+                key={link.sectionName}
+                className={currentSection === link.sectionName ? "active-section" : ""}
+              >
+                <span
+                  onClick={() => {
+                    hadleSectionScroll(link.sectionDestination);
+                    setIsClosing(true);
+                  }}
+                >
+                  {link.displayName}
+                </span>
+              </li>
+            )
+          })}
       </ul>
-      <div className="mobile-navbar-socials">
-        <a className="social-aTag" href={socials("linkedin")} target="blank">
-          <img src={linkedin} alt="linkedin" />
-        </a>
-        <a className="social-aTag" href={socials("github")} target="blank">
-          <img src={github} alt="github" />
-        </a>
-        <a className="social-aTag" href={socials("fiverr")} target="blank">
-          <img src={fiverr} alt="fiverr" />
-        </a>
-      </div>
-      <hr style={{ marginTop: "40px" }} />
+      <RenderSocials propClass="mobile-navbar-socials"/>
     </section>
   );
 }

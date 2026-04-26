@@ -1,14 +1,35 @@
-$pink: #ff0099;
-$purple: #ad00ff;
-$borderColor: rgba(173, 0, 255, 0.5);
-$glow: rgba(66, 0, 255, 1);
-$dark: #010a08;
-$gray: rgba(255, 255, 255, 0.5);
+$white: #FAEFFF;
+$gray: rgba(250, 239, 255, 0.5);
 $darkGray: #171717;
-//for DOM
-:root {
-  --dark: #010a08;
-  --purple: #ad00ff;
-  --pink: #ff0099;
-  --darkGray: #171717;
+$black: #010A08;
+$transparentBlack: rgba(1, 10, 8, 0.5);
+$pink: #ff0099;
+$pathColor: rgba(255, 0, 153, 0.5);
+$purple: #ad00ff;
+$darkPurple: #8300C0;
+$borderColor: rgba(173, 0, 255, 0.5);
+$glow: rgb(68, 0, 255);
+$green: #00C00D;
+$transparentGreen: rgba(0, 192, 13, 0.50);
+$red: #C80000;
+$transparentRed: rgba(200, 0, 0, 0.50);
+
+
+$lightGradient: linear-gradient(90deg, #FF0099 0%, #AD00FF 100%);
+$darkGradient: linear-gradient(90deg, #BC0071 0%, #8300C0 100%);
+
+
+$borderGradient: linear-gradient(var(--angle), #FF0099 0%, transparent 35%, transparent 70%, #AD00FF 100%);
+$borderGradientReverse: linear-gradient(var(--angle), #AD00FF 0%, transparent 35%, transparent 70%, #FF0099 100%);
+
+@keyframes rotate {
+  to {
+    --angle: 495deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 135deg;
+  inherits: false;
 }

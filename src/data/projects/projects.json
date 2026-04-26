@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Magicfyy",
+    "subtitle": "MVP",
+    "livePreviewURL": "https://magicfyy.netlify.app/",
+    "designPreviewURL": "https://www.figma.com/design/BUak2L71GivmpVyrS4zqCM/Magicfyy?m=auto&t=JwkuetdJu17aszc5-6",
+    "repositoryURL": "https://github.com/KamilasBro/Magicfyy",
+    "description": "Magicfyy - an interactive hub for Magic: The Gathering players, built around the Scryfall public API for card search and the “Guess the Card” mini-game. A solo-developed, crafted from scratch, from UI design to data logic. It blends functionality, utility, and fun into a single, lightweight interface.",
+    "buildStack": [
+      "React",
+      "React Router",
+      "TypeScript",
+      "SCSS",
+      "Tailwind",
+      "Vite"
+    ]
+  },
+  {
+    "title": "Stream Solutions",
+    "subtitle": "DEMO",
+    "livePreviewURL": "https://streamsolutionspreview.netlify.app/",
+    "repositoryURL": "https://github.com/KamilasBro/StreamSolutionsPreview",
+    "description": "Stream Solutions - A demo/preview of a conceptual media house website. Developed as a front-end implementation in close collaboration with a UX/UI designer, the project presents the proposed visual direction, layout, and interaction structure. This version serves as an early-stage concept rather than a finished commercial product.",
+    "buildStack": ["React", "React Router", "TypeScript", "SCSS", "Bootstrap"]
+  },
+  {
+    "title": "Kamilas",
+    "subtitle": "Portfolio",
+    "livePreviewURL": "https://kamilas.netlify.app/",
+    "designPreviewURL": "https://www.figma.com/design/r72NRYPErKgT8mdMwLLscI/Portfolio?m=auto&t=E9OoY6Ab2gS8DDUg-6",
+    "repositoryURL": "https://github.com/KamilasBro/Kamilas-Portfolio",
+    "description": "I don't think I need to describe it, you're already here 😊",
+    "buildStack": ["React", "TypeScript", "SCSS"]
+  }
+]

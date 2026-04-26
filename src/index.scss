@@ -1,111 +1,72 @@
-//components css files are inside components folders
-@import "./scssPartials/_flexCenter";
-@import "./scssPartials/_colors";
+//scss files for components are inside components folders and are imported to components
 
-@keyframes loadingAnim1 {
-  0% {
-    opacity: 1;
-  }
+@use "./scssPartials/_colors" as *;
+@use "./scssPartials/_breakpoints" as *;
+@use "./scssPartials/_containerWidths" as *;
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
 
-  50% {
-    opacity: 0.5;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes loadingAnim2 {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes titleAnim {
-  from {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+// to bypass darkmodes ingeretion by browsers
+:root {
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
 
   overflow-x: hidden;
-  overflow-y: hidden;
 
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  padding: 0;
   margin: 0;
-  background-color: $dark;
-  background-image: url(./images/backgrounds/bg.webp);
+
+  font-family: "Exo 2", sans-serif;
+  color: $white;
+
+  background-color: $black;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  color: #ffffff;
-}
+  background-image:
+    radial-gradient(circle at center, $pathColor 1px, transparent 2px),
+    radial-gradient(circle at center, $borderColor 0.66px, transparent 1.5px),
+    radial-gradient(circle at center, $darkGray 0.66px, transparent 1.5px);
+  background-size: 80px 80px, 40px 40px, 40px 40px;
+  background-position: -20px -20px, 0px 0px, 20px 20px;
+  background-repeat: repeat, repeat, repeat;
 
-body::-webkit-scrollbar {
-  width: 5px;
-}
+  overflow-x: hidden;
 
-body::-webkit-scrollbar-track {
-  background: #171717;
-}
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 
-body::-webkit-scrollbar-thumb {
-  background: $borderColor;
-}
+  &::-webkit-scrollbar-track {
+    background: $darkGray;
+  }
 
-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(173, 0, 255, 1);
-}
+  &::-webkit-scrollbar-thumb {
+    background: $borderColor;
+  }
 
-.loading-screen {
-  @include flexCenter;
-  flex-direction: column;
-
-  height: 100%;
-  width: 100%;
-
-  background-color: $dark;
-
-  position: fixed;
-  z-index: 4;
-  top: 0;
-}
-
-.loading-screen img {
-  height: 150px;
-  width: 150px;
-
-  animation: loadingAnim1 1.2s infinite;
-  border-radius: 0px;
+  &::-webkit-scrollbar-thumb:hover {
+    background: $purple;
+  }
 }
 
 main {
-  @include flexCenter;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   margin-top: 265px;
+  row-gap: 300px;
 }
 
-section,
-hr {
-  width: 1170px;
+section {
+  width: $fhd-w;
 }
 
 ul {
@@ -115,172 +76,151 @@ ul {
   list-style-type: none;
 }
 
-img {
-  border-radius: 10px;
-}
-
 h1,
 h2,
 h3,
-h4 {
+h4,
+p {
   margin: 0px;
-}
-
-hr {
-  margin-top: 100px;
-
-  border: 1px solid $borderColor;
-  border-radius: 25px;
-  filter: drop-shadow(0px 0px 2px $glow);
 }
 
 .section-title {
   font-weight: 600;
-  font-size: 46px;
-}
+  font-size: 40px;
+  font-family: "Orbitron", sans-serif;
 
-textarea:focus,
-input:focus,
-button:focus {
-  outline: none;
 }
 
 textarea,
 input {
+  font-family: "Exo 2", sans-serif;
+  color: $white;
+
   background-color: transparent;
-  color: #ffffff;
+
+  border: none;
 
   resize: none;
 
-  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+//disable autofill background
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $white;
+  transition: background-color 9999s ease-in-out 0s;
+
 }
 
 button {
-  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  padding-block: 0px;
+  padding-inline: 0px;
+
+  color: $white;
+  font-family: "Orbitron", sans-serif;
 
   background-color: transparent;
-  color: #ffffff;
+
+  outline: 0px;
+  border: none;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 1px solid;
+  }
 }
 
 a {
-  text-decoration: none;
-
   margin: 0px;
   padding: 0px;
+  padding-block: 0px;
+  padding-inline: 0px;
 
-  color: #ffffff;
+  color: $white;
+  text-decoration: none;
 }
 
-.social-aTag {
+.socials {
   display: flex;
-}
+  align-items: center;
 
-@media (max-width: 1440px) {
-  @keyframes titleAnim {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
+  a svg {
+    height: 100%;
+    width: 100%;
+
+    //by default icons are gradient filled
+    //this is the trick to create hover effect from white to gradient
+    //cause svg cannot have changed fill to gradient via css
+    &:not(:hover) path {
+      fill: $white;
     }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  section,
-  hr {
-    width: 940px;
-  }
-
-  .section-title {
-    font-size: 42px;
   }
 }
 
-@media (max-width: 1024px) {
-  @keyframes titleAnim {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
+@media (max-width: $sm-d) {
   main {
-    margin-top: 200px;
+    row-gap: 275px;
   }
 
-  section,
-  hr {
-    width: 724px;
+  section {
+    width: $sm-d-w;
   }
 
   .section-title {
     font-size: 38px;
-    text-align: center;
-  }
-
-  hr {
-    margin-top: 75px;
   }
 }
 
-@media (max-width: 800px) {
-  @keyframes titleAnim {
-    from {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
+@media (max-width: $lg-mb) {
   main {
-    margin-top: 155px;
+    margin-top: 200px;
+    row-gap: 250px;
   }
 
-  section,
-  hr {
-    width: 570px;
+  section {
+    width: $lg-mb-w;
   }
 
   .section-title {
     font-size: 34px;
-  }
-
-  hr {
-    margin-top: 50px;
+    text-align: center;
   }
 }
 
-@media (max-width: 600px) {
-  .loading-screen img {
-    height: 75px;
-    width: 75px;
-  }
-
+@media (max-width: $md-mb) {
   main {
-    margin-top: 110px;
+    margin-top: 155px;
+    row-gap: 175px;
   }
 
-  section,
-  hr {
-    width: 315px;
+  section {
+    width: $md-mb-w;
   }
 
   .section-title {
-    font-size: 24px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: $sm-mb) {
+  main {
+    margin-top: 110px;
+    row-gap: 100px;
   }
 
-  hr {
-    margin-top: 25px;
+  section {
+    width: $sm-mb-w-precent;
+    min-width: $sm-mb-w;
+  }
+
+  .section-title {
+    font-size: 22px;
   }
 }

@@ -1,0 +1,32 @@
+//array of sections on website
+
+// sectionName is working as identificator
+// sectionDestination is where navlink button should go (also it is a className for sections)
+// displayName used directly in render of navlinks (home is bypassed)
+
+[
+  {
+    "sectionName": "home",
+    "sectionDestination": "home"
+  },
+  {
+    "sectionName": "projects",
+    "sectionDestination": "projects",
+    "displayName": "Projects"
+  },
+  {
+    "sectionName": "techStack",
+    "sectionDestination": "tech-stack",
+    "displayName": "Tech Stack"
+  },
+  {
+    "sectionName": "contact",
+    "sectionDestination": "contact",
+    "displayName": "Contact"
+  },
+  {
+    "sectionName": "about",
+    "sectionDestination": "about",
+    "displayName": "About"
+  }
+]

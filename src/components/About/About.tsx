@@ -1,55 +1,106 @@
-// import placeholder from "../images/logo/placeholder.png"
-import { useInView } from "react-intersection-observer";
 import "./about.scss";
+
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import EncryptText from "../Utilities/DecryptText";
+
 export default function About() {
+  const aboutRef = useRef<HTMLDivElement>(null);
+
   const { ref, inView } = useInView({
-    //see projects.js for explanation
     triggerOnce: true,
   });
-  // nothing special here
+
+  useEffect(() => {
+    if (!aboutRef.current) return;
+
+    const encoded = "YSB0cnVlIG1hc3RlciBpcyBhbiBldGVybmFsIHN0dWRlbnQ=";
+    const sentence = atob(encoded).replace(/\s/g, "").toLowerCase();
+
+    // Get all span elements inside the about content
+    const allSpans = Array.from(aboutRef.current.querySelectorAll("span"));
+
+    // Prepare a list of spans that match the letters of the hidden sentence in order
+    const targetSpans: HTMLElement[] = [];
+    let sentenceIndex = 0;
+
+    allSpans.forEach(span => {
+      const char = span.textContent?.toLowerCase();
+      if (!char) return;
+
+      // Only include spans that match the current letter of the sentence
+      if (char === sentence[sentenceIndex]) {
+        targetSpans.push(span);
+        sentenceIndex++;
+      }
+    });
+
+    // Exit early if no target spans were found
+    if (!targetSpans.length) return;
+
+    // Function to reveal a span by adding a class
+    const revealSpan = (el: HTMLElement | null) => {
+      // Only operate on valid target spans and skip if already colored
+      if (!el || !targetSpans.includes(el) || el.classList.contains("colored")) return;
+      el.classList.add("colored");
+    };
+
+    // Mouse hover handler
+    const handleMouseEnter = (e: MouseEvent) => revealSpan(e.currentTarget as HTMLElement);
+
+    // Touch handler for mobile: reveal span under touch
+    const handleTouchMove = (e: TouchEvent) => {
+      const target = document.elementFromPoint(
+        e.touches[0].clientX,
+        e.touches[0].clientY
+      ) as HTMLElement | null;
+      revealSpan(target);
+    };
+
+    targetSpans.forEach(span => span.addEventListener("mouseenter", handleMouseEnter));
+    document.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      targetSpans.forEach(span => span.removeEventListener("mouseenter", handleMouseEnter));
+      document.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
+  // Helper function: wrap each character of a string in a <span>
+  function wrapLetters(text: string) {
+    return text.split("").map((char, idx) => (
+      <span key={idx}>{char}</span>
+    ));
+  }
+
   return (
-    <section className="about" ref={ref}
-      style={inView === false ?
-        { visibility: "hidden" }
-        :
-        {}}>
-      <h1
+    <section className="about" ref={ref}>
+      <EncryptText
+        text="About"
+        HTMLtag="h1"
+        encryptInView={inView}
         className="section-title"
-        style={inView === true ? { animation: "titleAnim 1s" } : {}}
-      >
-        About Me
-      </h1>
-      <div className="about-grid">
-        <div style={inView === true ? { animation: "aboutAnim1 1.1s" } : {}}>
-          Passionate video game enthusiast who's also been studying coding for
-          over a year now as a front-end developer.
-          <br />
-          I love diving into the intricate coding behind web development and
-          creating beautiful digital experiences for users.
-          <br />
-          <br />
-          When I'm not coding, I love spending time with my rabbit, who never
-          fail to put a smile on my face. And when I need to take a break from
-          the computer, I pick up my guitar and strum away, playing my favorite
-          songs.
+      />
+      <EncryptText
+        text="Something is hidden here, can you find it?"
+        HTMLtag="span"
+        encryptInView={inView}
+        className="easter-egg-hint"
+        iterationsRange={1}
+        decryptInterval={8}
+      />
+      <span hidden>Good luck searching here...</span>
+      {/* About content: split into two columns */}
+      <div className="about-content-wrap" ref={aboutRef}>
+        <div className={!inView ? "not-in-view" : ""}>
+          <p>{wrapLetters("A lifelong computer and gaming enthusiast, especially into classic, older games and also TCGs enjoyer.")}</p>
+          <p>{wrapLetters("I like taking things apart, tinkering, and making them work no matter how many times I fail.")}</p>
+          <p>{wrapLetters("Front-end programming is my main focus right now, but my curiosity doesn't stop there, I'm diving into AI integrations and backend development next.")}</p>
         </div>
-        <div style={inView === true ? { animation: "aboutAnim2 1.2s" } : {}}>
-          I bring my love for programming to create amazing websites that leave
-          a lasting impression on visitors.
-          <br />
-          I'm excited to continue learning and growing as a developer, and I
-          can't wait to see where this journey takes me!
-          <br />
-          <br />
-          I am currently diving deep into React with TypeScript, started to
-          learn NextJS and will learn UX/UI Design after, to explore modern
-          technology standards and possibilities.
-          <br />
-          In the future, I want to study backend to become FullStack Developer.
+        <div className={!inView ? "not-in-view" : ""}>
+          <p>{wrapLetters("There's a lot I don't know yet, but that's not enemy which I cannot defeat, every challenge is just another chance to learn and grow.")}</p>
+          <p>{wrapLetters("This portfolio shows what I can build, but not all the ways I like to break and fix stuff along the way.")}</p>
         </div>
-        {/* <div className="about-photo" style={inView===true?{animation:"aboutAnim2 1.3s"}:{}}>
-                    <img src={placeholder} alt="myphoto"/>
-                </div> */}
       </div>
     </section>
   );

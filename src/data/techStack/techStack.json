@@ -1,98 +1,72 @@
 [
   {
-    "section": "Front-End",
+    "sectionName": "Front-End",
     "stack": [
       {
+        "nodeName": "HTML"
+      },
+      {
         "nodeName": "CSS",
-        "type": "main-node",
-        "svgName": "css",
-        "order": 3,
         "subnodes": [
           {
-            "nodeName": "SASS/SCSS",
-            "type": "sub-node",
-            "svgName": "scss"
+            "nodeName": "SASS/SCSS"
           },
           {
-            "nodeName": "Bootstrap",
-            "type": "sub-node",
-            "svgName": "bootstrap"
+            "nodeName": "Bootstrap"
           },
           {
-            "nodeName": "Tailwind",
-            "type": "sub-node",
-            "svgName": "tailwind"
+            "nodeName": "Tailwind"
           }
         ]
       },
       {
         "nodeName": "JavaScript",
-        "type": "main-node",
-        "svgName": "javascript",
-        "order": 4,
         "subnodes": [
           {
-            "nodeName": "TypeScript",
-            "type": "sub-node",
-            "svgName": "typescript"
+            "nodeName": "TypeScript"
           }
         ]
       },
       {
         "nodeName": "React",
-        "type": "main-node",
-        "svgName": "react",
-        "order": 5,
-        "subnodes": []
-      },
-      {
-        "nodeName": "HTML",
-        "type": "main-node",
-        "svgName": "html",
-        "order": 2,
-        "subnodes": []
-      },
-      {
-        "nodeName": "GIT",
-        "type": "submain-node",
-        "svgName": "git",
-        "order": 1,
-        "subnodes": []
+        "subnodes": [
+          {
+            "nodeName": "React Router"
+          }
+        ]
       }
     ]
   },
   {
-    "section": "UX/UI Design",
+    "sectionName": "DevTools",
     "stack": [
       {
-        "nodeName": "Figma",
-        "type": "main-node",
-        "svgName": "figma",
-        "order": 1,
-        "subnodes": []
+        "nodeName": "Vite"
       },
       {
-        "nodeName": "Photoshop",
-        "type": "submain-node",
-        "svgName": "photoshop",
-        "order": 2,
-        "subnodes": []
+        "nodeName": "GIT"
       }
     ]
   },
   {
-    "section": "CMS",
+    "sectionName": "UX/UI Design",
+    "stack": [
+      {
+        "nodeName": "Figma"
+      },
+      {
+        "nodeName": "Photoshop"
+      }
+    ]
+  },
+  {
+    "sectionName": "CMS",
     "stack": [
       {
         "nodeName": "WordPress",
-        "type": "main-node",
-        "svgName": "wordpress",
-        "order": 1,
         "subnodes": [
           {
-            "nodeName": "Elementor",
-            "type": "sub-node",
-            "svgName": "elementor"
+            "nodeName": "Elementor"
           }
         ]
       }

@@ -1,0 +1,42 @@
+{
+  "elements": {
+    "nodes-Front-End": {
+      "x": -1036,
+      "y": -614
+    },
+    "CMS": {
+      "x": 280,
+      "y": 196
+    },
+    "nodes-CMS": {
+      "x": 438,
+      "y": 273
+    },
+    "UX/UI Design": {
+      "x": 218,
+      "y": -232
+    },
+    "nodes-UX/UI Design": {
+      "x": 462,
+      "y": -412
+    },
+    "DevTools": {
+      "x": -442,
+      "y": 196
+    },
+    "nodes-DevTools": {
+      "x": -793,
+      "y": 260
+    },
+    "Front-End": {
+      "x": -442,
+      "y": -228
+    }
+  },
+  "translateLimits": {
+    "minX": -1036,
+    "maxX": 948,
+    "minY": -614,
+    "maxY": 464
+  }
+}

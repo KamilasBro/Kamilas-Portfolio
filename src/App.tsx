@@ -1,4 +1,7 @@
-import logo from "../src/images/logo/logo.webp";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
+
+import RandomPathCanvas from "./components/BgAnims/RandomPath";
+import MatrixText from "./components/BgAnims/MatrixText";
 
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
@@ -8,72 +11,66 @@ import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import Footer from "./components/Footer/Footer";
 
-import React, { useEffect } from "react";
+import { useState } from "react";
+
 export default function App() {
-  useEffect(() => {
-    const htmlEle = document.querySelector("html") as HTMLElement;
-    const loadingScreen = document.querySelector(".loading-screen") as HTMLDivElement;
-    if (!htmlEle || !loadingScreen) return;
+  const [isLoading, setIsLoading] = useState(true)
 
-    htmlEle.style.overflowY = "hidden";
-
-    // finish sequence (unblock scroll + play hide animation + remove)
-    const finish = () => {
-      // allow scroll
-      htmlEle.style.overflowY = "visible";
-      // play hide animation then remove from flow
-      loadingScreen.style.animation = "loadingAnim2 1.2s";
-      setTimeout(() => {
-        loadingScreen.style.display = "none";
-      }, 1000);
-    };
-    // try to get body's background-image url and preload it
-    const bg = getComputedStyle(document.body).backgroundImage || "";
-    const match = bg.match(/url\(["']?(.*?)["']?\)/);
-    // safety fallback in case load never fires
-    const fallbackTimeout = window.setTimeout(finish, 6000);
-
-    if (match && match[1]) {
-      const img = new Image();
-      img.onload = () => {
-        clearTimeout(fallbackTimeout);
-        finish();
-      };
-      img.onerror = () => {
-        clearTimeout(fallbackTimeout);
-        finish();
-      };
-      // start loading (if cached, onload should fire)
-      img.src = match[1];
-    } else {
-      // no background image — hide immediately (still allow a tiny display)
-      clearTimeout(fallbackTimeout);
-      // small delay to allow initial paint
-      setTimeout(finish, 250);
-    }
-
-    return () => {
-      clearTimeout(fallbackTimeout);
-    };
-  }, []);
+  //sometimes we want to freeze our background 
+  // to not waste resource if the background is not visible
+  const [freeze, setFreeze] = useState(false)
   return (
     <>
-      <div className="loading-screen">
-        <img src={logo} alt="loader" />
-      </div>
+      {isLoading &&
+        <LoadingScreen
+          isLoading={isLoading}
+          setisLoading={setIsLoading}
+          gap={12}
+        />}
       <Navbar />
       <main>
-        <Home />
-        <hr />
-        <Projects />
-        <hr />
-        <TechStack />
-        <hr />
+        {/*
+        Most of the time home and projects are
+        active in intersection observer at render but hidden from user during loading 
+        In that case we pass isLoading prop to observer to run during that time
+        */}
+        <Home isLoading={isLoading} />
+        <Projects isLoading={isLoading} />
+        <TechStack
+          buildMode={false}
+          setFreeze={setFreeze}
+          gridGap={60}
+          pathGap={8}
+          ballSpeed={800}
+        />
         <Contact />
-        <hr />
         <About />
       </main>
       <Footer />
+      {!isLoading &&
+        <>
+          <MatrixText
+            freeze={freeze}
+            baseInterval={100}
+            baseFontSize={12}
+            speedRange={{ min: 100, max: 400 }}
+            mutateInterval={10}
+            mutateChancePercent={80}
+            fillColor="rgba(255, 0, 153, 0.4)"
+            charSet={["诶", "比", "西", "迪", "伊", "吉", "艾", "杰", "开", "哦", "屁", "提", "维"]}
+            zIndex={-1}
+          />
+          <RandomPathCanvas
+            freeze={freeze}
+            baseInterval={30}
+            animationDuration={5000}
+            pathSegments={8}
+            strokeColor="rgba(255, 0, 153, 0.25)"
+            strokeWidth={1.5}
+            zIndex={-2}
+          />
+
+        </>}
     </>
   );
 }
